@@ -1,0 +1,268 @@
+{
+  "templateType": "fish-game-expert/market-profile-v1",
+  "marketCode": "FL",
+  "name": "United States — Florida (Florida Gaming Control Commission)",
+  "legalStatus": "prohibited",
+  "regulator": {
+    "name": "Florida Gaming Control Commission",
+    "url": "https://flgaming.gov",
+    "notes": "佛州是魚機執法最積極的美國州份之一。2025 年多次執法行動中，fish tables 與違法拉霸機被並列查扣，並伴隨刑事起訴。對供應商的意義是：佛州不存在「合規版本」的現金型魚機。"
+  },
+  "classificationTest": {
+    "value": "material-element",
+    "confidence": "UNVERIFIED",
+    "source": null,
+    "notes": "⚠️ 佛州適用的法律測試未經一手查證。但從執法實務看，機率成分存在即足以構成違法賭博機具，供應商不應以技術性主張規劃進入。實際適用測試須由當地律師確認。"
+  },
+  "monetisation": {
+    "cashOut": {
+      "status": "prohibited",
+      "confidence": "MEDIUM",
+      "source": "Florida Gaming Control Commission 2025 執法行動（fish tables 與違法拉霸機並列查扣）",
+      "notes": "現金型魚機無合法部署途徑。"
+    },
+    "prizeRedemption": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "獎品／彩票兌換制度未經確認。"
+    },
+    "maxPrizeValue": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "獎品價值上限未取得條文，不填數值。"
+    },
+    "prizeBuyback": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "買回獎品之處理未經確認。買回在功能上等同 cash-out。"
+    },
+    "realCurrencyAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "機台是否得收受法定貨幣未經確認。"
+    },
+    "paymentCardAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "機台是否得讀取支付卡未經確認。"
+    },
+    "tokenSpecConstraint": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "代幣規格限制未經確認。"
+    },
+    "sweepstakesModel": {
+      "status": "prohibited",
+      "confidence": "MEDIUM",
+      "source": "Florida Gaming Control Commission 2025 執法行動",
+      "notes": "sweepstakes 型機台同屬查扣對象。"
+    }
+  },
+  "productConstraints": {
+    "minGameCycleMs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "遊戲循環時間下限未經確認。魚機另須釐清該限制係綁定一發子彈、一次捕獲或一個場景。"
+    },
+    "maxStakePerBullet": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "單發投注上限未經確認。子彈是魚機的原子投注單位。"
+    },
+    "maxBetMultiplier": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "最高砲倍檔位限制未經確認。"
+    },
+    "maxWinPerCapture": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "單次捕獲賠付上限未經確認。此上限一旦存在，即直接封頂最高魚種賠率倍數。"
+    },
+    "autoFire": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自動發射之處理未經確認，見 steering/responsible-gaming.md。"
+    },
+    "crossTablePool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨桌獎池之處理未經確認。"
+    },
+    "multiSeatSharedPool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "多座位共享魚池與最後一擊分配規則之處理未經確認，見 steering/multiplayer-fairness.md。"
+    },
+    "featureBuy": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "直接購買特殊武器或關卡進場權之處理未經確認。"
+    },
+    "celebrationOfNonWin": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "等值或低於投入之慶祝回饋規範未經確認。"
+    },
+    "otherProhibitions": [
+      {
+        "item": "現金型 fish table 於營業場所設置",
+        "confidence": "MEDIUM",
+        "source": "Florida Gaming Control Commission 2025 執法行動",
+        "notes": "查扣伴隨對場所負責人的刑事指控（例如持有拉霸機、經營賭場），不只是行政沒入。"
+      }
+    ]
+  },
+  "rtp": {
+    "minimum": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得最低派彩率條文，不填數值。"
+    },
+    "wagerUnitBasis": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "最低派彩率規則在魚機上的對應單位（一發子彈或一次捕獲）未經確認。這是幾乎所有市場共通的未解問題。"
+    },
+    "nonCashPrizeValuation": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "非現金獎品之計價基準未經確認。"
+    },
+    "perTierParityRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得各砲倍 RTP 一致性之明文要求，但仍應作為設計基線，見 steering/math-model.md。"
+    }
+  },
+  "playerAccount": {
+    "minimumAge": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "年齡下限未取得條文，不填數值。"
+    },
+    "kycRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "身分驗證要求未經確認。"
+    },
+    "selfExclusion": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自我排除機制未經確認。"
+    },
+    "spendLimits": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "投入限額要求未經確認。"
+    }
+  },
+  "auditLog": {
+    "retentionPeriod": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "紀錄保存期未經確認。"
+    },
+    "requiredFields": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "法定紀錄欄位未經確認。建議仍依 steering/rng-capture-determination.md 的完整欄位集實作，含魚離場紀錄。"
+    },
+    "tamperEvidence": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "防篡改要求未經確認。"
+    }
+  },
+  "dataResidency": {
+    "requirement": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "資料落地要求未經確認。"
+    },
+    "crossBorderTransfer": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨境傳輸限制未經確認。"
+    }
+  },
+  "certification": {
+    "scheme": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "測試與型式核准安排未經確認。"
+    },
+    "decisionWindow": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "審核時程未經確認。"
+    },
+    "exportExemption": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用或未經確認。"
+    },
+    "acceptedLabs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "認可測試機構清單未經確認。"
+    },
+    "penalties": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "罰則未取得條文，不填數值。"
+    },
+    "otherObligations": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "其他義務未經確認。"
+    }
+  },
+  "verificationRequired": [
+    "取得 Florida Statutes 關於 slot machine 定義與 gambling device 的條文原文，確認魚機的涵蓋範圍",
+    "確認佛州法院對技術／機率的適用測試",
+    "確認純娛樂（不可兌回）型魚機是否存在合法途徑，以及與 amusement machine 相關的許可制度",
+    "確認部落 compact 場域內的處理是否不同（見 tribal-class-iii-nigc.json）",
+    "確認彩票／獎品兌換型魚機是否落入 amusement 例外及其價值上限"
+  ],
+  "lastUpdated": "2026-07-29",
+  "notes": [
+    "⚠️ 本市場的正確顧問建議通常是「不要進入」，而非「如何合規」。技術合規無法解決法律地位問題。",
+    "佛州的執法模式（與 IRS、國土安全部門聯合行動）意味著風險不限於設備沒入，另涉稅務與跨州刑事調查。",
+    "本檔案刻意保留大量 UNVERIFIED：在一個沒有合法途徑的市場，補齊技術參數沒有實益，資源應投入法律地位確認。"
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "templateType": "fish-game-expert/capture-model-v1",
+  "name": "隨機傷害生命值扣減捕獲模型 — 中波動",
+  "description": "魚機捕獲機率模型工作範例，採 stochastic-HP（生命值扣減加隨機傷害）。每發命中造成隨機抽樣的傷害，生命值歸零即捕獲。所有推導數字經一致性驗算。",
+  "modelType": "stochastic-hp",
+  "modelTypeRationale": "業界最常見且體感最佳：兼具可預測性（玩家可估算剩餘血量）與變異。相對於固定單發捕獲機率（Bernoulli）較不易造成挫折，相對於確定性生命值仍保留機率成分。⚠️ 注意確定性生命值模型（零機率捕獲判定）不一定有利於法律分類，因為它會把機率成分的認定焦點移轉到魚群生成，須與 steering/skill-chance-classification.md 一併評估。",
+  "damageDistribution": {
+    "type": "discrete-uniform-scaled",
+    "parameters": {
+      "minDamage": 0.2,
+      "maxDamage": 1.64,
+      "steps": 8,
+      "stepSize": 0.2057142857
+    },
+    "expectedDamage": 0.92,
+    "variance": 0.2246,
+    "notes": "分佈參數為常數，不隨任何歷史變動。傷害以定點數運算並在最後一步套用，避免整數截斷造成期望傷害低於名目值——這是理論值與模擬值不一致最常見的成因。"
+  },
+  "betMultiplierIndependence": {
+    "captureProbabilityDependsOnBetMultiplier": false,
+    "notes": "捕獲機率與傷害分佈完全不隨砲倍變動。各砲倍 RTP 一致性由此性質直接推導而來：賠付與砲倍同時出現在期望回收的分子與投注成本的分母而相互抵消。這是設計上的保證，不是需要另外調校的目標。"
+  },
+  "independenceConstraints": [
+    "每發傷害不得依賴玩家歷史（先前的捕獲或失敗紀錄）。",
+    "每發傷害不得依賴累積投入或累積賠付。",
+    "每發傷害不得依賴當前 RTP 偏差或任何回收率目標。",
+    "每發傷害不得依賴玩家的帳戶餘額、儲值歷史或風險評分。",
+    "魚的初始生命值僅依該魚種的固定分佈抽樣，不得依 RTP 偏差調整。",
+    "魚離場時不得將已投入傷害記帳到下一條魚。",
+    "唯一允許影響判定的狀態是該條魚當前的剩餘生命值，因為那是對玩家可推論的遊戲規則。"
+  ],
+  "prohibitedPatterns": [
+    {
+      "pattern": "保底（連續 N 發未捕獲則強制捕獲或大幅提高捕獲機率）",
+      "reason": "條件機率依歷史而變，違反每局獨立性。這一項最常被誤認為玩家友善的無害設計。",
+      "verdict": "架構違規"
+    },
+    {
+      "pattern": "記血（未擊殺的魚將已投入傷害轉記到下一條魚）",
+      "reason": "建立跨局狀態依賴，是補償式控分的變體。",
+      "verdict": "架構違規"
+    },
+    {
+      "pattern": "依累積投入與賠付差額調整期望傷害或魚群中高倍魚的數量",
+      "reason": "典型的補償式派彩控制。",
+      "verdict": "架構違規"
+    },
+    {
+      "pattern": "依玩家個人歷史或風險評分調整捕獲機率（含以此反制作弊者）",
+      "reason": "即使動機是懲罰作弊，仍是依歷史調整結果，且無法在送測時證明只作用於作弊者。處置應在帳戶層。",
+      "verdict": "架構違規"
+    }
+  ],
+  "pureFunctionSignature": {
+    "signature": "resolveCapture(fishState, betMultiplier, rngBytes, config) -> CaptureResult",
+    "notes": "函式簽章本身就是獨立性的證明，在送測審查中比任何文字說明有力。若簽章中出現玩家歷史、累積統計或當前 RTP 參數，那個參數就是需要解釋的合規問題。"
+  },
+  "rngRequirements": {
+    "source": "CSPRNG，僅在伺服器端",
+    "batchSampling": "允許以批次取樣攤平系統呼叫成本，但緩衝區內容須完全來自 CSPRNG，且必須在送測文件中揭露，否則可能被誤判為自製 PRNG。",
+    "prohibitedSources": [
+      "Math.random()",
+      "System.Random",
+      "FMath::RandRange",
+      "rand()"
+    ],
+    "notes": "魚群生成使用的隨機數與捕獲判定同等級要求。生成是實務上最常見的漏洞點。"
+  },
+  "perSpeciesDerivation": [
+    {
+      "speciesId": "F01",
+      "speciesName": "小丑魚",
+      "baseHp": 2,
+      "expectedDamage": 0.92,
+      "expectedBulletsToCapture": 2.174,
+      "payoutMultiplier": 2,
+      "expectedReturnRate": 0.92
+    },
+    {
+      "speciesId": "F02",
+      "speciesName": "熱帶魚",
+      "baseHp": 3,
+      "expectedDamage": 0.92,
+      "expectedBulletsToCapture": 3.261,
+      "payoutMultiplier": 3,
+      "expectedReturnRate": 0.92
+    },
+    {
+      "speciesId": "F03",
+      "speciesName": "河魨",
+      "baseHp": 5,
+      "expectedDamage": 0.92,
+      "expectedBulletsToCapture": 5.435,
+      "payoutMultiplier": 5,
+      "expectedReturnRate": 0.92
+    },
+    {
+      "speciesId": "F04",
+      "speciesName": "烏賊",
+      "baseHp": 8,
+      "expectedDamage": 0.92,
+      "expectedBulletsToCapture": 8.696,
+      "payoutMultiplier": 8,
+      "expectedReturnRate": 0.92
+    },
+    {
+      "speciesId": "F05",
+      "speciesName": "海龜",
+      "baseHp": 13,
+      "expectedDamage": 0.92,
+      "expectedBulletsToCapture": 14.13,
+      "payoutMultiplier": 12,
+      "expectedReturnRate": 0.8492
+    },
+    {
+      "speciesId": "F06",
+      "speciesName": "旗魚",
+      "baseHp": 22,
+      "expectedDamage": 0.92,
+      "expectedBulletsToCapture": 23.913,
+      "payoutMultiplier": 20,
+      "expectedReturnRate": 0.8364
+    },
+    {
+      "speciesId": "F07",
+      "speciesName": "鯊魚",
+      "baseHp": 44,
+      "expectedDamage": 0.92,
+      "expectedBulletsToCapture": 47.826,
+      "payoutMultiplier": 40,
+      "expectedReturnRate": 0.8364
+    },
+    {
+      "speciesId": "F08",
+      "speciesName": "鬼頭刀",
+      "baseHp": 66,
+      "expectedDamage": 0.92,
+      "expectedBulletsToCapture": 71.739,
+      "payoutMultiplier": 60,
+      "expectedReturnRate": 0.8364
+    },
+    {
+      "speciesId": "F09",
+      "speciesName": "金龍",
+      "baseHp": 168,
+      "expectedDamage": 0.92,
+      "expectedBulletsToCapture": 182.609,
+      "payoutMultiplier": 150,
+      "expectedReturnRate": 0.8214
+    }
+  ],
+  "derivationFormulas": {
+    "expectedBulletsToCapture": "baseHp / expectedDamage",
+    "expectedReturnRate": "payoutMultiplier * expectedDamage / baseHp",
+    "perBulletRtp": "hitRate * sum(targetingWeight_i * expectedReturnRate_i) + 其他層貢獻",
+    "notes": "expectedReturnRate 是每次命中的回收率，尚未乘上命中率。命中率是乘法項，且是技術跨距的主要來源。"
+  },
+  "verificationRequirements": [
+    "以產品實際的判定程式碼執行模擬，不得另寫簡化版數學。",
+    "樣本量由實測單發回收率標準差 σ 反推，不可沿用產業慣用數字。",
+    "對 BOSS、跨桌獎池與極稀有魚種執行分層抽樣。",
+    "執行長期漂移測試、注入偏差測試與狀態隔離測試，證明無補償式控分。",
+    "逐砲倍驗證理論 RTP 完全相同。",
+    "四代理人（隨機／新手／典型／最佳）技術水準敏感度分析。",
+    "單人／滿座／混合技術水準的多人情境模擬。"
+  ],
+  "relatedTemplates": {
+    "speciesPayoutTable": "templates/species-payout/ocean-hunter-8-seat-96rtp.json",
+    "parSheet": "templates/certification/par-sheet.json",
+    "rngSubmission": "templates/certification/rng-submission-package.json"
+  },
+  "notes": [
+    "本模型的期望傷害 0.92 搭配賠率倍數與生命值近似成正比的配置，使各魚種期望回收率落在 0.82–0.92 區間。這個梯度是策略深度的來源，也是技術跨距的來源。",
+    "整數截斷是本模型最常見的實作錯誤：若每發傷害在扣減前被 floor 到整數，實際期望傷害會低於 0.92，造成模擬 RTP 系統性低於理論值。",
+    "本檔案的數字為工作範例，不是可直接送測的配置。"
+  ],
+  "lastUpdated": "2026-07-29"
+}

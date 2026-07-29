@@ -1,0 +1,287 @@
+{
+  "templateType": "fish-game-expert/market-profile-v1",
+  "marketCode": "BR",
+  "name": "Brazil — Secretaria de Prêmios e Apostas (SPA), Ministério da Fazenda",
+  "legalStatus": "regulated",
+  "regulator": {
+    "name": "Secretaria de Prêmios e Apostas (SPA) — Ministério da Fazenda",
+    "url": "https://www.gov.br/fazenda/pt-br/composicao/orgaos/secretaria-de-premios-e-apostas",
+    "notes": "Lei 14.790/2023 開放線上賭場（jogos online / online casino），市場自 2025-01-01 起運作。巴西是本 Power 中少數同時具備明文資料落地、法人實體與語言要求的市場，這些是專案時程的主要決定因素。"
+  },
+  "classificationTest": {
+    "value": "not-applicable",
+    "confidence": "MEDIUM",
+    "source": "Lei 14.790/2023；https://www.gov.br/fazenda/pt-br/composicao/orgaos/secretaria-de-premios-e-apostas",
+    "notes": "巴西不以司法上的技術對機率測試作為准入判準，而以是否落在可授權之線上賭場遊戲類別內為準。⚠️ 魚機（fish shooting game）是否落在可供應的線上賭場遊戲類別之內必須向 SPA 確認，這是本市場的閘門問題，列為 UNVERIFIED。"
+  },
+  "monetisation": {
+    "cashOut": {
+      "status": "allowed",
+      "confidence": "MEDIUM",
+      "source": "Lei 14.790/2023（線上賭場以真實貨幣投注與派彩）",
+      "notes": "在授權範圍內以真實貨幣派彩為常態。前提仍是遊戲類別歸屬先獲確認。"
+    },
+    "prizeRedemption": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上環境無實體獎品兌換層。"
+    },
+    "maxPrizeValue": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次派彩上限。不得推論為無上限。"
+    },
+    "prizeBuyback": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用於線上環境；未查證。"
+    },
+    "realCurrencyAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "本欄為實體機殼欄位；巴西授權以線上為主軸，不適用。"
+    },
+    "paymentCardAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "本欄為實體機殼欄位，不適用。線上支付管道的限制須另查 SPA 規範。"
+    },
+    "tokenSpecConstraint": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上環境無實體代幣。"
+    },
+    "sweepstakesModel": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "美式 sweepstakes 構造在巴西法下無實益且未經確認。"
+    }
+  },
+  "productConstraints": {
+    "minGameCycleMs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得遊戲循環時間下限。魚機射速即投注速度，若 SPA 技術規範含此要求，須先釐清綁定單位為一發子彈或一次捕獲。"
+    },
+    "maxStakePerBullet": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單發投注上限。"
+    },
+    "maxBetMultiplier": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得砲倍上限。"
+    },
+    "maxWinPerCapture": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次捕獲派彩上限。若存在，將直接封頂最高魚種賠率倍數。"
+    },
+    "autoFire": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自動發射之處理未經確認，見 steering/responsible-gaming.md。"
+    },
+    "crossTablePool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨桌獎池在 SPA 規範下的處理未經確認。若受限，巴西需要一份獨立驗證過的數學配置。"
+    },
+    "multiSeatSharedPool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "共享魚池、傷害歸屬與最後一擊分配之揭露要求未經確認，見 steering/multiplayer-fairness.md。"
+    },
+    "featureBuy": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "特殊武器購買之處理未經確認。"
+    },
+    "celebrationOfNonWin": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得相關規範。"
+    },
+    "otherProhibitions": [
+      {
+        "item": "須使用 .bet.br 網域",
+        "confidence": "MEDIUM",
+        "source": "Lei 14.790/2023 相關 SPA 規範",
+        "notes": "營運商層要件，但會影響供應商的整合端點、白牌配置與品牌資產交付清單。"
+      },
+      {
+        "item": "須設立巴西法人實體",
+        "confidence": "MEDIUM",
+        "source": "Lei 14.790/2023 相關 SPA 規範",
+        "notes": "公司結構要件，決定專案前置時程。B2B 遊戲供應商是否同受拘束須確認。"
+      },
+      {
+        "item": "送審文件須以葡萄牙文提交",
+        "confidence": "MEDIUM",
+        "source": "SPA 授權程序要求",
+        "notes": "⚠️ 對供應商的實際後果是：數學模型文件、RNG 說明、捕獲判定演算法說明與對局重播規格都需要專業葡文譯本。技術翻譯品質會直接影響審核往返次數，應在時程中單列翻譯與覆核工作項。"
+      }
+    ]
+  },
+  "rtp": {
+    "minimum": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得最低派彩率要求。不得填入推測值。"
+    },
+    "wagerUnitBasis": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ 原子投注單位是一發子彈。SPA 的規則綁定單位未見公開對應，須以書面技術問答釐清，見 steering/math-verification.md。"
+    },
+    "nonCashPrizeValuation": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上環境通常無非現金獎品；可參照 Massachusetts 205 CMR 143 對非現金獎品計價的處理作為概念對照。"
+    },
+    "perTierParityRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得明文要求，仍應作為設計基線。"
+    }
+  },
+  "playerAccount": {
+    "minimumAge": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未於本次建置中確認法定最低年齡條文。"
+    },
+    "kycRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "Lei 14.790/2023 制度下應有身分驗證與 AML 要求，具體門檻與時點未確認，見 steering/aml-kyc-player-account.md。"
+    },
+    "selfExclusion": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未確認是否有全國性自我排除系統（與瑞典 Spelpaus 的明文機制形成對照）。"
+    },
+    "spendLimits": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得法定投入限額。"
+    }
+  },
+  "auditLog": {
+    "retentionPeriod": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得保存期要求。境內資料中心要求意味著紀錄的儲存位置本身也是合規對象。"
+    },
+    "requiredFields": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得法定欄位集，建議依 steering/rng-capture-determination.md 實作含魚離場紀錄的完整欄位。"
+    },
+    "tamperEvidence": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    }
+  },
+  "dataResidency": {
+    "requirement": {
+      "value": "須於巴西境內設置資料中心",
+      "confidence": "MEDIUM",
+      "source": "Lei 14.790/2023 相關 SPA 規範",
+      "notes": "⚠️ 這是本檔案對系統架構影響最大的一項。魚機的共享魚池是有狀態的即時運算，境內落地要求意味著魚池狀態機、RNG 服務與紀錄儲存都須評估是否須落在巴西境內，而非只把資料庫複本放進去。跨區延遲對同桌公平性有直接影響，見 steering/multiplayer-fairness.md。"
+    },
+    "crossBorderTransfer": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "LGPD 與 SPA 規範對玩家資料跨境傳輸的具體限制未查證，見 steering/data-protection-privacy.md。"
+    }
+  },
+  "certification": {
+    "scheme": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得 SPA 現行技術認證要求與認可實驗室安排全文。不得假設既有 GLI 報告可直接沿用。"
+    },
+    "decisionWindow": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得審核時程。"
+    },
+    "exportExemption": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用。"
+    },
+    "acceptedLabs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得認可實驗室清單。若需兩份互相獨立之報告，注意 GLI 已於 2023-05-19 收購 iTech Labs，兩者不再獨立。"
+    },
+    "penalties": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得罰則條文。"
+    },
+    "otherObligations": {
+      "value": "巴西法人實體、.bet.br 網域、葡萄牙文送審文件",
+      "confidence": "MEDIUM",
+      "source": "Lei 14.790/2023 相關 SPA 規範",
+      "notes": "三項合計構成明顯的前置成本。對供應商而言最容易被低估的是葡文技術文件的準備工作量。"
+    }
+  },
+  "verificationRequired": [
+    "向 SPA 確認魚機（fish shooting game）是否落在可供應之線上賭場遊戲類別內（最高優先，閘門問題）",
+    "確認資料落地要求的範圍：是否包含魚池狀態機與 RNG 服務，或僅限資料儲存",
+    "確認 B2B 遊戲供應商是否須獨立授權，以及是否同受巴西法人實體要件拘束",
+    "取得 SPA 技術認證要求與認可實驗室清單",
+    "確認是否有最低派彩率要求及其綁定單位（子彈／捕獲／一局）",
+    "確認單次派彩上限（若有），並反推最高魚種賠率倍數的可行區間",
+    "確認跨桌獎池與共享魚池的處理與揭露要求",
+    "確認自動發射之處理立場",
+    "確認遊戲紀錄保存期、必要欄位與對局重播可接受形態",
+    "確認玩家帳戶層（年齡、KYC、自我排除、投入限額）之法定要求",
+    "確認 LGPD 與 SPA 規範下的跨境傳輸限制",
+    "確認葡文送審文件的範圍與是否須經認證翻譯"
+  ],
+  "lastUpdated": "2026-07-29",
+  "notes": [
+    "巴西的閘門問題與德國相同：不是數學能不能過，而是魚機是否算得上一種可授權的線上賭場遊戲。這個問題必須先解，否則後續所有技術工作都建立在未確認的前提上。",
+    "境內資料中心要求把魚機從「一份遊戲內容」變成「一套需要區域化部署的即時系統」。共享魚池的有狀態性使此要求的技術後果遠大於單機老虎機。",
+    "⚠️ 市場自 2025-01-01 起運作，規則仍在補齊階段。本檔案的 MEDIUM 值應在提交前重新查核現行規範版本，見 steering/change-management-recert.md。"
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "templateType": "fish-game-expert/market-entry-roadmap-v1",
+  "description": "魚機市場進入路線圖範本。階段順序不是專案管理偏好，而是由「哪些約束無法事後補上」決定的技術事實。",
+  "targetMarket": null,
+  "currentStatus": null,
+  "monetisationModel": null,
+  "deploymentForm": null,
+  "sequencingRules": [
+    "架構層約束（伺服器權威判定、對局重播、傷害歸屬可稽核性）無法事後補上，只能重寫。若計畫中包含任何要求這三項的市場，第一版就必須按該標準建置。",
+    "法律地位確認必須早於任何數學設計。市場的獎品或獎金上限會直接決定最高魚種賠率倍數是否可行，這是數學可行性問題，不是調參問題。",
+    "先認證容易的市場再進入嚴格市場，在魚機領域的代價高於老虎機，因為嚴格市場的約束落在架構層而非參數層。",
+    "各市場的數學組態是獨立的認證產物，不是同一建置上的功能旗標。跨桌獎池或特殊武器的移除會重新分配 RTP，構成新的數學組態。"
+  ],
+  "phases": [
+    {
+      "phase": 1,
+      "name": "法律地位與兌現模式確認",
+      "objective": "確認目標市場是否存在合法部署途徑，以及可行的兌現模式。",
+      "entryCriteria": [
+        "已指定目標市場",
+        "已指定預期兌現模式"
+      ],
+      "exitCriteria": [
+        "已查閱該市場的 market profile 與禁止／灰區登記冊",
+        "已取得當地執業律師就法律地位與可行兌現模式的書面意見",
+        "已確認適用的法律測試（predominant factor / material element / any-chance / chance-influence / 行政評鑑）",
+        "已決定進入或不進入"
+      ],
+      "dependencies": [],
+      "owner": null,
+      "estimatedDuration": null,
+      "blockers": [],
+      "notes": "⚠️ 若本階段結論為無合法途徑，路線圖在此終止。繼續進入後續階段是把已知的法律風險轉為沉沒成本。estimatedDuration 須由律師報價，不可假設。"
+    },
+    {
+      "phase": 2,
+      "name": "分類舉證（僅適用採技術／機率測試的市場）",
+      "objective": "產出可量化的技術貢獻度證據，作為法律意見的事實基礎。",
+      "entryCriteria": [
+        "第 1 階段確認該市場採 predominant factor 或 material element test"
+      ],
+      "exitCriteria": [
+        "已量測 RTP_random、RTP_optimal、技術跨距、命中率跨距、學習曲線、玩家間變異分解",
+        "已完成呈現層自我檢查（是否含博彩語彙與符號）",
+        "已產出分類舉證卷宗並交付律師"
+      ],
+      "dependencies": [
+        1
+      ],
+      "owner": null,
+      "estimatedDuration": null,
+      "blockers": [],
+      "notes": "技術跨距低於 2 個百分點時，技術性主張在事實層面不成立，應回到第 1 階段重新評估兌現模式。範本見 templates/certification/skill-chance-dossier.json。"
+    },
+    {
+      "phase": 3,
+      "name": "架構基線",
+      "objective": "建立無法事後補上的架構能力。",
+      "entryCriteria": [
+        "第 1 階段確認進入",
+        "已知目標市場集合中最嚴格的架構要求"
+      ],
+      "exitCriteria": [
+        "捕獲判定與命中判定完全在伺服器端，客戶端僅做視覺預測",
+        "對局重播可由記錄的 spawn seed 與事件流逐位元重現",
+        "逐發傷害序列與魚離場事件均已記錄",
+        "建置雜湊與配置雜湊驗證失敗時系統拒絕啟動",
+        "已確認不存在任何補償式派彩控制"
+      ],
+      "dependencies": [
+        1
+      ],
+      "owner": null,
+      "estimatedDuration": null,
+      "blockers": [],
+      "notes": "本階段是整份路線圖的關鍵路徑。既有機台移植線上時，本階段通常是重寫判定層而非包一層網路。"
+    },
+    {
+      "phase": 4,
+      "name": "數學模型與驗證",
+      "objective": "產出符合市場上限且各砲倍一致的數學組態，並完成三層驗證。",
+      "entryCriteria": [
+        "已知該市場的獎品／獎金上限與投注上限",
+        "第 3 階段的判定程式碼可供模擬呼叫"
+      ],
+      "exitCriteria": [
+        "各砲倍理論 RTP 完全相同且經模擬確認",
+        "已在隨機／典型／最佳三種策略下產出 RTP 區間",
+        "最不熟練策略的 RTP 達到該市場最低派彩率門檻（若有）",
+        "最佳策略 RTP 低於 100%",
+        "損失項（魚離場、場景重置、未完成捕獲）已量化並納入理論模型",
+        "PAR sheet 已產出並綁定建置與配置雜湊"
+      ],
+      "dependencies": [
+        1,
+        3
+      ],
+      "owner": null,
+      "estimatedDuration": null,
+      "blockers": [],
+      "notes": "樣本量須由實測 σ 反推，不可沿用產業慣用數字。BOSS 與跨桌獎池須分層抽樣。"
+    },
+    {
+      "phase": 5,
+      "name": "硬體或平台合規",
+      "objective": "完成部署形態對應的合規要求。",
+      "entryCriteria": [
+        "已確定部署形態（實體機台／線上／混合）"
+      ],
+      "exitCriteria": [
+        "實體機台：金流裝置、代幣規格、彩票出票、上下分授權、竄改偵測、必要標示均符合該市場要求",
+        "實體機台：商品檢驗與電磁相容認證已排入或完成",
+        "線上：錢包幂等性、斷線與未完成局處理、跨桌獎池分區、資料落地拓撲均已實作",
+        "後台可調數學組態已全部列舉，每組各有 PAR sheet"
+      ],
+      "dependencies": [
+        3,
+        4
+      ],
+      "owner": null,
+      "estimatedDuration": null,
+      "blockers": [],
+      "notes": "台灣的軟體評鑑與機具結構商品檢驗是兩軌並行、不同時程，缺一不可。"
+    },
+    {
+      "phase": 6,
+      "name": "送測",
+      "objective": "完成實驗室或主管機關的核准程序。",
+      "entryCriteria": [
+        "第 4、5 階段出口條件全部達成",
+        "已完成書面技術問答，投注單位定義已與實驗室對齊"
+      ],
+      "exitCriteria": [
+        "提交文件集齊備",
+        "已取得認證報告或評鑑分類文件",
+        "認證範圍與實際部署的市場、建置、配置組合一致"
+      ],
+      "dependencies": [
+        4,
+        5
+      ],
+      "owner": null,
+      "estimatedDuration": null,
+      "blockers": [],
+      "notes": "時程與費用必須由實驗室報價，本範本不提供估值。台灣的評鑑分類決定窗口為 30 日（條例第 6 條）。"
+    },
+    {
+      "phase": 7,
+      "name": "上線與監控",
+      "objective": "在受控條件下上線，並建立可主動發現靜默偏差的監控。",
+      "entryCriteria": [
+        "已取得有效認證或核准",
+        "監控與不變式檢查已就緒"
+      ],
+      "exitCriteria": [
+        "逐桌與逐砲倍 RTP 滑動窗口監控已上線並設定告警",
+        "逐座位 RTP 與命中率的座位公平性監控已上線",
+        "定期隨機抽樣重播並比對實際結算已上線",
+        "座位共現與定向最後一擊流的共謀偵測已上線",
+        "事故處理與證據保全程序已演練",
+        "法規觀察清單已建立並指定負責人"
+      ],
+      "dependencies": [
+        6
+      ],
+      "owner": null,
+      "estimatedDuration": null,
+      "blockers": [],
+      "notes": "定期抽樣重播比對是唯一能主動發現靜默偏差的機制，也是後續送測時最有力的自我驗證材料。"
+    }
+  ],
+  "notes": [
+    "estimatedDuration 一律為 null。魚機的時程主導因素是法律意見與實驗室排程，兩者都必須報價取得，假設值會誤導專案規劃。",
+    "第 3 階段與第 1 階段可並行啟動，但第 4 階段不可早於第 1 階段完成，因為市場上限決定數學可行性。"
+  ],
+  "lastUpdated": "2026-07-29"
+}

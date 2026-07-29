@@ -1,0 +1,274 @@
+{
+  "templateType": "fish-game-expert/market-profile-v1",
+  "marketCode": "ON",
+  "name": "Ontario — Alcohol and Gaming Commission of Ontario (AGCO)",
+  "legalStatus": "regulated",
+  "regulator": {
+    "name": "Alcohol and Gaming Commission of Ontario (AGCO)",
+    "url": "https://www.agco.ca/en/lottery-and-gaming/guides/registrars-standards-internet-gaming",
+    "notes": "安大略以 Registrar's Standards for Internet Gaming 作為線上遊戲的技術與營運標準基準，供應商（game supplier）與營運商都需登錄。本次建置取得標準的官方入口，但未逐條核對標準全文，因此條號層級的引用一律不填。"
+  },
+  "classificationTest": {
+    "value": "not-applicable",
+    "confidence": "MEDIUM",
+    "source": "AGCO Registrar's Standards for Internet Gaming（以登錄與標準遵循為准入基礎）",
+    "notes": "安大略的准入不經由司法上的技術對機率測試，而是以登錄資格與標準遵循為準。實際門檻在於魚機的多人共享結構能否對映到既有標準的遊戲公平與揭露條款，此對映未經確認。"
+  },
+  "monetisation": {
+    "cashOut": {
+      "status": "allowed",
+      "confidence": "MEDIUM",
+      "source": "AGCO Registrar's Standards for Internet Gaming（線上遊戲以真實貨幣投注與派彩）",
+      "notes": "在登錄營運商平台上以真實貨幣派彩為常態。供應商責任在於派彩指令的正確性與可稽核性，見 steering/payout-control-integrity.md。"
+    },
+    "prizeRedemption": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上環境無實體獎品兌換層。"
+    },
+    "maxPrizeValue": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次派彩上限。不得推論為無上限。"
+    },
+    "prizeBuyback": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用於線上環境；未查證。"
+    },
+    "realCurrencyAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "本欄為實體機殼欄位。本檔案僅涵蓋 Internet Gaming；陸上機台受不同制度規範，須另建檔案。"
+    },
+    "paymentCardAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "本欄為實體機殼欄位，不適用。"
+    },
+    "tokenSpecConstraint": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上環境無實體代幣。"
+    },
+    "sweepstakesModel": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "美式 sweepstakes 構造在加拿大刑法架構下的處理未經確認，且在已有合法線上市場的前提下無實益。"
+    }
+  },
+  "productConstraints": {
+    "minGameCycleMs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "Registrar's Standards 是否含遊戲循環時間下限、以及是否及如何適用於魚機射速，未逐條核對。魚機射速即投注速度，此項應列為書面問答項。"
+    },
+    "maxStakePerBullet": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單發投注上限。"
+    },
+    "maxBetMultiplier": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得砲倍上限。"
+    },
+    "maxWinPerCapture": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次捕獲派彩上限。"
+    },
+    "autoFire": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自動發射之處理未經確認。Registrar's Standards 的負責博彩章節是否涵蓋此類連續投入機制，須確認，見 steering/responsible-gaming.md。"
+    },
+    "crossTablePool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨桌獎池之處理未經確認。"
+    },
+    "multiSeatSharedPool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "共享魚池、傷害歸屬與最後一擊分配之揭露要求未經確認。標準通常要求遊戲規則對玩家完整可得，最後一擊分配規則若未明確揭露即為風險點，見 steering/multiplayer-fairness.md。"
+    },
+    "featureBuy": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "特殊武器購買之處理未經確認。"
+    },
+    "celebrationOfNonWin": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "回收不高於投入卻呈現慶祝的處理未經確認。魚機高頻小額捕獲使此情形遠比老虎機頻繁。"
+    },
+    "otherProhibitions": [
+      {
+        "item": "遊戲供應商須向 AGCO 登錄，並遵循 Registrar's Standards for Internet Gaming",
+        "confidence": "MEDIUM",
+        "source": "https://www.agco.ca/en/lottery-and-gaming/guides/registrars-standards-internet-gaming",
+        "notes": "供應商是被規範主體，不能只依賴營運商的登錄。這與若干市場「僅營運商受規範」的結構不同，須在專案評估階段確認登錄路徑與時程。"
+      }
+    ]
+  },
+  "rtp": {
+    "minimum": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未逐條核對 Registrar's Standards 是否含最低派彩率門檻。不得填入推測值。"
+    },
+    "wagerUnitBasis": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ 原子投注單位是一發子彈。標準中的「遊戲」與「投注」定義如何對映到子彈、捕獲或一局，未經確認，須以書面技術問答釐清，見 steering/math-verification.md。"
+    },
+    "nonCashPrizeValuation": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上環境通常無非現金獎品。可參照 Massachusetts 205 CMR 143 的非現金獎品計價處理作為概念對照。"
+    },
+    "perTierParityRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得明文要求，仍應作為設計基線。"
+    }
+  },
+  "playerAccount": {
+    "minimumAge": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未於本次建置中核對明文年齡條款。"
+    },
+    "kycRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "標準應含身分驗證要求，具體內容未核對，見 steering/aml-kyc-player-account.md。"
+    },
+    "selfExclusion": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未確認自我排除機制的形態與供應商介面責任。供應商仍須確保帳戶狀態檢查發生在發射請求受理之前。"
+    },
+    "spendLimits": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得法定限額，須核對標準之負責博彩章節。"
+    }
+  },
+  "auditLog": {
+    "retentionPeriod": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得保存期要求。"
+    },
+    "requiredFields": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得法定欄位集。魚機的對局重播需求遠超一般 spin log，建議依 steering/rng-capture-determination.md 實作並主動確認可接受形態。"
+    },
+    "tamperEvidence": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    }
+  },
+  "dataResidency": {
+    "requirement": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得資料落地要求。不可以巴西的境內資料中心要求類推。"
+    },
+    "crossBorderTransfer": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證，見 steering/data-protection-privacy.md。"
+    }
+  },
+  "certification": {
+    "scheme": {
+      "value": "AGCO Registrar's Standards for Internet Gaming（登錄＋標準遵循）",
+      "confidence": "MEDIUM",
+      "source": "https://www.agco.ca/en/lottery-and-gaming/guides/registrars-standards-internet-gaming",
+      "notes": "確認標準體系存在且為准入基準，但未逐條核對條號與測試要求。與丹麥的 SCP.00–SCP.07 模組化清單相比，安大略的標準是以結果為導向的合規標準，測試安排須另行確認。"
+    },
+    "decisionWindow": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得登錄與遊戲送審時程。"
+    },
+    "exportExemption": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用。"
+    },
+    "acceptedLabs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得認可實驗室清單。若需互相獨立之兩份報告，注意 GLI 已於 2023-05-19 收購 iTech Labs，兩者不再獨立。"
+    },
+    "penalties": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得處分與罰則規定。"
+    },
+    "otherObligations": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "供應商登錄的具體條件與持續義務未核對。"
+    }
+  },
+  "verificationRequired": [
+    "逐條核對 Registrar's Standards for Internet Gaming，確認適用於魚機的遊戲公平、揭露與負責博彩條款",
+    "確認遊戲供應商登錄的資格條件、時程與持續義務",
+    "確認標準中「遊戲」與「投注」的定義如何對映到一發子彈、一次捕獲或一局",
+    "確認是否有最低派彩率門檻及其數值",
+    "確認是否有遊戲循環時間下限，以及是否適用於魚機射速",
+    "確認自動發射是否落入負責博彩相關限制",
+    "確認共享魚池與最後一擊分配規則的揭露要求（規則須對玩家完整可得）",
+    "確認跨桌獎池的處理與單次派出上限",
+    "確認遊戲紀錄保存期、必要欄位與對局重播可接受形態",
+    "確認測試與認證安排，以及 AGCO 認可的測試機構",
+    "確認資料落地與跨境傳輸限制"
+  ],
+  "lastUpdated": "2026-07-29",
+  "notes": [
+    "安大略把遊戲供應商列為受規範主體，這使供應商無法把合規責任全部推給營運商。專案評估時應把登錄時程視為上市時程的一部分。",
+    "Registrar's Standards 屬結果導向標準，通常要求「遊戲規則對玩家完整可得」。魚機的傷害歸屬與最後一擊規則在多數實機上並未清楚揭露，這是最可能被要求補件的環節。",
+    "本檔案刻意不填任何條號。取得標準入口不等於核對過條文，虛構條號會在送審時立即失去可信度，見 steering/advisory-engagement.md。"
+  ]
+}

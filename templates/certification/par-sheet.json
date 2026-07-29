@@ -1,0 +1,468 @@
+{
+  "templateType": "fish-game-expert/par-sheet-v1",
+  "description": "魚機 PAR sheet（Probability and Accounting Report）範本，依 steering/math-verification.md 第 6 節的 16 節規格建立。此檔為空白範本：所有待填欄位為 null 或空字串，並附 notes 說明填寫依據。PAR sheet 必須綁定特定 buildHash 與 configHash，任何影響數學的變更都使本份文件失效（見 steering/change-management-recert.md）。",
+  "section1_gameIdentification": {
+    "sectionTitle": "1. 遊戲識別",
+    "gameName": null,
+    "gameCodeName": null,
+    "version": null,
+    "buildHash": null,
+    "configHash": null,
+    "rngModuleHash": null,
+    "hashAlgorithm": null,
+    "hashDigestBits": null,
+    "parSheetVersion": null,
+    "certificationRef": null,
+    "marketCode": null,
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "notes": "buildHash 為遊戲程式二進位雜湊，configHash 為數學配置（魚種賠率、生命值分佈、生成權重、砲倍矩陣）雜湊，兩者必須同時填寫。hashDigestBits 為摘要位元數（例如 SHA-256 填 256），實驗室會核對演算法強度。此三欄缺任一項，本份 PAR sheet 無法被綁定到可稽核的產物上。"
+  },
+  "section2_gameForm": {
+    "sectionTitle": "2. 遊戲形態",
+    "deploymentForm": null,
+    "seatCount": null,
+    "tableTopology": null,
+    "monetisationModel": null,
+    "sharedPoolModel": null,
+    "serverAuthoritative": null,
+    "replayCapability": null,
+    "notes": "deploymentForm 決定適用標準（實體機台走 GLI-11、線上互動系統走 GLI-19），見 steering/certification-prep.md 第 2 節決策樹。sharedPoolModel 填 A（完全共享，最後一擊拿全額）／B（依投入成本比例分配）／C（各座位獨立進度），並必須與玩家規則揭露一致，見 steering/multiplayer-fairness.md。"
+  },
+  "section3_wagerUnitDefinition": {
+    "sectionTitle": "3. 投注單位定義",
+    "declaredUnit": null,
+    "declaredUnitRationale": "",
+    "alternativeUnitsConsidered": [
+      {
+        "candidate": "一發子彈",
+        "advantage": "與扣款一對一對應，且是唯一具有獨立判定的單位",
+        "problem": "多數子彈回收為零，單發變異極大"
+      },
+      {
+        "candidate": "一次捕獲事件",
+        "advantage": "直覺上接近「一局」",
+        "problem": "投注額不固定，消耗子彈數為隨機變數"
+      },
+      {
+        "candidate": "一個場景週期",
+        "advantage": "對應可觀察的遊戲節奏",
+        "problem": "跨場景的獎池與武器狀態使邊界模糊"
+      },
+      {
+        "candidate": "一個座位工作階段",
+        "advantage": "對應玩家實際體驗",
+        "problem": "長度由玩家決定，不可作為監管單位"
+      }
+    ],
+    "marketAcceptance": {
+      "confidence": "UNVERIFIED",
+      "writtenQueryRef": null,
+      "labResponseDate": null
+    },
+    "notes": "⚠️ 本 Power 的既定立場是原子投注單位為一發子彈（one bullet），declaredUnit 應填「一發子彈」並在 declaredUnitRationale 寫明理由。此定義是後續所有 RTP 數字、最低派彩率、投注上限與獎金上限的分母，沒有本節，實驗室會退回整份文件。該定義是否被特定市場接受標記 UNVERIFIED，必須以書面技術問答取得回覆並填入 writtenQueryRef，見 steering/certification-prep.md 第 5.2 節。"
+  },
+  "section4_speciesPayoutTable": {
+    "sectionTitle": "4. 魚種賠率表",
+    "species": [
+      {
+        "id": "",
+        "name": "",
+        "tier": null,
+        "payoutMultiplier": null,
+        "baseHp": null,
+        "hpDistribution": null,
+        "avgCountInPool": null,
+        "spawnWeight": null,
+        "screenAreaShare": null,
+        "movementSpeedDistribution": null
+      }
+    ],
+    "notes": "逐魚種列出，不得抽樣。賠率倍數與生命值應近似成正比，這是各砲倍 RTP 一致性最容易維持的結構。賠率倍數的上界受目標市場的獎金或獎品價值上限拘束（例如英國 C 類獎金上限 £100、台灣限制級每次兌換 NT$2,000），設計前先查 steering/jurisdiction-matrix.md。範本可參考 templates/species-payout/ocean-hunter-8-seat-96rtp.json。"
+  },
+  "section5_captureProbabilityModel": {
+    "sectionTitle": "5. 捕獲機率模型",
+    "modelType": null,
+    "damageDistribution": {
+      "type": null,
+      "parameters": null,
+      "expectedDamage": null,
+      "standardDeviation": null
+    },
+    "hitProbabilityLayer": {
+      "description": "",
+      "collisionShape": null,
+      "bulletFlightTimeMs": null,
+      "notes": "命中機率由幾何運算決定（瞄準角度、碰撞範圍、魚群密度、子彈飛行時間），這一層是技術成分的所在。"
+    },
+    "captureProbabilityLayer": {
+      "description": "",
+      "notes": "捕獲機率由數學模型決定，這一層是機率成分的所在。兩層必須分離表述並分別記錄於稽核日誌，不可合併為單一「每發賠付機率」數字。"
+    },
+    "independenceStatement": "",
+    "notes": "modelType 填 per-bullet-bernoulli（模型 A）／deterministic-hp（模型 B）／stochastic-hp（模型 C）。若為模型 C，必須在 independenceStatement 中明確聲明 E[每發傷害] 不依賴玩家歷史、累積投入、當前 RTP 偏差或帳戶餘額，否則構成補償式控分（steering/payout-control-integrity.md）。範本可參考 templates/capture-model/weighted-hp-medium-volatility.json。"
+  },
+  "section6_betMultiplierMatrix": {
+    "sectionTitle": "6. 砲倍配置矩陣",
+    "tiers": [
+      {
+        "betMultiplier": null,
+        "costPerBullet": null,
+        "theoreticalRtp": null,
+        "simulatedRtp": null,
+        "maxWinPerCapture": null,
+        "sampleSize": null
+      }
+    ],
+    "perTierRtpParity": {
+      "verified": null,
+      "maxDeviationPercentagePoints": null,
+      "statisticalToleranceUsed": null,
+      "boundaryRoundingChecked": null,
+      "verificationMethod": "",
+      "evidenceRef": null
+    },
+    "singleWinCap": {
+      "exists": null,
+      "value": null,
+      "includedInRtpCalculation": null
+    },
+    "notes": "必須列出所有砲倍，不是抽樣。各砲倍 RTP 必須相同——這是數學上的必然結果（賠率倍數與砲倍在分子分母同時出現而抵消），因此任何差異都應優先懷疑實作而非統計誤差，常見來源是傷害計算的整數截斷或最低傷害保底邏輯在不同砲倍下生效比例不同。「大砲難打」是產業慣例，也是明確的退測原因。若設有單次賠付上限，必須在此明示並納入 RTP 計算。"
+  },
+  "section7_specialWeapons": {
+    "sectionTitle": "7. 特殊武器",
+    "weapons": [
+      {
+        "id": "",
+        "name": "",
+        "mechanism": "",
+        "acquisitionCondition": "",
+        "acquisitionCostAccumulated": null,
+        "triggerProbability": null,
+        "durationOrShots": null,
+        "avgFishHitPerActivation": null,
+        "rtpContribution": null,
+        "rtpContributionDenominator": null,
+        "denominatorDefinition": ""
+      }
+    ],
+    "rtpContributionDenominator": {
+      "rule": "取得該武器所投入的全部累積成本",
+      "prohibitedRule": "觸發當下那一發子彈的成本",
+      "verified": null,
+      "evidenceRef": null
+    },
+    "notes": "⚠️ 特殊武器 RTP 貢獻的分母必須是取得成本（取得該武器所投入的全部累積成本），不是觸發當下那一發的成本。這是魚機 RTP 計算最常見的錯誤，會讓 RTP 被系統性高估數個百分點，也是模擬值系統性高於理論值時的第一個排查點。每一項武器都必須在 denominatorDefinition 中寫明其分母的實際構成。"
+  },
+  "section8_scenesAndBoss": {
+    "sectionTitle": "8. 場景與 BOSS",
+    "scenes": [
+      {
+        "id": "",
+        "name": "",
+        "rotationRule": "",
+        "deterministic": null,
+        "durationSeconds": null,
+        "speciesPoolOverride": null,
+        "rtpContribution": null
+      }
+    ],
+    "boss": [
+      {
+        "id": "",
+        "name": "",
+        "entryFrequency": null,
+        "entryTrigger": "",
+        "entryTriggerDeterministic": null,
+        "seatEligibility": "",
+        "timeLimitSeconds": null,
+        "expectedTotalPayout": null,
+        "expectedTotalWagerDuringStage": null,
+        "rtpContribution": null,
+        "payoutAllocationRule": "",
+        "unkilledOutcomeProbability": null,
+        "unkilledOutcomeLoss": null
+      }
+    ],
+    "notes": "場景輪替與 BOSS 出現可以是確定性排程，這比隨機更容易稽核，且只要排程不依玩家行為或營收狀態就不影響獨立性。若 BOSS 觸發為隨機，其觸發機率必須是固定常數並在此揭露。多人共同擊殺 BOSS 的賠付分配規則必須是確定性且可稽核的。若 BOSS 有時間限制且未擊殺不賠付，該情況的機率與損失必須計入第 15 節。"
+  },
+  "section9_crossTablePool": {
+    "sectionTitle": "9. 跨桌獎池",
+    "enabled": null,
+    "contributionRatePerBullet": null,
+    "tiers": [
+      {
+        "name": "",
+        "seedValue": null,
+        "contributionShare": null,
+        "triggerCondition": "",
+        "mustHitCeiling": null
+      }
+    ],
+    "rtpContribution": null,
+    "capAndReclaimHandling": "",
+    "reclaimedPortionExcludedFromRtp": null,
+    "marketRestrictions": "",
+    "notes": "抽取比例即等於 RTP 貢獻（假設獎池最終必然派出）。若獎池有封頂或逾期回收機制，回收部分不計入 RTP，必須在 capAndReclaimHandling 另行揭露。必中上限（must-hit ceiling）在多數市場可被接受，但必須明示並計入 RTP，且應以書面技術問答逐市場確認。⚠️ 移除獎池不是關開關：抽取比例會回流到基礎層，構成新的數學配置，必須重新驗算並重新送測。"
+  },
+  "section10_rtpBreakdown": {
+    "sectionTitle": "10. RTP 構成拆解（三種策略各一份）",
+    "layerKeys": [
+      "baseSpecies",
+      "specialWeapons",
+      "boss",
+      "crossTablePool",
+      "missionsAndAchievements"
+    ],
+    "randomStrategy": {
+      "strategyDefinition": "依魚種在畫面上的面積比例分配子彈（等同無瞄準能力的隨機射擊）",
+      "hitRate": null,
+      "baseSpecies": null,
+      "specialWeapons": null,
+      "boss": null,
+      "crossTablePool": null,
+      "missionsAndAchievements": null,
+      "total": null
+    },
+    "typicalStrategy": {
+      "strategyDefinition": "依實測玩家行為資料分配；無資料時以「偏好中大型魚」的合理假設並在此註明為假設",
+      "assumptionDisclosure": "",
+      "hitRate": null,
+      "baseSpecies": null,
+      "specialWeapons": null,
+      "boss": null,
+      "crossTablePool": null,
+      "missionsAndAchievements": null,
+      "total": null
+    },
+    "optimalStrategy": {
+      "strategyDefinition": "全部子彈投向考量命中率後期望回收率最高的魚種，並在最佳時機使用道具",
+      "hitRate": null,
+      "baseSpecies": null,
+      "specialWeapons": null,
+      "boss": null,
+      "crossTablePool": null,
+      "missionsAndAchievements": null,
+      "total": null
+    },
+    "notes": "⚠️ 魚機的 RTP 是策略相依區間，不是單一數字。只報一個數字的 PAR sheet 在魚機領域是不完整的，且是明確的退測原因。三份表的總 RTP 差距即為技術跨距，應與第 11 節一致。特殊武器與 BOSS 的貢獻同樣是策略相依的，必須在三種策略下分別計算，不可沿用同一個值。"
+  },
+  "section11_skillSensitivity": {
+    "sectionTitle": "11. 技術水準敏感度",
+    "agents": [
+      {
+        "agentId": "A",
+        "label": "隨機",
+        "aiming": "隨機角度",
+        "targetSelection": "隨機",
+        "itemUsage": "不使用",
+        "hitRate": null,
+        "baseRtp": null,
+        "weaponRtp": null,
+        "bossRtp": null,
+        "totalRtp": null,
+        "sampleSize": null
+      },
+      {
+        "agentId": "B",
+        "label": "新手",
+        "aiming": "直接對準當前位置（不算提前量）",
+        "targetSelection": "偏好大魚",
+        "itemUsage": "取得即用",
+        "hitRate": null,
+        "baseRtp": null,
+        "weaponRtp": null,
+        "bossRtp": null,
+        "totalRtp": null,
+        "sampleSize": null
+      },
+      {
+        "agentId": "C",
+        "label": "典型",
+        "aiming": "含提前量，中等精度",
+        "targetSelection": "偏好中型魚",
+        "itemUsage": "取得後短暫等待",
+        "hitRate": null,
+        "baseRtp": null,
+        "weaponRtp": null,
+        "bossRtp": null,
+        "totalRtp": null,
+        "sampleSize": null
+      },
+      {
+        "agentId": "D",
+        "label": "最佳",
+        "aiming": "完美提前量",
+        "targetSelection": "期望回收率最高魚種",
+        "itemUsage": "最佳時機",
+        "hitRate": null,
+        "baseRtp": null,
+        "weaponRtp": null,
+        "bossRtp": null,
+        "totalRtp": null,
+        "sampleSize": null
+      }
+    ],
+    "skillSpread": {
+      "definitionPercentagePoints": "代理人 D 的總 RTP 減代理人 A 的總 RTP，以百分點表示",
+      "value": null,
+      "hitRateSpread": null,
+      "interpretation": null
+    },
+    "agentAFloorCheck": {
+      "marketMinimumPayoutPercentage": null,
+      "agentARtp": null,
+      "passes": null,
+      "notes": "多數最低派彩率條文的文義不是「平均達標」。若最不熟練的玩家（代理人 A）低於法定門檻，「平均 RTP 達標」的辯解在多數條文下站不住，應在送測前確認實驗室立場。"
+    },
+    "agentDCeilingCheck": {
+      "agentDRtp": null,
+      "below100Percent": null,
+      "notes": "代理人 D 的 RTP 若達到或超過 100%，熟練玩家可長期獲利。這是營運存亡問題，通常透過壓低命中率天花板或縮小魚種期望回收率差距處理。"
+    },
+    "notes": "判讀規則：技術跨距 < 2 個百分點表示玩家操作實質不影響期望值，技術性主張不成立；2–10 個百分點可作為論據但預期會被挑戰；> 10 個百分點需檢查代理人 D 是否超過 100%。"
+  },
+  "section12_perceivedHitRate": {
+    "sectionTitle": "12. 體感命中率",
+    "payoutProducingBulletRatio": null,
+    "fishBodyHitRatio": null,
+    "hitWithoutCaptureRatio": null,
+    "perAgentBreakdown": [
+      {
+        "agentId": "",
+        "payoutProducingBulletRatio": null,
+        "hitWithoutCaptureRatio": null
+      }
+    ],
+    "targetVolatilityBand": null,
+    "notes": "⚠️ 體感命中率必須以「產生賠付的子彈比例」計算，不是「命中魚體的子彈比例」。命中但未捕獲對玩家是失敗，兩者混用會讓體感評估完全失真。低波動配置的參考帶為 30%–40%，中波動 20%–30%，高波動 12%–20%。"
+  },
+  "section13_volatilityMetrics": {
+    "sectionTitle": "13. 波動性指標",
+    "volatilityLevel": null,
+    "perBulletReturnStandardDeviation": null,
+    "maxPayoutProbability": null,
+    "topSpeciesMultiplier": null,
+    "ruinRiskCurve": null,
+    "hourlyLossDistributionPercentiles": null,
+    "leversUsed": {
+      "payoutMultiplierSpread": null,
+      "rareSpeciesFrequency": null,
+      "damageVariance": null
+    },
+    "notes": "波動性由三個獨立槓桿控制：賠率倍數跨距、稀有魚出現頻率、隨機傷害的變異數。perBulletReturnStandardDeviation 是第 16 節樣本量推導的輸入，必須以試跑量測而非假設。含 ×500 BOSS 的高波動配置，σ 可能達到 5 以上。降低波動的合規方法是設計低波動數學模型，不是加控制器。"
+  },
+  "section14_multiplayerScenarios": {
+    "sectionTitle": "14. 多人情境分析",
+    "sharedPoolModel": null,
+    "singleSeat": {
+      "scenarioDefinition": "單人面對滿桌魚，上界情境",
+      "hitRate": null,
+      "rtp": null,
+      "sampleSize": null
+    },
+    "fullTable": {
+      "scenarioDefinition": "滿座同時射擊，量測魚被搶走導致的期望值變化",
+      "seatCount": null,
+      "hitRate": null,
+      "rtp": null,
+      "hitWithoutCaptureDelta": null,
+      "sampleSize": null
+    },
+    "mixedSkillLevels": {
+      "scenarioDefinition": "1 名熟練 + 其餘隨機，量測熟練玩家是否從其他座位吸取期望值",
+      "skilledSeatRtp": null,
+      "randomSeatRtp": null,
+      "twoSkilledContestingSameSpeciesRtp": null,
+      "sampleSize": null
+    },
+    "seatExpectedValueDependency": {
+      "dependencyExists": null,
+      "magnitudePercentagePoints": null,
+      "quantification": "",
+      "disclosureStatement": "",
+      "perSeatRtpTable": null,
+      "perSeatHitRateTable": null
+    },
+    "notes": "⚠️ 若某個座位的 RTP 依賴其他座位的行為，這件事必須揭露。這不一定違規，但它是實驗室與監管機關會問的問題，沒有預先分析會導致送測停滯。共享模型 A（最後一擊拿全額）必然產生座位間期望值依賴。座位公平性的驗證項目（魚群入場方向分佈、各座位幾何可及範圍、BOSS 可及性）見 steering/multiplayer-fairness.md 第 4 節。"
+  },
+  "section15_lossItemDisclosure": {
+    "sectionTitle": "15. 損失項揭露",
+    "fishEscaped": {
+      "definition": "已被扣血但游出畫面的魚，其上已投入的子彈成本無回收",
+      "eventLogged": null,
+      "escapeRate": null,
+      "avgSunkCostPerEscape": null,
+      "rtpImpactPercentagePoints": null,
+      "includedInTheoreticalModel": null
+    },
+    "sceneReset": {
+      "definition": "場景切換或關卡結束時魚群重置，已投入的傷害歸零",
+      "eventLogged": null,
+      "resetFrequency": null,
+      "avgSunkCostPerReset": null,
+      "rtpImpactPercentagePoints": null,
+      "includedInTheoreticalModel": null
+    },
+    "incompleteCaptureAtDisconnect": {
+      "definition": "座位斷線時該座位對進行中魚隻已投入的傷害如何處理",
+      "documentedRule": "",
+      "ruleDisclosedToPlayers": null,
+      "eventLogged": null,
+      "rtpImpactPercentagePoints": null,
+      "includedInTheoreticalModel": null
+    },
+    "otherLossItems": [],
+    "totalLossItemRtpImpactPercentagePoints": null,
+    "notes": "⚠️ 這是魚機獨有且最常被漏掉的一節，也是理論值與模擬值不一致的最常見來源。已對某條魚投入的子彈成本，若該魚離場或場景重置，是純粹的未回收成本；未計入理論模型時，理論 RTP 會系統性高於實際。三項損失項都必須有對應的事件日誌作為資料來源，僅揭露規則而沒有資料仍無法通過驗證，見 steering/rng-capture-determination.md 第 6.2 節。"
+  },
+  "section16_simulationMethod": {
+    "sectionTitle": "16. 模擬方法",
+    "usesProductionResolutionCode": null,
+    "abstractedLayers": "",
+    "measuredSigma": {
+      "value": null,
+      "measurementMethod": "",
+      "pilotRunSampleSize": null,
+      "notes": "σ 為單發子彈回收率的標準差，必須以試跑量測，不可假設。魚機的 σ 遠大於老虎機，因為單發回收極度偏態。"
+    },
+    "sampleSizeDerivation": {
+      "formula": "n >= (z * sigma / epsilon)^2",
+      "targetAbsoluteErrorEpsilon": null,
+      "confidenceLevel": null,
+      "zValue": null,
+      "derivedSampleSize": null,
+      "actualSampleSize": null,
+      "notes": "不得使用「跑一千萬發」這類產業口耳相傳的數字，必須從目標精度反推。"
+    },
+    "stratifiedSampling": {
+      "required": null,
+      "strata": [
+        {
+          "stratum": "",
+          "reason": "",
+          "forcedEntryCount": null,
+          "sampleSize": null,
+          "recombinationMethod": ""
+        }
+      ],
+      "notes": "BOSS、跨桌獎池與極稀有魚種的事件頻率過低，主模擬的樣本量不足以精確估計其 RTP 貢獻，必須另做強制進入的專門模擬並以理論頻率合成。各層的信賴區間需單獨報告，不可只報總 RTP 的區間。"
+    },
+    "multiplayerSimulationConfig": {
+      "scenariosRun": [],
+      "seatRotation": null
+    },
+    "consistencyResult": {
+      "criterion": "|RTP_理論 − RTP_模擬| <= 1.96 * sigma / sqrt(n)",
+      "theoreticalRtp": null,
+      "simulatedRtp": null,
+      "absoluteDifference": null,
+      "toleranceBound": null,
+      "passes": null,
+      "perTierResults": null,
+      "perStratumConfidenceIntervals": null,
+      "failureInvestigation": ""
+    },
+    "notes": "模擬必須呼叫產品實際的捕獲判定、傷害計算與賠付結算程式碼，只抽換渲染與網路層；用另寫的簡化數學所得到的一致性沒有證據價值。一致性判定不通過時，不得調整理論值去迎合模擬值，也不得增加樣本量直到通過——差距是實作與模型不一致的訊號，排查表見 steering/math-verification.md 第 5.2 節。若模擬 RTP 隨模擬時長漂移，優先處理控分嫌疑（steering/payout-control-integrity.md 第 3.3 節）。"
+  }
+}

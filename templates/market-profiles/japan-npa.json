@@ -1,0 +1,269 @@
+{
+  "templateType": "fish-game-expert/market-profile-v1",
+  "marketCode": "JP",
+  "name": "Japan — 風俗営業等の規制及び業務の適正化等に関する法律（風営法）体系",
+  "legalStatus": "prohibited",
+  "regulator": {
+    "name": "警察庁（National Police Agency）與各都道府県公安委員会",
+    "url": "https://www.npa.go.jp",
+    "notes": "⚠️ 本 URL 為警察庁的官方網域，其可達性未在本次建置中驗證。日本的遊戲場所受風営法體系管制，由公安委員会許可與監督，而非博彩監管機關。"
+  },
+  "classificationTest": {
+    "value": "unverified",
+    "confidence": "UNVERIFIED",
+    "source": null,
+    "notes": "日本不以技術／機率測試處理此問題，而以刑法賭博罪的構成要件與風営法的營業許可制度處理。適用架構須由當地律師確認。"
+  },
+  "monetisation": {
+    "cashOut": {
+      "status": "prohibited",
+      "confidence": "MEDIUM",
+      "source": "日本刑法賭博罪體系（一般認知；未取得條文原文）",
+      "notes": "日本的遊戲場所不得以現金兌現遊戲成果。這是日本娛樂機台產業（含景品交換）長期存在的制度前提。"
+    },
+    "prizeRedemption": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "獎品／彩票兌換制度未經確認。"
+    },
+    "maxPrizeValue": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "獎品價值上限未取得條文，不填數值。"
+    },
+    "prizeBuyback": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "買回獎品之處理未經確認。買回在功能上等同 cash-out。"
+    },
+    "realCurrencyAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "機台是否得收受法定貨幣未經確認。"
+    },
+    "paymentCardAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "機台是否得讀取支付卡未經確認。"
+    },
+    "tokenSpecConstraint": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "代幣規格限制未經確認。"
+    },
+    "sweepstakesModel": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "sweepstakes 構造之可行性未經確認。"
+    }
+  },
+  "productConstraints": {
+    "minGameCycleMs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "遊戲循環時間下限未經確認。魚機另須釐清該限制係綁定一發子彈、一次捕獲或一個場景。"
+    },
+    "maxStakePerBullet": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "單發投注上限未經確認。子彈是魚機的原子投注單位。"
+    },
+    "maxBetMultiplier": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "最高砲倍檔位限制未經確認。"
+    },
+    "maxWinPerCapture": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "單次捕獲賠付上限未經確認。此上限一旦存在，即直接封頂最高魚種賠率倍數。"
+    },
+    "autoFire": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自動發射之處理未經確認，見 steering/responsible-gaming.md。"
+    },
+    "crossTablePool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨桌獎池之處理未經確認。"
+    },
+    "multiSeatSharedPool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "多座位共享魚池與最後一擊分配規則之處理未經確認，見 steering/multiplayer-fairness.md。"
+    },
+    "featureBuy": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "直接購買特殊武器或關卡進場權之處理未經確認。"
+    },
+    "celebrationOfNonWin": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "等值或低於投入之慶祝回饋規範未經確認。"
+    },
+    "otherProhibitions": [
+      {
+        "item": "以現金兌現遊戲成果",
+        "confidence": "MEDIUM",
+        "source": "日本刑法賭博罪體系（一般認知；未取得條文原文）",
+        "notes": "魚機在日本若要部署，兌現層必須是景品或純娛樂。具體的景品價值上限與兌換規範未取得條文，列為待查。"
+      }
+    ]
+  },
+  "rtp": {
+    "minimum": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得最低派彩率條文，不填數值。"
+    },
+    "wagerUnitBasis": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "最低派彩率規則在魚機上的對應單位（一發子彈或一次捕獲）未經確認。這是幾乎所有市場共通的未解問題。"
+    },
+    "nonCashPrizeValuation": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "非現金獎品之計價基準未經確認。"
+    },
+    "perTierParityRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得各砲倍 RTP 一致性之明文要求，但仍應作為設計基線，見 steering/math-model.md。"
+    }
+  },
+  "playerAccount": {
+    "minimumAge": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "年齡下限未取得條文，不填數值。"
+    },
+    "kycRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "身分驗證要求未經確認。"
+    },
+    "selfExclusion": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自我排除機制未經確認。"
+    },
+    "spendLimits": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "投入限額要求未經確認。"
+    }
+  },
+  "auditLog": {
+    "retentionPeriod": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "紀錄保存期未經確認。"
+    },
+    "requiredFields": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "法定紀錄欄位未經確認。建議仍依 steering/rng-capture-determination.md 的完整欄位集實作，含魚離場紀錄。"
+    },
+    "tamperEvidence": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "防篡改要求未經確認。"
+    }
+  },
+  "dataResidency": {
+    "requirement": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "資料落地要求未經確認。"
+    },
+    "crossBorderTransfer": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨境傳輸限制未經確認。"
+    }
+  },
+  "certification": {
+    "scheme": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "測試與型式核准安排未經確認。"
+    },
+    "decisionWindow": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "審核時程未經確認。"
+    },
+    "exportExemption": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用或未經確認。"
+    },
+    "acceptedLabs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "認可測試機構清單未經確認。"
+    },
+    "penalties": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "罰則未取得條文，不填數值。"
+    },
+    "otherObligations": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "其他義務未經確認。"
+    }
+  },
+  "verificationRequired": [
+    "取得日本刑法第 185 條、第 186 條賭博罪條文原文與適用範圍",
+    "取得風営法關於ゲームセンター（遊技場）營業種別的條文與許可要件",
+    "確認景品（獎品）之價值上限、兌換規範與適用法源",
+    "確認遊技機的型式認定或事前審查制度是否適用於魚機形態",
+    "確認多人同桌機台在營業許可與機台台數計算上的處理",
+    "確認未成年人入場與時間限制規範",
+    "確認純娛樂（不可兌回）型魚機的可行部署途徑"
+  ],
+  "lastUpdated": "2026-07-29",
+  "notes": [
+    "⚠️ 本檔案刻意大量標記 UNVERIFIED。日本的制度架構與台灣、英國都不同（公安委員会許可制而非博彩牌照制），以其他市場的框架推論會系統性出錯。",
+    "日本對魚機供應商的實際重要性通常在純娛樂型與景品型產品，而非現金型。市場評估應從兌現模式反推可行性。"
+  ]
+}

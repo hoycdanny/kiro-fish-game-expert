@@ -1,0 +1,273 @@
+{
+  "templateType": "fish-game-expert/market-profile-v1",
+  "marketCode": "MT",
+  "name": "Malta — Malta Gaming Authority (MGA)",
+  "legalStatus": "regulated",
+  "regulator": {
+    "name": "Malta Gaming Authority (MGA)",
+    "url": "https://www.mga.org.mt/remote-gaming/",
+    "notes": "馬爾他是遠端（online）授權轄區，對魚機供應商的意義是 B2B critical gaming supply 路線與遊戲類型歸屬，而非實體機台的機具核准。本檔案僅以 MGA remote gaming 官方頁面為依據，未取得 Gaming Authorisations Regulations、遊戲類型定義與技術標準全文，因此技術層多數欄位為 UNVERIFIED。"
+  },
+  "classificationTest": {
+    "value": "not-applicable",
+    "confidence": "MEDIUM",
+    "source": "https://www.mga.org.mt/remote-gaming/（MGA 以遊戲類型／授權類別核發牌照）",
+    "notes": "MGA 不以司法上的 predominant-factor 或 material-element 測試決定合法性，而是以授權類別涵蓋的遊戲類型為準。因此馬爾他的關鍵問題不是「魚機是不是賭博」，而是「魚機是否落在某一個可授權的遊戲類型之內」。此歸屬未經確認，列為最高優先待查項。"
+  },
+  "monetisation": {
+    "cashOut": {
+      "status": "allowed",
+      "confidence": "MEDIUM",
+      "source": "https://www.mga.org.mt/remote-gaming/（遠端博彩授權本質即以真實貨幣投注與派彩）",
+      "notes": "遠端博彩授權下以真實貨幣派彩是常態，這與台灣的實體娛樂機模式完全相反。金流層在營運商端，供應商責任在於派彩指令的可稽核性，見 steering/payout-control-integrity.md。"
+    },
+    "prizeRedemption": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "遠端環境無實體彩票／獎品兌換層。若採用虛擬道具或積分兌換，其法律性質未經確認。"
+    },
+    "maxPrizeValue": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次派彩上限。不得因此推論為無上限；牌照條件與遊戲類型定義可能含上限，須查證。"
+    },
+    "prizeBuyback": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "遠端環境不適用實體獎品買回概念。"
+    },
+    "realCurrencyAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "本欄為實體機殼欄位，在純遠端授權下不適用。若同一款魚機另有陸上部署計畫，須另建陸上檔案。"
+    },
+    "paymentCardAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "本欄為實體機殼欄位，在純遠端授權下不適用。"
+    },
+    "tokenSpecConstraint": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "遠端環境無實體代幣。"
+    },
+    "sweepstakesModel": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "美式 sweepstakes 構造在 MGA 授權體系下無實益（可直接取得博彩授權），且其在馬爾他法下的處理未經確認。"
+    }
+  },
+  "productConstraints": {
+    "minGameCycleMs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得遊戲循環時間下限。魚機的射速即投注速度，若牌照條件含循環時間要求，須先釐清其綁定單位是一發子彈或一次捕獲。"
+    },
+    "maxStakePerBullet": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單發投注上限。"
+    },
+    "maxBetMultiplier": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得砲倍檔位上限。"
+    },
+    "maxWinPerCapture": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次捕獲派彩上限。此值一旦存在即直接封頂最高魚種賠率倍數，屬數學可行性約束而非調參問題。"
+    },
+    "autoFire": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自動發射（autoplay 的魚機對應物）在 MGA 負責博彩要求下的處理未經確認，見 steering/responsible-gaming.md。"
+    },
+    "crossTablePool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨桌獎池在 MGA 的獎池／jackpot 規範下的處理未經確認。若受限，該市場需要一份獨立驗證過的數學配置，而不是關掉一個功能旗標。"
+    },
+    "multiSeatSharedPool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "共享魚池、傷害歸屬與最後一擊分配規則的揭露要求未經確認。多人共享結果的公平性論證見 steering/multiplayer-fairness.md。"
+    },
+    "featureBuy": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "特殊武器購買（feature buy 的魚機對應物）之處理未經確認。"
+    },
+    "celebrationOfNonWin": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "魚機高頻小額捕獲使「回收不高於投入卻呈現慶祝」的情形遠比老虎機頻繁，是否受規範未經確認。"
+    },
+    "otherProhibitions": [
+      {
+        "item": "遊戲類型歸屬未確認前不得假設魚機可被授權涵蓋",
+        "confidence": "MEDIUM",
+        "source": "https://www.mga.org.mt/remote-gaming/",
+        "notes": "這是遠端授權市場的共同閘門問題（德國與巴西同樣顯著）。授權涵蓋範圍的釐清應在數學模型定案之前完成，否則整份數學工作可能作廢。"
+      }
+    ]
+  },
+  "rtp": {
+    "minimum": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得最低派彩率要求。不得填入推測值。"
+    },
+    "wagerUnitBasis": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ 魚機的原子投注單位是一發子彈。任何最低派彩率或投注上限規則究竟綁定在子彈、捕獲或一局，MGA 未見公開對應，須以書面技術問答釐清，見 steering/math-verification.md。"
+    },
+    "nonCashPrizeValuation": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "遠端環境通常無非現金獎品。可參考 Massachusetts 205 CMR 143 的非現金獎品計價處理作為對照概念。"
+    },
+    "perTierParityRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得各砲倍 RTP 一致性要求，但仍應作為本 Power 的設計基線。"
+    }
+  },
+  "playerAccount": {
+    "minimumAge": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未於本次建置中確認法定最低年齡條文，須查 MGA 牌照條件與相關規則。"
+    },
+    "kycRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "遠端授權下必有身分驗證與 AML 要求，但具體門檻與時點未經確認，見 steering/aml-kyc-player-account.md。"
+    },
+    "selfExclusion": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未確認是否有全國性自我排除系統或僅為營運商層機制。供應商仍須確保帳戶狀態檢查發生在發射請求受理之前。"
+    },
+    "spendLimits": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得法定投入限額。"
+    }
+  },
+  "auditLog": {
+    "retentionPeriod": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得紀錄保存期。"
+    },
+    "requiredFields": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得法定欄位集。魚機的對局重播需求遠超一般 spin log，建議依 steering/rng-capture-determination.md 的完整欄位集實作並主動與監管機關確認可接受形態。"
+    },
+    "tamperEvidence": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得防篡改要求。"
+    }
+  },
+  "dataResidency": {
+    "requirement": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得資料落地要求。與巴西的明文境內資料中心要求形成對照，不可互相推論。"
+    },
+    "crossBorderTransfer": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "馬爾他為 EU 成員國，GDPR 適用，但具體跨境傳輸安排未在本檔案範圍內查證，見 steering/data-protection-privacy.md。"
+    }
+  },
+  "certification": {
+    "scheme": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得 MGA 現行技術標準與系統稽核安排全文。不得假設「有 GLI 報告即可」。"
+    },
+    "decisionWindow": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得審核時程。"
+    },
+    "exportExemption": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用（非製造出口管制轄區）。"
+    },
+    "acceptedLabs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得 MGA 認可測試機構清單。若使用多家實驗室以求獨立性，注意 GLI 已於 2023-05-19 收購 iTech Labs（https://gaminglabs.com/press-releases/gaming-laboratories-international-gli-group-invests-in-itech-labs/），兩者不再互相獨立。"
+    },
+    "penalties": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得無照供應與違規罰則條文。"
+    },
+    "otherObligations": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "B2B critical gaming supply 授權的具體義務範圍未經確認。供應商身分是否需要獨立授權是專案評估階段的第一個問題。"
+    }
+  },
+  "verificationRequired": [
+    "確認魚機（fish shooting game）是否落在 MGA 可授權的遊戲類型定義之內（最高優先，此為閘門問題）",
+    "取得 Gaming Authorisations Regulations 與相關遊戲類型定義全文",
+    "確認 B2B critical gaming supply 授權對魚機供應商的適用範圍與申請條件",
+    "確認是否有適用的最低派彩率要求及其數值",
+    "釐清最低派彩率／投注上限規則綁定在一發子彈、一次捕獲或一局",
+    "確認跨桌獎池與共享魚池在 MGA 獎池規範下的處理",
+    "確認自動發射是否落入負責博彩相關限制",
+    "取得 MGA 認可測試機構清單與技術標準現行版本",
+    "確認遊戲紀錄保存期、必要欄位與對局重播的可接受形態",
+    "確認玩家帳戶層（年齡、KYC、自我排除、投入限額）的法定要求與供應商介面責任"
+  ],
+  "lastUpdated": "2026-07-29",
+  "notes": [
+    "馬爾他對魚機的真正門檻是遊戲類型歸屬，不是數學。若魚機不落在可授權類型內，RTP 調整得再漂亮也無法上線。",
+    "本檔案 UNVERIFIED 密度高，原因是本次建置僅有 MGA remote gaming 官方頁面一項來源，而技術要求分散在未取得的規則與牌照條件中。這是研究覆蓋的誠實反映，不應被讀成「馬爾他沒有規定」。",
+    "⚠️ 亞洲風格的線上魚機供應商常同時持有菲律賓或庫拉索授權；若擬以馬爾他授權服務歐盟市場，供應鏈與授權來源的一致性須重新盤點，見 steering/jurisdiction-matrix.md。"
+  ]
+}

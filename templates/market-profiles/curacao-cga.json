@@ -1,0 +1,285 @@
+{
+  "templateType": "fish-game-expert/market-profile-v1",
+  "marketCode": "CW",
+  "name": "Curaçao — Curaçao Gaming Authority (CGA)",
+  "legalStatus": "regulated",
+  "regulator": {
+    "name": "Curaçao Gaming Authority (CGA)",
+    "url": "https://gamingcontrolcuracao.org",
+    "notes": "庫拉索在 LOK（Landsverordening op de kansspelen 修法）之後已廢除舊的 master／sub-licence 模式，改為由 CGA 直接發照。這對魚機供應鏈影響重大：許多亞洲風格線上魚機過去以 sub-licence 作為授權依據，該依據已不存在。"
+  },
+  "classificationTest": {
+    "value": "not-applicable",
+    "confidence": "MEDIUM",
+    "source": "https://gamingcontrolcuracao.org（以授權涵蓋之遊戲類別為準）",
+    "notes": "庫拉索不以司法上的技術對機率測試作為准入判準。關鍵問題是魚機是否落在 CGA 授權涵蓋的遊戲類別內，以及技術認證是否可涵蓋多人共享魚池結構，兩者均未確認。"
+  },
+  "monetisation": {
+    "cashOut": {
+      "status": "allowed",
+      "confidence": "MEDIUM",
+      "source": "https://gamingcontrolcuracao.org（線上博彩授權本質為真實貨幣投注與派彩）",
+      "notes": "取得 CGA 授權後以真實貨幣派彩為常態。派彩指令的可稽核性與控分機制的禁止見 steering/payout-control-integrity.md。"
+    },
+    "prizeRedemption": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上環境無實體獎品兌換層。"
+    },
+    "maxPrizeValue": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次派彩上限。不得推論為無上限。"
+    },
+    "prizeBuyback": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用於線上環境；未查證。"
+    },
+    "realCurrencyAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "本欄為實體機殼欄位，庫拉索授權以線上為主軸，不適用。"
+    },
+    "paymentCardAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "本欄為實體機殼欄位，不適用。"
+    },
+    "tokenSpecConstraint": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上環境無實體代幣。"
+    },
+    "sweepstakesModel": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "美式 sweepstakes 構造在此無實益且未經確認。"
+    }
+  },
+  "productConstraints": {
+    "minGameCycleMs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得遊戲循環時間下限。"
+    },
+    "maxStakePerBullet": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單發投注上限。"
+    },
+    "maxBetMultiplier": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得砲倍上限。"
+    },
+    "maxWinPerCapture": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次捕獲派彩上限。"
+    },
+    "autoFire": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自動發射之處理未經確認。"
+    },
+    "crossTablePool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨桌獎池之處理未經確認。若技術認證機構要求就獎池累積與派出提供獨立驗證，該功能的認證成本應單列。"
+    },
+    "multiSeatSharedPool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "共享魚池、傷害歸屬與最後一擊分配之要求未經確認，見 steering/multiplayer-fairness.md。"
+    },
+    "featureBuy": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "特殊武器購買之處理未經確認。"
+    },
+    "celebrationOfNonWin": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得相關規範。"
+    },
+    "otherProhibitions": [
+      {
+        "item": "master／sub-licence 模式已廢除，不得再以 sub-licence 作為授權依據",
+        "confidence": "MEDIUM",
+        "source": "https://gamingcontrolcuracao.org（LOK 修法後之授權制度）",
+        "notes": "⚠️ 對既有線上魚機部署而言這是最高風險項。若合約或技術文件仍引用 sub-licence 編號，該授權基礎已不成立，須向 CGA 重新申請。"
+      },
+      {
+        "item": "須設立庫拉索法人實體並有當地居住之董事",
+        "confidence": "MEDIUM",
+        "source": "https://gamingcontrolcuracao.org（LOK 授權申請要件）",
+        "notes": "這是公司結構要件而非技術要件，但會決定專案時程。供應商若僅提供 B2B 遊戲內容，須確認此要件是否同樣適用。"
+      },
+      {
+        "item": "技術認證須由具資格之測試機構執行",
+        "confidence": "MEDIUM",
+        "source": "https://gamingcontrolcuracao.org",
+        "notes": "「具資格之測試機構」的認定標準與清單未取得。魚機的多人共享魚池與捕獲判定是否在標準測試範圍內，須向實驗室書面確認範圍書（scope）。"
+      }
+    ]
+  },
+  "rtp": {
+    "minimum": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得最低派彩率要求。不得填入推測值。"
+    },
+    "wagerUnitBasis": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ 原子投注單位是一發子彈；規則綁定單位未見公開對應，須以書面技術問答釐清，見 steering/math-verification.md。"
+    },
+    "nonCashPrizeValuation": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "perTierParityRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得明文要求，仍應作為設計基線。"
+    }
+  },
+  "playerAccount": {
+    "minimumAge": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未於本次建置中確認法定最低年齡。"
+    },
+    "kycRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "LOK 制度下應有 AML／KYC 要求，具體門檻未確認，見 steering/aml-kyc-player-account.md。"
+    },
+    "selfExclusion": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未確認是否有全國性自我排除系統。"
+    },
+    "spendLimits": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得法定投入限額。"
+    }
+  },
+  "auditLog": {
+    "retentionPeriod": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得保存期要求。"
+    },
+    "requiredFields": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得法定欄位集，建議依 steering/rng-capture-determination.md 實作。"
+    },
+    "tamperEvidence": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    }
+  },
+  "dataResidency": {
+    "requirement": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得資料落地要求。與巴西的明文境內資料中心要求形成對照，不可互相推論。"
+    },
+    "crossBorderTransfer": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證，見 steering/data-protection-privacy.md。"
+    }
+  },
+  "certification": {
+    "scheme": {
+      "value": "技術認證須由具資格之測試機構執行（LOK 制度要求）",
+      "confidence": "MEDIUM",
+      "source": "https://gamingcontrolcuracao.org",
+      "notes": "確認要求存在，但標準版本、測試範圍與報告格式均未取得。與丹麥 SCP.00–SCP.07 的模組化明文清單相比，庫拉索的認證要求細節不透明，投標時應把範圍界定的往返時間納入時程。"
+    },
+    "decisionWindow": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得審核時程。"
+    },
+    "exportExemption": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用。"
+    },
+    "acceptedLabs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "「具資格之測試機構」清單未取得。若需兩份互相獨立之報告，注意 GLI 已於 2023-05-19 收購 iTech Labs，兩者不再獨立；BMM Testlabs（https://bmm.com/）與 eCOGRA（https://ecogra.org/ecogra-certification/）為另外的選項，但是否被 CGA 接受未確認。"
+    },
+    "penalties": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得罰則條文。"
+    },
+    "otherObligations": {
+      "value": "須設立庫拉索法人實體並有當地居住之董事",
+      "confidence": "MEDIUM",
+      "source": "https://gamingcontrolcuracao.org",
+      "notes": "此為授權申請的公司結構要件。B2B 內容供應商是否同受此要件拘束未確認。"
+    }
+  },
+  "verificationRequired": [
+    "確認既有 sub-licence 授權依據的失效處理與過渡安排（對既有部署為最高優先）",
+    "確認魚機是否落在 CGA 授權涵蓋的遊戲類別內",
+    "確認 B2B 遊戲內容供應商是否需獨立授權，以及是否同受法人實體與當地董事要件拘束",
+    "取得「具資格之測試機構」的認定標準與清單",
+    "與實驗室書面確認測試範圍是否涵蓋多人共享魚池、傷害歸屬與最後一擊判定",
+    "確認是否有最低派彩率要求及其綁定單位（子彈／捕獲／一局）",
+    "確認跨桌獎池的獨立驗證要求與成本",
+    "確認遊戲紀錄保存期、必要欄位與對局重播可接受形態",
+    "確認玩家帳戶層（年齡、KYC、自我排除、投入限額）之法定要求",
+    "確認資料落地與跨境傳輸限制"
+  ],
+  "lastUpdated": "2026-07-29",
+  "notes": [
+    "LOK 廢除 master／sub-licence 是本檔案的核心事實：授權依據的形式變更，會讓既有技術文件與合約引用整批失效，這是文件治理問題而非產品問題。",
+    "庫拉索與菲律賓常被視為亞洲風格線上魚機的兩條主要授權路線，兩者近年都收緊。把授權來源集中在單一轄區是可辨識的商業風險。",
+    "⚠️ 技術認證要求存在但範圍不透明。魚機的共享魚池與捕獲判定不在傳統老虎機測試腳本內，必須在報價前取得實驗室的書面範圍書，否則認證成本無法估計。"
+  ]
+}

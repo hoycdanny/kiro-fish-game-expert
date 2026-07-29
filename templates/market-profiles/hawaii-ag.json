@@ -1,0 +1,267 @@
+{
+  "templateType": "fish-game-expert/market-profile-v1",
+  "marketCode": "HI",
+  "name": "United States — Hawaii (state legislature / Department of the Attorney General)",
+  "legalStatus": "prohibited",
+  "regulator": {
+    "name": "Hawaii State Legislature（立法）；Department of the Attorney General（執法）",
+    "url": "https://data.capitol.hawaii.gov/sessions/session2026/Bills/SB3281_SD1_.HTM",
+    "notes": "夏威夷是全美博彩管制最嚴格的州份之一。SB3281 SD1（2026 會期）的立法理由直接以「fish games」「fish tables」「fishing games」點名此類裝置，並與 sweepstakes 機台並列為在州內擴散的違法電子博彩裝置。"
+  },
+  "classificationTest": {
+    "value": "any-chance",
+    "confidence": "UNVERIFIED",
+    "source": null,
+    "notes": "夏威夷適用的法律測試未經一手查證。從其全面禁止博彩的立法立場推測門檻極低，但推測不可作為設計基礎，須由當地律師確認。"
+  },
+  "monetisation": {
+    "cashOut": {
+      "status": "prohibited",
+      "confidence": "MEDIUM",
+      "source": "Hawaii SB3281 SD1（2026 會期）立法理由",
+      "notes": "立法理由將 fish games 明列為違法電子博彩裝置。夏威夷不存在合法的商業博彩制度。"
+    },
+    "prizeRedemption": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "獎品／彩票兌換制度未經確認。"
+    },
+    "maxPrizeValue": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "獎品價值上限未取得條文，不填數值。"
+    },
+    "prizeBuyback": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "買回獎品之處理未經確認。買回在功能上等同 cash-out。"
+    },
+    "realCurrencyAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "機台是否得收受法定貨幣未經確認。"
+    },
+    "paymentCardAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "機台是否得讀取支付卡未經確認。"
+    },
+    "tokenSpecConstraint": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "代幣規格限制未經確認。"
+    },
+    "sweepstakesModel": {
+      "status": "prohibited",
+      "confidence": "MEDIUM",
+      "source": "Hawaii SB3281 SD1（2026 會期）立法理由",
+      "notes": "sweepstakes 機台與 fish games 在立法理由中並列。"
+    }
+  },
+  "productConstraints": {
+    "minGameCycleMs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "遊戲循環時間下限未經確認。魚機另須釐清該限制係綁定一發子彈、一次捕獲或一個場景。"
+    },
+    "maxStakePerBullet": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "單發投注上限未經確認。子彈是魚機的原子投注單位。"
+    },
+    "maxBetMultiplier": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "最高砲倍檔位限制未經確認。"
+    },
+    "maxWinPerCapture": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "單次捕獲賠付上限未經確認。此上限一旦存在，即直接封頂最高魚種賠率倍數。"
+    },
+    "autoFire": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自動發射之處理未經確認，見 steering/responsible-gaming.md。"
+    },
+    "crossTablePool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨桌獎池之處理未經確認。"
+    },
+    "multiSeatSharedPool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "多座位共享魚池與最後一擊分配規則之處理未經確認，見 steering/multiplayer-fairness.md。"
+    },
+    "featureBuy": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "直接購買特殊武器或關卡進場權之處理未經確認。"
+    },
+    "celebrationOfNonWin": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "等值或低於投入之慶祝回饋規範未經確認。"
+    },
+    "otherProhibitions": [
+      {
+        "item": "fish games / fish tables / fishing games 作為違法電子博彩裝置",
+        "confidence": "HIGH",
+        "source": "Hawaii SB3281 SD1（2026 會期）立法理由",
+        "notes": "⚠️ 這是本 Power 中唯一在法案文字中直接指名魚機的來源，因此對立法者觀點是 HIGH 信心。但 SB3281 是法案，其是否已通過生效標記為 UNVERIFIED，須查該會期最終狀態。"
+      }
+    ]
+  },
+  "rtp": {
+    "minimum": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得最低派彩率條文，不填數值。"
+    },
+    "wagerUnitBasis": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "最低派彩率規則在魚機上的對應單位（一發子彈或一次捕獲）未經確認。這是幾乎所有市場共通的未解問題。"
+    },
+    "nonCashPrizeValuation": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "非現金獎品之計價基準未經確認。"
+    },
+    "perTierParityRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得各砲倍 RTP 一致性之明文要求，但仍應作為設計基線，見 steering/math-model.md。"
+    }
+  },
+  "playerAccount": {
+    "minimumAge": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "年齡下限未取得條文，不填數值。"
+    },
+    "kycRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "身分驗證要求未經確認。"
+    },
+    "selfExclusion": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自我排除機制未經確認。"
+    },
+    "spendLimits": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "投入限額要求未經確認。"
+    }
+  },
+  "auditLog": {
+    "retentionPeriod": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "紀錄保存期未經確認。"
+    },
+    "requiredFields": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "法定紀錄欄位未經確認。建議仍依 steering/rng-capture-determination.md 的完整欄位集實作，含魚離場紀錄。"
+    },
+    "tamperEvidence": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "防篡改要求未經確認。"
+    }
+  },
+  "dataResidency": {
+    "requirement": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "資料落地要求未經確認。"
+    },
+    "crossBorderTransfer": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨境傳輸限制未經確認。"
+    }
+  },
+  "certification": {
+    "scheme": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "測試與型式核准安排未經確認。"
+    },
+    "decisionWindow": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "審核時程未經確認。"
+    },
+    "exportExemption": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用或未經確認。"
+    },
+    "acceptedLabs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "認可測試機構清單未經確認。"
+    },
+    "penalties": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "罰則未取得條文，不填數值。"
+    },
+    "otherObligations": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "其他義務未經確認。"
+    }
+  },
+  "verificationRequired": [
+    "確認 SB3281（2026 會期）的最終立法狀態與生效日",
+    "取得 Hawaii Revised Statutes Chapter 712 Part III 關於 gambling 與 gambling device 的條文原文",
+    "確認夏威夷法院對技術／機率適用哪一種測試",
+    "確認純娛樂（不可兌回）型魚機是否存在合法途徑",
+    "確認 SB3281 是否對供應商、運送者或製造者設有獨立責任"
+  ],
+  "lastUpdated": "2026-07-29",
+  "notes": [
+    "夏威夷的價值在於它提供了立法者如何看待魚機的第一手證據：不是把它當成需要規範的博彩產品，而是當成需要取締的違法裝置。",
+    "⚠️ 引用時應精確區分：法案文字對「立法者觀點」是 HIGH，對「現行有效法律」則取決於該法案是否通過。不要把法案當成已生效的法律引用。"
+  ]
+}

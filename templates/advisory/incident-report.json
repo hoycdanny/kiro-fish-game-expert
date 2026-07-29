@@ -1,0 +1,232 @@
+{
+  "templateType": "fish-game-expert/incident-report-v1",
+  "description": "魚機事故報告範本。與老虎機事故報告的關鍵差異在於範圍界定：魚機事故幾乎一定影響整桌，補救不是賠給申訴者，而是重建整張桌在整個時間窗內的正確結果。",
+  "incidentId": null,
+  "severity": {
+    "value": null,
+    "allowedValues": [
+      "P1",
+      "P2",
+      "P3",
+      "P4"
+    ],
+    "notes": "未經授權的建置或配置上線、自我排除玩家仍能發射、未成年玩家入場，一律為 P1，不論金額。"
+  },
+  "detection": {
+    "detectedAt": null,
+    "detectedBy": null,
+    "detectionMethod": null,
+    "notes": "detectionMethod 應區分：玩家申訴、不變式告警、統計監控、抽樣重播比對、外部通知。若來源是玩家申訴，代表監控未能主動發現，本身即是預防措施的落差。"
+  },
+  "sequenceRecord": {
+    "stop": {
+      "at": null,
+      "actions": [],
+      "notes": "止血措施與其副作用。關閉特定砲倍或魚種會使生效配置與認證配置不符，屬刻意的臨時偏離，須記錄與限期。"
+    },
+    "preserve": {
+      "at": null,
+      "actions": [],
+      "notes": "證據保全必須在修復之前完成。"
+    },
+    "scope": {
+      "at": null,
+      "actions": [],
+      "notes": "以缺陷的技術特徵界定範圍，不以玩家申訴界定。"
+    },
+    "fix": {
+      "at": null,
+      "actions": [],
+      "notes": "修復依變更分類走流程，第 3、4 類不可熱修。"
+    },
+    "notes": "⚠️ 順序不可調換。先修再查會覆寫記憶體狀態、輪替日誌並觸發配置重載，而這些正是界定影響範圍所需的證據。"
+  },
+  "timeline": [],
+  "rootCause": {
+    "summary": null,
+    "category": null,
+    "introducedInBuild": null,
+    "introducedAt": null,
+    "notes": "若缺陷本身就在影響 RTP，則已認證版本自上線起即與認證文件不符，須同時提交揭露，見 steering/change-management-recert.md 第 6 節。"
+  },
+  "evidencePreservation": {
+    "snapshotTakenAt": null,
+    "snapshotTakenBy": null,
+    "readOnlyCopy": null,
+    "coveredTables": [],
+    "coveredTimeWindow": {
+      "from": null,
+      "to": null,
+      "notes": "時間窗須往前後各留餘裕，事故起始點通常早於察覺點。"
+    },
+    "manifest": [
+      {
+        "item": "對局重播事件流（逐發子彈、逐次傷害、逐條魚結局）",
+        "preserved": null,
+        "notes": "重建應然結果的唯一依據。"
+      },
+      {
+        "item": "魚群 spawn seed 與生成參數",
+        "preserved": null,
+        "notes": "沒有 seed 就無法確定性重播。"
+      },
+      {
+        "item": "逐條魚的完整傷害序列與 killingBulletId",
+        "preserved": null,
+        "notes": "判定傷害歸屬正確性。"
+      },
+      {
+        "item": "各座位進出場時間與砲倍切換歷程",
+        "preserved": null,
+        "notes": "界定受影響玩家名單，含已離桌者。"
+      },
+      {
+        "item": "錢包帳本與交易 ID",
+        "preserved": null,
+        "notes": "比對應然與實然的差額。"
+      },
+      {
+        "item": "當時生效的建置雜湊、配置雜湊、PAR sheet 版本",
+        "preserved": null,
+        "notes": "判斷是配置問題或程式問題。"
+      },
+      {
+        "item": "伺服器 tick 日誌與回溯量記錄",
+        "preserved": null,
+        "notes": "時序類缺陷的唯一線索。"
+      },
+      {
+        "item": "跨桌獎池累積與派出事件",
+        "preserved": null,
+        "notes": "獎池類事故。"
+      },
+      {
+        "item": "錯誤日誌、崩潰轉存、部署歷史",
+        "preserved": null,
+        "notes": "根因分析。"
+      }
+    ],
+    "notes": "⚠️ 錢包帳本只記錄實際發生的餘額變動，無法告出應然結果。魚機事故要回答的是「這條魚的賠付本來應該歸誰、歸多少」，那需要對局重播材料。快照包含其他玩家個資，存取須依 steering/data-protection-privacy.md 處理。"
+  },
+  "affectedScope": {
+    "scopingCriterion": null,
+    "affectedTables": null,
+    "affectedSeats": null,
+    "affectedPlayers": null,
+    "departedPlayersTraced": {
+      "value": null,
+      "notes": "⚠️ 模型 B 的賠付分配錯誤會波及事故發現時已離桌的玩家。必須從傷害序列反查全部貢獻座位，不能只處理仍在線者。"
+    },
+    "affectedTransactions": null,
+    "amountUnderpaid": null,
+    "amountOverpaid": null,
+    "notes": "amountUnderpaid 與 amountOverpaid 必須分開統計。傷害歸屬錯判是雙向的：一方多得、一方少得。"
+  },
+  "expectedVsActual": {
+    "method": null,
+    "entries": [],
+    "notes": "entries 每筆應含 fishId、應得座位、實得座位、應得金額、實得金額、差額。以重播結果為應然基準。"
+  },
+  "remediation": {
+    "plan": null,
+    "underpaidSeatsRemediated": null,
+    "overpaidHandling": null,
+    "clawbackConsidered": {
+      "value": null,
+      "perMarketAcceptability": "UNVERIFIED",
+      "notes": "⚠️ 追扣的可接受性逐市場為 UNVERIFIED，須在事故發生前就取得書面依據（營運商條款加監管機關立場），不可在事故當下臨時決定。無明文政策時預設不追扣，由營運商吸收。在沒有政策與監管立場的情況下從玩家帳戶扣款，本身可能成為第二起事故。"
+    },
+    "executedAt": null,
+    "executedBy": null,
+    "notes": "只補救申訴者構成選擇性補救，在監管檢視下不可接受。"
+  },
+  "malfunctionVoidsPays": {
+    "invoked": null,
+    "notes": "⚠️ 此條款可處理單次交易層級的技術故障，但不能免除系統性設計缺陷的責任。若實際 RTP 因實作錯誤長期偏離認證值，那不是故障而是產品與認證文件不符。各市場在設計缺陷情境下的接受度為 UNVERIFIED。"
+  },
+  "notification": {
+    "gameIntegrityTrack": {
+      "required": null,
+      "basis": null,
+      "notifiedParties": [],
+      "notifiedAt": null,
+      "notes": "通報門檻與時限逐市場而定，多數市場對魚機無專門規定，整體為 UNVERIFIED。最快的來源是營運商的牌照條件與實驗室認證報告條件。B2B 供應商通常無直接通報義務，但有及時告知營運商的合約義務。"
+    },
+    "personalDataTrack": {
+      "isPersonalDataBreach": null,
+      "supervisoryAuthorityNotifiedAt": null,
+      "deadline": "知悉後 72 小時內（GDPR Art. 33）",
+      "dataSubjectsNotified": null,
+      "notes": "GDPR Art. 33 的 72 小時通報僅適用於個人資料外洩，與遊戲公正性事故是不同軌道。一次傷害歸屬錯判不是個資外洩，但一次重播資料庫外流是。兩軌可能同時觸發。"
+    },
+    "notes": "兩條軌道的觸發條件不同，須分別判斷，不可合併處理。"
+  },
+  "preventiveInvariants": [
+    {
+      "invariant": "逐座位賠付總和 == 該魚應付總額",
+      "implemented": null,
+      "onViolation": "拒絕結算該魚，記錄 P1 事件並凍結該桌",
+      "notes": "模型 B 最重要的不變式。捨入錯誤在單筆上極小、在總量上可觀，且不會有玩家察覺後申訴。"
+    },
+    {
+      "invariant": "逐條魚的傷害總和 <= 初始生命值",
+      "implemented": null,
+      "onViolation": "記錄異常並重播該魚",
+      "notes": null
+    },
+    {
+      "invariant": "每發子彈恰有一筆扣款與一筆判定紀錄",
+      "implemented": null,
+      "onViolation": "告警",
+      "notes": null
+    },
+    {
+      "invariant": "錢包雙式記帳借貸平衡",
+      "implemented": null,
+      "onViolation": "拒絕交易",
+      "notes": null
+    },
+    {
+      "invariant": "跨桌獎池：累積 - 派出 == 當前餘額",
+      "implemented": null,
+      "onViolation": "凍結獎池",
+      "notes": null
+    },
+    {
+      "invariant": "每筆獎池派出事件 ID 唯一（幂等）",
+      "implemented": null,
+      "onViolation": "拒絕重複派出",
+      "notes": null
+    },
+    {
+      "invariant": "建置與配置雜湊符合已認證組合",
+      "implemented": null,
+      "onViolation": "拒絕啟動或進入故障狀態",
+      "notes": null
+    },
+    {
+      "invariant": "發射請求者的帳戶狀態為有效",
+      "implemented": null,
+      "onViolation": "拒絕發射",
+      "notes": "檢查須在捕獲生命週期第一階段，扣款與消耗隨機數之前。"
+    },
+    {
+      "invariant": "定期隨機抽樣重播並比對實際結算結果",
+      "implemented": null,
+      "onViolation": "啟動事故程序",
+      "notes": "唯一能主動發現靜默偏差的機制，也是送測時最有力的自我驗證材料。"
+    }
+  ],
+  "regressionCase": {
+    "created": null,
+    "caseId": null,
+    "spawnSeedPreserved": null,
+    "eventStreamPreserved": null,
+    "notes": "每件 P1、P2 事故都應轉為基於重播的自動回歸案例，同時作為變更分類逐位元比對的測試資產。"
+  },
+  "linkedChangeRequestId": null,
+  "linkedRiskRegisterEntries": [],
+  "preparedBy": null,
+  "preparedDate": null,
+  "lastUpdated": "2026-07-29"
+}

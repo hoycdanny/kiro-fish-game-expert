@@ -1,0 +1,456 @@
+{
+  "templateType": "fish-game-expert/rng-submission-package-v1",
+  "description": "魚機 RNG 提交包範本，涵蓋 CSPRNG 選型與雜湊、標準依據、種子與重新種子、批次取樣緩衝機制、每一個隨機數消耗點、映射與偏差避免，以及獨立性行為證據。魚機的 RNG 消耗點遠多於老虎機（滿座 8 人加魚群生成，尖峰可達每秒數百次），每一個消耗點都是潛在的合規缺口。待填欄位為 null 或空字串。",
+  "rngImplementationIdentity": {
+    "moduleName": null,
+    "version": null,
+    "rngModuleHash": null,
+    "hashAlgorithm": null,
+    "hashDigestBits": null,
+    "buildHash": null,
+    "configHash": null,
+    "sourceCodeSubmissionScope": "",
+    "buildReproducibilityEvidence": null,
+    "notes": "RNG 模組必須有獨立於遊戲二進位的雜湊，因為 RNG 變更屬 steering/change-management-recert.md 的第 4 類變更，範圍最大且需重新提交 RNG 測試。"
+  },
+  "csprngSourcePerPlatform": {
+    "declaredRuntime": null,
+    "declaredApi": null,
+    "referenceTable": [
+      {
+        "runtime": "Node.js 伺服器",
+        "csprng": "crypto.randomBytes() / crypto.randomInt()"
+      },
+      {
+        "runtime": "Go 伺服器",
+        "csprng": "crypto/rand"
+      },
+      {
+        "runtime": ".NET 伺服器 / Unity",
+        "csprng": "System.Security.Cryptography.RandomNumberGenerator"
+      },
+      {
+        "runtime": "Unreal（伺服器）",
+        "csprng": "OpenSSL RAND_bytes()"
+      },
+      {
+        "runtime": "Godot",
+        "csprng": "Crypto.generate_random_bytes()"
+      },
+      {
+        "runtime": "Python（離線模擬）",
+        "csprng": "secrets / os.urandom()"
+      },
+      {
+        "runtime": "瀏覽器",
+        "csprng": "window.crypto.getRandomValues()（僅限非結果性用途）"
+      }
+    ],
+    "entropySource": {
+      "description": "",
+      "hardwareRngPresent": null,
+      "osEntropyPool": null,
+      "healthTests": null
+    },
+    "notes": "所有影響玩家結果的隨機數必須來自密碼學安全來源，且必須在伺服器端。瀏覽器端的 getRandomValues() 僅可用於純表現層用途，不得用於任何結果性判定。"
+  },
+  "prohibitedSources": [
+    {
+      "source": "Math.random()",
+      "language": "JavaScript / TypeScript",
+      "reason": "非密碼學安全，輸出可預測",
+      "presentInCodebase": null,
+      "auditEvidenceRef": null
+    },
+    {
+      "source": "System.Random",
+      "language": "C# / Unity",
+      "reason": "非密碼學安全；同一 tick 建立的多個實例可能取得相同種子",
+      "presentInCodebase": null,
+      "auditEvidenceRef": null
+    },
+    {
+      "source": "FMath::RandRange",
+      "language": "Unreal Engine",
+      "reason": "非密碼學安全（FMath::FRand 同）",
+      "presentInCodebase": null,
+      "auditEvidenceRef": null
+    },
+    {
+      "source": "rand()",
+      "language": "C / C++",
+      "reason": "非密碼學安全（std::mt19937 在未加密種子下同樣不可用）",
+      "presentInCodebase": null,
+      "auditEvidenceRef": null
+    },
+    {
+      "source": "randi() / randf()",
+      "language": "GDScript",
+      "reason": "非密碼學安全",
+      "presentInCodebase": null,
+      "auditEvidenceRef": null
+    },
+    {
+      "source": "random 模組",
+      "language": "Python",
+      "reason": "非密碼學安全（secrets 才是）",
+      "presentInCodebase": null,
+      "auditEvidenceRef": null
+    }
+  ],
+  "prohibitedSourcesAudit": {
+    "staticScanPerformed": null,
+    "scanToolAndVersion": null,
+    "scanScope": "",
+    "findingsCount": null,
+    "residualUsesJustification": "",
+    "notes": "⚠️ 上述任一來源被用於捕獲判定或魚群生成，是最高優先級紅旗，應中斷其他討論優先處理。靜態掃描必須涵蓋客戶端與伺服器全部原始碼，並逐一追蹤命中處是否進入結果性資料流。"
+  },
+  "standardsBasis": {
+    "nist": {
+      "sp800_90a": {
+        "title": "NIST SP 800-90A Rev.1 — Recommendation for Random Number Generation Using Deterministic Random Bit Generators",
+        "role": "DRBG 機制的設計依據",
+        "url": "https://csrc.nist.gov/pubs/sp/800/90/a/r1/final",
+        "drbgMechanismUsed": null,
+        "complianceEvidenceRef": null
+      },
+      "sp800_90b": {
+        "title": "NIST SP 800-90B — Recommendation for the Entropy Sources Used for Random Bit Generation",
+        "role": "熵源評估依據",
+        "url": "https://csrc.nist.gov/publications/detail/sp/800-90b/final",
+        "entropySourceAssessmentRef": null,
+        "minEntropyEstimate": null,
+        "complianceEvidenceRef": null
+      },
+      "sp800_90c": {
+        "title": "NIST SP 800-90C — Recommendation for Random Bit Generator (RBG) Constructions",
+        "role": "RBG 建構依據",
+        "status": "final",
+        "finalPublicationDate": "2025-09",
+        "url": "https://csrc.nist.gov/pubs/sp/800/90/c/final",
+        "rbgConstructionUsed": null,
+        "complianceEvidenceRef": null,
+        "notes": "SP 800-90C 於 2025-09 發布最終版，應以最終版而非早期草案作為建構依據。"
+      },
+      "sp800_22_rev1a": {
+        "title": "NIST SP 800-22 Rev.1a — A Statistical Test Suite for Random and Pseudorandom Number Generators for Cryptographic Applications",
+        "role": "博彩業慣用引用，本提交包僅作為輔助統計輸出，不作為主要設計依據",
+        "url": "https://csrc.nist.gov/News/2022/decision-to-revise-nist-sp-800-22-rev-1a",
+        "testSuiteOutputAttached": null,
+        "warning": "⚠️ NIST 自身立場是 SP 800-22 不應被用於評估密碼學隨機數產生器（cryptographic RNG）。博彩業仍普遍引用該套件作為 RNG 合規基礎，此引用方式與現行 NIST 指引不一致。若客戶的送測文件以 SP 800-22 為主要依據，應主動指出並改以 SP 800-90 系列（90A / 90B / 90C）作為設計依據，SP 800-22 的輸出僅作為附帶的統計健全性參考。"
+      }
+    },
+    "gli": {
+      "rngTestingSpecification": {
+        "title": "GLI Technical Specifications for RNG Testing",
+        "url": "https://gaminglabs.com/getting-started/technical-specifications-for-rng-testing/",
+        "versionUsed": null,
+        "applicable": null
+      },
+      "gli11": {
+        "title": "GLI-11 Gaming Devices v3.0",
+        "url": "https://gaminglabs.com/wp-content/uploads/2018/09/GLI-11-Gaming-Devices-V3-0.pdf",
+        "applicable": null,
+        "notes": "GLI-11 對 gaming device 的界定包含以隨機性決定獎項，並要求遊戲結果彼此獨立。這是獨立性證據（本檔 independenceEvidence 節）的規範來源。"
+      },
+      "gli19": {
+        "title": "GLI-19 Interactive Gaming Systems",
+        "applicable": null,
+        "notes": "線上多人魚機的系統範圍在 GLI-19，不在 GLI-11。⚠️ 「線上魚機送 GLI-11 就好」是常見錯誤。"
+      }
+    },
+    "otherStandards": [],
+    "notes": "標準依據必須區分「設計依據」與「輔助統計輸出」。以 SP 800-90 系列作為設計依據、以 SP 800-22 作為附帶輸出，是目前能同時滿足博彩業慣例與 NIST 現行立場的表述方式。"
+  },
+  "seedingAndReseeding": {
+    "initialSeedSource": null,
+    "seedLengthBits": null,
+    "seedEntropyJustification": "",
+    "reseedTrigger": null,
+    "reseedIntervalOrCount": null,
+    "reseedEntropySource": null,
+    "predictionResistance": null,
+    "seedStorage": {
+      "persisted": null,
+      "storageMedium": null,
+      "accessControl": "",
+      "loggedInPlaintext": null
+    },
+    "spawnSeedHandling": {
+      "generatedBy": null,
+      "recordedForReplay": null,
+      "disclosedToClientBeforeWindowEnd": null,
+      "purityOfGenerationFunction": "",
+      "notes": "⚠️ 魚群生成種子由 CSPRNG 產生（因此不可預測），一旦產生即記錄下來（因此可確定性重播），且在該時間窗結束前不得洩漏給客戶端。此模式必須在提交文件中明確說明「種子記錄用於重播，不用於預先決定結果」，否則容易被誤判為預先決定結果（pre-determined outcome）。生成邏輯應為純函式 (seed, tick) → 生成事件。"
+    },
+    "notes": "種子與其緩衝區位置指標不得被序列化、快照或寫入日誌明文。"
+  },
+  "batchSamplingBuffer": {
+    "disclosureRequired": true,
+    "used": null,
+    "bufferSizeBytes": null,
+    "refillThreshold": null,
+    "refillSource": null,
+    "perWorkerPrivate": null,
+    "crossProcessSharedPointer": null,
+    "serialisedOrSnapshotted": null,
+    "loggedInPlaintext": null,
+    "refillFailureBehaviour": null,
+    "fallbackToNonCryptographicSource": null,
+    "bufferLifecycleDescription": "",
+    "peakDemandEstimate": {
+      "seatsPerTable": null,
+      "bulletsPerSeatPerSecond": null,
+      "spawnRandomCallsPerSecond": null
+    },
+    "notes": "⚠️ 批次取樣機制必須主動揭露，否則實驗室可能誤判為自製 PRNG。機制說明：一次向 CSPRNG 請求大塊隨機位元組（例如 4 KB）存入緩衝區，判定時從緩衝區取用，用盡後重新填充；緩衝區內容仍完全來自 CSPRNG，只是攤平了系統呼叫成本。實作硬要求：緩衝區為每個工作處理程序私有、不可跨處理程序共用位置指標、不可序列化或寫入明文日誌、重新填充失敗時必須讓判定失敗並記錄事故，絕不可回退到非密碼學來源。效能問題用批次取樣解決，不是換 PRNG。"
+  },
+  "consumptionPoints": {
+    "captureDamageSampling": {
+      "description": "每發命中子彈的傷害值抽樣",
+      "isOutcomeDetermining": true,
+      "csprngUsed": null,
+      "serverSide": null,
+      "bytesPerCall": null,
+      "mappingMethod": null,
+      "rngOutputLogged": null,
+      "notes": "傷害抽樣的分佈參數必須是常數，不隨玩家歷史、累積投入、當前 RTP 偏差或帳戶餘額變動。"
+    },
+    "fishSpeciesSelection": {
+      "description": "生成時決定魚種（依配置權重）",
+      "isOutcomeDetermining": true,
+      "csprngUsed": null,
+      "serverSide": null,
+      "bytesPerCall": null,
+      "mappingMethod": null,
+      "rngOutputLogged": null,
+      "notes": "權重即 steering/math-model.md 的池中數量目標，是 RTP 的主要驅動之一。"
+    },
+    "fishSpawning": {
+      "description": "魚群生成整體：入場位置、入場方向與生成時點",
+      "isOutcomeDetermining": true,
+      "mostCommonlyMissedConsumptionPoint": true,
+      "csprngUsed": null,
+      "serverSide": null,
+      "bytesPerCall": null,
+      "mappingMethod": null,
+      "rngOutputLogged": null,
+      "spawnSeedRecorded": null,
+      "directionDistributionBalanced": null,
+      "notes": "⚠️ 魚群生成是實務上最常被遺漏的隨機數消耗點。典型的失敗形態是：捕獲判定嚴謹地使用 CSPRNG，但魚群生成在客戶端以 Math.random() 產生，導致各客戶端看到不同魚群或魚群可被預測。魚群生成決定了「畫面上有什麼魚可以打」，直接影響 RTP，因此其隨機數等級與捕獲判定相同：必須用 CSPRNG、必須在伺服器端、必須記錄。入場方向的長期分佈另需驗證不偏向特定座位（座位公平性，見 steering/multiplayer-fairness.md 第 4 節）。"
+    },
+    "spawnPositionAndDirection": {
+      "description": "入場座標與初始朝向",
+      "isOutcomeDetermining": true,
+      "csprngUsed": null,
+      "serverSide": null,
+      "mappingMethod": null,
+      "rngOutputLogged": null,
+      "notes": "與各座位的幾何可及性直接相關，是座位公平性的來源。"
+    },
+    "movementSpeed": {
+      "description": "移動速度，依物種的固定分佈抽樣",
+      "isOutcomeDetermining": true,
+      "csprngUsed": null,
+      "serverSide": null,
+      "mappingMethod": null,
+      "rngOutputLogged": null,
+      "notes": "速度影響命中難度，屬數學模型參數，不是美術參數。"
+    },
+    "pathSelection": {
+      "description": "從預定義路徑集合隨機選取，或程序化生成泳徑",
+      "isOutcomeDetermining": true,
+      "csprngUsed": null,
+      "serverSide": null,
+      "procedural": null,
+      "seedRecorded": null,
+      "mappingMethod": null,
+      "notes": "若為程序化生成，種子必須記錄，否則無法確定性重播。"
+    },
+    "initialHp": {
+      "description": "初始生命值，依物種的固定分佈抽樣",
+      "isOutcomeDetermining": true,
+      "csprngUsed": null,
+      "serverSide": null,
+      "distributionParametersConstant": null,
+      "rngOutputLogged": null,
+      "notes": "⚠️ 初始生命值不得依當前 RTP 偏差或累積投入調整，那是「魚況控制」型的補償式控分。"
+    },
+    "bossTriggerIfRandom": {
+      "description": "BOSS 或關卡觸發（若採隨機而非確定性排程）",
+      "isRandom": null,
+      "isOutcomeDetermining": true,
+      "csprngUsed": null,
+      "serverSide": null,
+      "triggerProbabilityConstant": null,
+      "disclosedInParSheet": null,
+      "notes": "確定性排程比隨機更容易稽核，且只要排程不依玩家行為或營收狀態就不影響獨立性。若為隨機，觸發機率必須是固定常數並在 PAR sheet 第 8 節揭露。"
+    },
+    "specialWeaponAcquisitionIfRandom": {
+      "description": "特殊武器取得或道具魚掉落（若含隨機成分）",
+      "isRandom": null,
+      "isOutcomeDetermining": true,
+      "csprngUsed": null,
+      "serverSide": null,
+      "notes": "武器取得速度影響其 RTP 權重，屬結果性隨機。"
+    },
+    "crossTablePoolTriggerIfRandom": {
+      "description": "跨桌獎池觸發（若含隨機成分）",
+      "isRandom": null,
+      "isOutcomeDetermining": true,
+      "csprngUsed": null,
+      "serverSide": null,
+      "mustHitCeilingDisclosed": null
+    },
+    "presentationOnlyRandomness": {
+      "description": "純表現層隨機（水波、氣泡、鏡頭抖動、音效變化）",
+      "isOutcomeDetermining": false,
+      "csprngRequired": false,
+      "isolationFromDeterminationLayer": "",
+      "notes": "表現層隨機可使用非密碼學來源，但必須在架構上與判定層隔離，且必須在提交文件中明確界定範圍，否則審查員無法區分。"
+    },
+    "notes": "本節必須列舉全部消耗點，不是重要的消耗點。未申報的結果性隨機數消耗點同時構成隱匿。"
+  },
+  "scalingAndMapping": {
+    "method": null,
+    "allowedMethods": [
+      "rejection sampling（拒絕取樣，推薦）",
+      "unbiased modulo with rejection of the biased tail"
+    ],
+    "prohibitedMethods": [
+      "naive modulo（未處理尾端偏差的 % 運算）",
+      "浮點乘法後 floor（在範圍不整除時引入偏差）"
+    ],
+    "biasAnalysis": {
+      "method": "",
+      "maxBiasBound": null,
+      "evidenceRef": null
+    },
+    "weightedSelectionMethod": {
+      "description": "",
+      "implementation": null,
+      "biasFreeProof": ""
+    },
+    "integerTruncationCheck": {
+      "damageCalculationUsesFloor": null,
+      "impactOnExpectedDamage": null,
+      "notes": "傷害計算使用整數截斷會使實際期望傷害低於名目值，是「模擬 RTP 系統性低於理論值」的最常見原因，見 steering/math-verification.md 第 5.2 節。"
+    },
+    "notes": "映射方法必須明確聲明並附偏差分析。魚種加權選取（依生成權重）是魚機特有的映射點，其實作若採累積權重加 naive modulo，在權重總和不整除時會系統性偏向前段魚種。"
+  },
+  "independenceEvidence": {
+    "declaredIndependenceStatement": "",
+    "resolveCaptureFunctionSignature": {
+      "declaredParameters": [],
+      "idealSignature": "resolveCapture(fishState, betMultiplier, rngBytes, config) -> CaptureResult",
+      "containsPlayerHistory": null,
+      "containsCumulativeStakeOrPayout": null,
+      "containsCurrentRtpOrDelta": null,
+      "containsFailStreak": null,
+      "containsBalanceOrTopUpHistory": null,
+      "containsWallClockTimeForNonSeedPurpose": null,
+      "notes": "判定函式的簽章本身就是獨立性的證明，這在送測審查中比任何文字說明有力。若簽章中需要傳入玩家歷史或累積統計，那個參數就是需要解釋的合規問題。"
+    },
+    "longTermDriftTest": {
+      "testId": "A",
+      "name": "長期漂移測試",
+      "method": "以固定策略連續模擬數千萬發子彈，將 RTP 以滑動窗口（例如每 10 萬發）繪圖",
+      "fixedStrategyUsed": null,
+      "totalBullets": null,
+      "windowSizeBullets": null,
+      "result": null,
+      "meanReversionObserved": null,
+      "recoverySpeedVsStatisticalExpectation": null,
+      "chartArtefactRef": null,
+      "passes": null,
+      "interpretation": "曲線在目標值附近隨機波動且振幅隨窗口增大而縮小 = 無控分跡象；曲線呈向目標值收斂的均值回歸、或低於目標後系統性回升、或上升速度明顯快於統計預期 = 存在控分。"
+    },
+    "injectedBiasTest": {
+      "testId": "B",
+      "name": "注入偏差測試",
+      "method": "人工強制連續 N 次失敗（直接操作模擬中的隨機來源），然後恢復正常隨機，觀察後續捕獲率",
+      "forcedFailureCount": null,
+      "postRecoveryCaptureRate": null,
+      "longRunAverageCaptureRate": null,
+      "deviation": null,
+      "passes": null,
+      "artefactRef": null,
+      "interpretation": "後續捕獲率與長期平均一致 = 無控分；顯著高於長期平均 = 存在控分（含保底機制）。"
+    },
+    "stateIsolationTest": {
+      "testId": "C",
+      "name": "狀態隔離測試",
+      "method": "在兩個完全獨立的伺服器實例上，以相同隨機序列執行相同操作序列，但其中一個實例事先執行了大量虧損操作，比對兩者的結果序列",
+      "priorLossOperationsCount": null,
+      "resultSequencesIdentical": null,
+      "firstDivergenceIndex": null,
+      "passes": null,
+      "artefactRef": null,
+      "interpretation": "兩實例的結果序列完全相同 = 無跨局狀態依賴；不同 = 存在跨局狀態依賴。",
+      "notes": "測試 C 是最強的證據，也是送測時可以主動提供給實驗室的自我驗證材料。"
+    },
+    "crossRoundStateDisclosure": {
+      "persistentStateVariables": [],
+      "purposeOfEach": "",
+      "notes": "即使認為某項設計不構成控分，只要它涉及任何跨局或跨座位持續存在的狀態，就必須主動揭露。隱匿本身就是問題，其後果比原始缺陷重。"
+    },
+    "prohibitedMechanismsDeclaration": {
+      "compensatoryRecoveryRateControl": null,
+      "pityOrGuaranteedCaptureAfterNMisses": null,
+      "damageCarryOverToNextFish": null,
+      "perPlayerHistoryAdjustment": null,
+      "balanceOrTopUpBasedAdjustment": null,
+      "timeOfDayAdjustment": null,
+      "revenueTargetAdjustment": null,
+      "notes": "以上七項任一為 true 即為補償式控分。⚠️ 保底機制（連續 N 發未捕獲則強制捕獲）與記血（未擊殺的魚將已投入傷害轉記到下一條）最常被誤認為無害的玩家友善設計，兩者都是條件機率調整，違反獨立性。補償式控分是架構違規，不是參數違規，無法透過調整數值解決。"
+    },
+    "notes": "三項行為測試的輸出必須保留並隨提交包附上。靜態檢查會漏，行為測試不會。"
+  },
+  "auditLogging": {
+    "rngOutputRecordedPerBullet": null,
+    "fieldsRecorded": [],
+    "appendOnly": null,
+    "tamperEvidenceMechanism": null,
+    "fishLifecycleEventsRecorded": {
+      "spawn": null,
+      "captured": null,
+      "escaped": null
+    },
+    "notes": "魚離場事件是魚機稽核的必要項，也是最常被省略的；它同時是 PAR sheet 第 15 節損失項的資料來源。完整欄位集見 steering/rng-capture-determination.md 第 6 節。"
+  },
+  "statisticalTestOutputs": {
+    "suitesRun": [],
+    "rawDataSampleSizeBits": null,
+    "samplesTakenFromProductionBuild": null,
+    "resultsArtefactRef": null,
+    "notes": "統計測試的樣本必須取自送測建置的實際 RNG 輸出流，不是另寫的產生器。SP 800-22 的輸出僅作輔助，見 standardsBasis.nist.sp800_22_rev1a.warning。"
+  },
+  "labSelection": {
+    "selectedLab": null,
+    "secondOpinionLab": null,
+    "labAccreditationNotes": "⚠️ GLI 於 2023-05-19 宣布取得 iTech Global Pty Ltd 全部股份，因此 GLI 與 iTech Labs 自 2023 年 5 月起屬同一集團，彼此並不獨立。若市場條件、營運商合約或投資方要求「獨立的第二意見認證」，GLI 與 iTech Labs 不得視為兩個獨立選項。此事實應在實驗室選擇階段主動指出，因為它在事後被發現時可能使第二意見認證失效，而重做一次認證的成本遠高於一開始選對。其他候選包含 BMM Testlabs 與 eCOGRA。來源：https://gaminglabs.com/press-releases/gaming-laboratories-international-gli-group-invests-in-itech-labs/",
+    "realTimeSharedStateMultiplayerPrecedent": {
+      "asked": null,
+      "response": null,
+      "notes": "GLI-11 與多數機具標準是為單人裝置撰寫的。審查員若無共享魚池、傷害歸屬、延遲補償的先例，會在「一次投注的定義」「多座位結算的原子性」「座位間期望值依賴」「tick 時序作為數學參數」上反覆往返。建議初次接觸時即提供傷害歸屬規格與對局重播規格作為術語對齊材料。"
+    }
+  },
+  "writtenTechnicalQueries": [
+    {
+      "queryId": "",
+      "question": "",
+      "submittedTo": null,
+      "submittedDate": null,
+      "responseSummary": "",
+      "responseDate": null,
+      "confidenceAfterResponse": "UNVERIFIED",
+      "artefactRef": null
+    }
+  ],
+  "notes": [
+    "本提交包必須綁定特定 rngModuleHash、buildHash 與 configHash。RNG 來源或熵源變更屬第 4 類變更，需重新提交。",
+    "捕獲判定與魚群生成兩處若採用不同等級的隨機來源，是最常見的單點失敗，提交前應逐一確認。",
+    "效能不是使用非密碼學來源的理由。正確解法是批次取樣（batchSamplingBuffer 節），且該機制必須主動揭露。"
+  ]
+}

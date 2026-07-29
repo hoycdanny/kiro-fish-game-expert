@@ -1,0 +1,278 @@
+{
+  "templateType": "fish-game-expert/market-profile-v1",
+  "marketCode": "PA",
+  "name": "Pennsylvania — 技術娛樂機具法律狀態未定（Pennsylvania Gaming Control Board / 州法院）",
+  "legalStatus": "in-transition",
+  "regulator": {
+    "name": "Pennsylvania Gaming Control Board (PGCB)；技術娛樂機具之合法性目前由州法院程序決定",
+    "url": "https://law.justia.com/cases/pennsylvania/supreme-court/2026/50-map-2024.html",
+    "notes": "⚠️ 賓州是本 Power 中唯一標記 in-transition 的市場。所謂 Pennsylvania skill games 的法律地位仍在司法程序中確定，下級法院曾適用 predominant factor test 認定未經授權之運作不違反 Crimes Code §5513(a)。上列網址為 In re: Three Pennsylvania Skill Amusement Devices 案件頁面；PGCB 的官方網站另有其址，本檔案不填未經驗證之網址。"
+  },
+  "classificationTest": {
+    "value": "predominant-factor",
+    "confidence": "MEDIUM",
+    "source": "In re: Three Pennsylvania Skill Amusement Devices（Pennsylvania Supreme Court, 50 MAP 2024 docket）：https://law.justia.com/cases/pennsylvania/supreme-court/2026/50-map-2024.html",
+    "notes": "下級法院適用 predominant factor test，並認定未經授權之運作不為 Crimes Code §5513(a) 所禁止。⚠️ 但終審結論尚未定案，因此本欄為 MEDIUM 而非 HIGH。對魚機的意義是：predominant-factor 在賓州是活的測試，理論上存在論證空間，但北卡的 Gift Surplus 判決（NC 2022）顯示同一測試也可能導致機率預先支配的結論，見 north-carolina-ale.json 與 steering/skill-chance-classification.md。"
+  },
+  "monetisation": {
+    "cashOut": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "在法律地位定案前不得認定現金派彩合法。實務上許多技術娛樂機具具現金派出功能，但這正是訴訟爭點所在，不可作為設計前提。"
+    },
+    "prizeRedemption": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "maxPrizeValue": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得上限。法律地位未定的市場通常也沒有成文的技術限額。"
+    },
+    "prizeBuyback": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "realCurrencyAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "paymentCardAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "tokenSpecConstraint": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "sweepstakesModel": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ 賓州的爭點是技術遊戲構造而非 sweepstakes 構造。但北卡的 Gift Surplus 案正是 sweepstakes 型態被認定違法，兩者不可互相援引。"
+    }
+  },
+  "productConstraints": {
+    "minGameCycleMs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "無適用之成文技術標準（法律地位未定，無授權制度即無技術標準）。不得推論為無限制：一旦立法或司法確立監管框架，技術標準可能一次性出現。"
+    },
+    "maxStakePerBullet": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單發投注上限。"
+    },
+    "maxBetMultiplier": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得砲倍上限。"
+    },
+    "maxWinPerCapture": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次捕獲派彩上限。"
+    },
+    "autoFire": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ 在 predominant-factor 市場中，自動發射的意義超出負責博彩：若玩家可完全自動化操作，技術成分的論證會被直接削弱。這是分類論證問題而非玩家保護問題，見 steering/skill-chance-classification.md。"
+    },
+    "crossTablePool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨桌獎池會把結果與其他玩家的行為與隨機累積綁定，在技術遊戲論證中屬於加重機率成分的設計，風險高但未經確認。"
+    },
+    "multiSeatSharedPool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "共享魚池使個別玩家的結果取決於其他玩家的射擊，這在 predominant-factor 論證中是不利因素，見 steering/multiplayer-fairness.md。"
+    },
+    "featureBuy": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "以金錢直接購買優勢，在技術遊戲論證中屬不利因素。"
+    },
+    "celebrationOfNonWin": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。呈現上越接近賭博，分類風險越高。"
+    },
+    "otherProhibitions": [
+      {
+        "item": "法律地位尚在司法程序中確定，不得以下級法院結論作為長期設計前提",
+        "confidence": "MEDIUM",
+        "source": "In re: Three Pennsylvania Skill Amusement Devices（50 MAP 2024 docket）",
+        "notes": "⚠️ in-transition 的實務含義是：今天的部署可能在判決後成為違法設備。任何賓州專案都應在合約中處理判決結果導致設備須撤出的風險分配，見 steering/advisory-engagement.md。"
+      },
+      {
+        "item": "Crimes Code §5513(a) 的適用範圍是核心爭點",
+        "confidence": "MEDIUM",
+        "source": "In re: Three Pennsylvania Skill Amusement Devices（下級法院適用 predominant factor test，認定未經授權之運作不為 §5513(a) 所禁止）",
+        "notes": "此結論尚未終局。魚機不可假設能援引此結論，因為魚機的捕獲判定含隨機抽樣，其技術成分論證與既有 skill games 的機制不同。"
+      }
+    ]
+  },
+  "rtp": {
+    "minimum": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "無授權制度即無成文最低派彩率。不得推論為無要求。"
+    },
+    "wagerUnitBasis": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ 在 predominant-factor 市場中，這個問題的形式不同：不是「規則綁定哪個單位」，而是「技術成分應在哪個層級衡量」。若以單發子彈衡量，瞄準技術可主張；若以一局累積結果衡量，隨機抽樣支配結果。這個衡量層級的選擇決定分類論證的成敗，見 steering/math-verification.md。"
+    },
+    "nonCashPrizeValuation": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "perTierParityRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "無成文要求，仍應作為設計基線。各砲倍 RTP 不一致在技術遊戲論證中亦屬不利事實。"
+    }
+  },
+  "playerAccount": {
+    "minimumAge": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "kycRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "selfExclusion": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。法律地位未定的市場通常無自我排除制度可整合。"
+    },
+    "spendLimits": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    }
+  },
+  "auditLog": {
+    "retentionPeriod": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "無成文要求。⚠️ 但在法律地位未定的市場，完整的對局紀錄是技術成分論證的證據基礎。缺乏紀錄等於在訴訟中無法舉證，見 steering/rng-capture-determination.md。"
+    },
+    "requiredFields": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "無成文欄位集。建議依完整欄位集實作，理由是舉證而非法遵。"
+    },
+    "tamperEvidence": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    }
+  },
+  "dataResidency": {
+    "requirement": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "crossBorderTransfer": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證，見 steering/data-protection-privacy.md。"
+    }
+  },
+  "certification": {
+    "scheme": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "技術娛樂機具目前無州級型式核准制度可循（此為法律地位未定的直接後果）。若日後立法建立監管框架，可能一次性引入完整技術標準與認證要求。"
+    },
+    "decisionWindow": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用（無核准程序）。"
+    },
+    "exportExemption": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用。"
+    },
+    "acceptedLabs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "無官方認可清單。實務上獨立實驗室的技術對機率分析報告（例如評估技術成分佔比）可能作為訴訟證據使用，但其接受度未經確認。"
+    },
+    "penalties": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "Crimes Code §5513 的罰則適用範圍正是爭點，須以法律意見評估。"
+    },
+    "otherObligations": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    }
+  },
+  "verificationRequired": [
+    "追蹤 In re: Three Pennsylvania Skill Amusement Devices（50 MAP 2024）的終審結果（最高優先）",
+    "追蹤賓州是否立法建立技術娛樂機具的監管與課稅框架",
+    "取得法律意見評估魚機的捕獲判定能否通過 predominant factor test（與既有 skill games 機制不同）",
+    "確認 Crimes Code §5513(a) 的現行解釋範圍與執法實務",
+    "確認自動發射、共享魚池、跨桌獎池與特殊武器購買對技術成分論證的個別影響",
+    "確認若日後建立授權制度，過渡期既有設備的處理方式",
+    "確認技術成分分析報告的證據形式與可接受的獨立分析機構",
+    "評估合約中判決結果導致設備須撤出的風險分配條款",
+    "確認賓州授權賭場路徑（PGCB 體系）與技術娛樂機具路徑的區別與各自可行性"
+  ],
+  "lastUpdated": "2026-07-29",
+  "notes": [
+    "賓州的價值不在市場規模，而在它是 predominant-factor 測試目前唯一仍在活躍演進的重要美國轄區。任何以技術遊戲論證進入美國的策略都應追蹤此案。",
+    "⚠️ in-transition 的商業含義是資產風險：今天合法部署的設備可能在判決後需要撤出。這是合約與資本配置問題，不是產品設計問題。",
+    "魚機不能直接搭乘既有 skill games 的法律論證。既有機型的技術成分主張建立在特定機制上，而魚機的捕獲判定含隨機抽樣，論證結構不同，Gift Surplus（NC 2022）顯示這類論證確實可能失敗。"
+  ]
+}

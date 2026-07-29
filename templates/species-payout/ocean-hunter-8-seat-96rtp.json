@@ -1,0 +1,294 @@
+{
+  "templateType": "fish-game-expert/species-payout-table-v1",
+  "name": "Ocean Hunter — 8 座位 96% RTP 中波動魚種賠率表",
+  "description": "8 人桌魚機的魚種賠率表工作範例，目標 RTP 96%、中波動。所有數字經內部一致性驗算：各砲倍理論 RTP 完全相同，RTP 構成各層加總等於 0.96。此檔案為範例而非可直接送測的配置。",
+  "tableConfig": {
+    "seats": 8,
+    "topology": "circular-8-seat",
+    "sharedPoolModel": "A",
+    "sharedPoolModelNotes": "模型 A：所有座位扣減同一份生命值，最後一擊者取得全額賠付。此選擇使個別座位的 RTP 依同桌組成而變，必須在 PAR sheet 第 14 節揭露，見 steering/multiplayer-fairness.md。",
+    "arenaRotationSeconds": 180,
+    "fireRateLimitPerSecond": 5
+  },
+  "targetMetrics": {
+    "rtp": 0.96,
+    "volatility": "medium",
+    "effectiveHitFrequency": [
+      0.2,
+      0.3
+    ],
+    "effectiveHitFrequencyNotes": "體感命中率以「產生賠付的子彈比例」計算，不是命中魚體的比例。命中但未捕獲對玩家是失敗。",
+    "maxPayoutMultiplier": 500
+  },
+  "captureModel": {
+    "modelType": "stochastic-hp",
+    "expectedDamagePerHit": 0.92,
+    "reference": "templates/capture-model/weighted-hp-medium-volatility.json",
+    "notes": "捕獲機率不隨砲倍變動，這是各砲倍 RTP 一致性的數學來源。"
+  },
+  "species": [
+    {
+      "id": "F01",
+      "name": "小丑魚",
+      "nameEn": "Clownfish",
+      "tier": "small",
+      "payoutMultiplier": 2,
+      "baseHp": 2,
+      "avgCountInPool": 18,
+      "screenAreaShare": 0.22,
+      "expectedBulletsToCapture": 2.174,
+      "expectedReturnRatePerHit": 0.92
+    },
+    {
+      "id": "F02",
+      "name": "熱帶魚",
+      "nameEn": "Tropical fish",
+      "tier": "small",
+      "payoutMultiplier": 3,
+      "baseHp": 3,
+      "avgCountInPool": 14,
+      "screenAreaShare": 0.17,
+      "expectedBulletsToCapture": 3.261,
+      "expectedReturnRatePerHit": 0.92
+    },
+    {
+      "id": "F03",
+      "name": "河魨",
+      "nameEn": "Pufferfish",
+      "tier": "small",
+      "payoutMultiplier": 5,
+      "baseHp": 5,
+      "avgCountInPool": 10,
+      "screenAreaShare": 0.13,
+      "expectedBulletsToCapture": 5.435,
+      "expectedReturnRatePerHit": 0.92
+    },
+    {
+      "id": "F04",
+      "name": "烏賊",
+      "nameEn": "Squid",
+      "tier": "medium",
+      "payoutMultiplier": 8,
+      "baseHp": 8,
+      "avgCountInPool": 8,
+      "screenAreaShare": 0.11,
+      "expectedBulletsToCapture": 8.696,
+      "expectedReturnRatePerHit": 0.92
+    },
+    {
+      "id": "F05",
+      "name": "海龜",
+      "nameEn": "Sea turtle",
+      "tier": "medium",
+      "payoutMultiplier": 12,
+      "baseHp": 13,
+      "avgCountInPool": 6,
+      "screenAreaShare": 0.09,
+      "expectedBulletsToCapture": 14.13,
+      "expectedReturnRatePerHit": 0.8492
+    },
+    {
+      "id": "F06",
+      "name": "旗魚",
+      "nameEn": "Sailfish",
+      "tier": "medium",
+      "payoutMultiplier": 20,
+      "baseHp": 22,
+      "avgCountInPool": 5,
+      "screenAreaShare": 0.08,
+      "expectedBulletsToCapture": 23.913,
+      "expectedReturnRatePerHit": 0.8364
+    },
+    {
+      "id": "F07",
+      "name": "鯊魚",
+      "nameEn": "Shark",
+      "tier": "large",
+      "payoutMultiplier": 40,
+      "baseHp": 44,
+      "avgCountInPool": 3,
+      "screenAreaShare": 0.06,
+      "expectedBulletsToCapture": 47.826,
+      "expectedReturnRatePerHit": 0.8364
+    },
+    {
+      "id": "F08",
+      "name": "鬼頭刀",
+      "nameEn": "Mahi-mahi",
+      "tier": "large",
+      "payoutMultiplier": 60,
+      "baseHp": 66,
+      "avgCountInPool": 2,
+      "screenAreaShare": 0.04,
+      "expectedBulletsToCapture": 71.739,
+      "expectedReturnRatePerHit": 0.8364
+    },
+    {
+      "id": "F09",
+      "name": "金龍",
+      "nameEn": "Golden dragon",
+      "tier": "rare",
+      "payoutMultiplier": 150,
+      "baseHp": 168,
+      "avgCountInPool": 1,
+      "screenAreaShare": 0.03,
+      "expectedBulletsToCapture": 182.609,
+      "expectedReturnRatePerHit": 0.8214
+    }
+  ],
+  "bossSpecies": {
+    "id": "F10",
+    "name": "巨型章魚",
+    "nameEn": "Giant octopus",
+    "tier": "boss",
+    "payoutMultiplier": 500,
+    "mechanic": "關卡限定，多座位共同擊殺，賠付依模型 A 給予最後一擊者",
+    "notes": "BOSS 的 RTP 貢獻須以分層抽樣獨立估計，不可依賴主模擬的樣本量，見 steering/math-verification.md 第 3.3 節。多人共同擊殺的分配規則必須確定且可稽核。"
+  },
+  "targetingWeightsTypicalStrategy": {
+    "weights": {
+      "F01": 0.1561,
+      "F02": 0.1561,
+      "F03": 0.1561,
+      "F04": 0.0532,
+      "F05": 0.0798,
+      "F06": 0.1063,
+      "F07": 0.1329,
+      "F08": 0.1063,
+      "F09": 0.0532
+    },
+    "weightedReturnRate": 0.8802,
+    "hitRate": 0.96,
+    "derivedBaseSpeciesRtp": 0.845,
+    "notes": "魚機的基礎 RTP 是策略相依的：權重來自玩家的目標選擇，不是遊戲配置。本節為典型策略；隨機策略與最佳策略須另行計算，見 PAR sheet 第 10、11 節。"
+  },
+  "betMultiplierTiers": [
+    {
+      "betMultiplier": 1,
+      "costPerBullet": 1,
+      "theoreticalRtp": 0.96,
+      "maxSinglePayout": 500,
+      "notes": null
+    },
+    {
+      "betMultiplier": 2,
+      "costPerBullet": 2,
+      "theoreticalRtp": 0.96,
+      "maxSinglePayout": 1000,
+      "notes": null
+    },
+    {
+      "betMultiplier": 5,
+      "costPerBullet": 5,
+      "theoreticalRtp": 0.96,
+      "maxSinglePayout": 2500,
+      "notes": null
+    },
+    {
+      "betMultiplier": 10,
+      "costPerBullet": 10,
+      "theoreticalRtp": 0.96,
+      "maxSinglePayout": 5000,
+      "notes": null
+    },
+    {
+      "betMultiplier": 20,
+      "costPerBullet": 20,
+      "theoreticalRtp": 0.96,
+      "maxSinglePayout": 10000,
+      "notes": null
+    },
+    {
+      "betMultiplier": 50,
+      "costPerBullet": 50,
+      "theoreticalRtp": 0.96,
+      "maxSinglePayout": 25000,
+      "notes": null
+    },
+    {
+      "betMultiplier": 100,
+      "costPerBullet": 100,
+      "theoreticalRtp": 0.96,
+      "maxSinglePayout": 50000,
+      "notes": null
+    }
+  ],
+  "betMultiplierParity": {
+    "allTiersEqual": true,
+    "value": 0.96,
+    "notes": "⚠️ 各砲倍 RTP 必須完全相同。「大砲難打」是產業慣例，也是退測原因。風險控制應以限制最高砲倍或明示單次賠付上限達成，不得暗中調低捕獲率。"
+  },
+  "specialWeapons": [
+    {
+      "id": "W01",
+      "name": "雷射砲",
+      "acquisition": "累積發射 200 發或捕獲道具魚",
+      "mechanic": "貫穿路徑上所有魚，固定傷害",
+      "rtpContribution": 0.04,
+      "denominatorBasis": "取得該武器所投入的全部成本",
+      "notes": "分母是取得成本，不是觸發當下那一發的成本。用單發成本作分母會系統性高估 RTP。"
+    },
+    {
+      "id": "W02",
+      "name": "冰凍",
+      "acquisition": "捕獲冰凍道具魚",
+      "mechanic": "凍結全場 5 秒，期間命中率提升",
+      "rtpContribution": 0.02,
+      "denominatorBasis": "取得該武器所投入的全部成本",
+      "notes": null
+    },
+    {
+      "id": "W03",
+      "name": "鎖定追蹤",
+      "acquisition": "累積發射 350 發",
+      "mechanic": "子彈自動追蹤指定魚，命中率趨近 100%",
+      "rtpContribution": 0.015,
+      "denominatorBasis": "取得該武器所投入的全部成本",
+      "notes": "命中率是乘法項，鎖定追蹤對期望值的影響大於其名目 RTP 貢獻所暗示的程度，須在技術水準敏感度分析中單獨處理。"
+    }
+  ],
+  "crossTablePool": {
+    "contributionRate": 0.01,
+    "rtpContribution": 0.01,
+    "tiers": [
+      "Minor",
+      "Major",
+      "Grand"
+    ],
+    "notes": "抽取比例即等於 RTP 貢獻（假設獎池最終必然派出）。若有封頂或逾期回收機制，回收部分不計入 RTP 並須另行揭露。⚠️ 部分市場限制或禁止跨桌獎池；移除獎池會把抽取比例回流到基礎層，構成新的數學組態，須重新驗證與送測，不是關閉開關。"
+  },
+  "rtpBreakdown": {
+    "baseSpecies": 0.845,
+    "laser": 0.04,
+    "freeze": 0.02,
+    "lockOn": 0.015,
+    "boss": 0.03,
+    "crossTablePool": 0.01,
+    "total": 0.96,
+    "notes": "本表為典型策略。隨機策略與最佳策略須各做一份，三份表的總 RTP 差距即為技術跨距。"
+  },
+  "lossItems": [
+    {
+      "item": "魚離場（已扣血但游出畫面）",
+      "included": true,
+      "notes": "已對該魚投入的子彈成本無回收，是純損失。若未計入理論模型，理論 RTP 會系統性高於實際。必須記錄魚離場事件。"
+    },
+    {
+      "item": "場景重置（魚群狀態清除）",
+      "included": true,
+      "notes": "已投入的傷害歸零。若為設計預期行為，須在玩家規則中揭露，否則構成揭露缺失。"
+    },
+    {
+      "item": "斷線時未完成的捕獲",
+      "included": true,
+      "notes": "斷線座位已投入傷害的處理規則必須事先定義並揭露，見 steering/multiplayer-fairness.md 第 6 節。"
+    }
+  ],
+  "notes": [
+    "⚠️ 最高魚種賠率倍數受目標市場的獎品或獎金上限硬性封頂。例如英國 Category C 的 £100 獎金上限在 £1 投注下等於最高 ×100，本表的 ×150 金龍與 ×500 BOSS 在該類別下數學上不可行。這是可行性問題，不是調參問題。台灣限制級每次兌換獎品價值上限 NT$2,000 構成同類約束。設計前先查 templates/market-profiles/。",
+    "賠率倍數與生命值近似成正比，是維持各砲倍 RTP 一致性最穩健的結構，也使各魚種的期望回收率趨於一致。刻意讓部分魚種的回收率略高或略低是製造策略深度（技術成分）的手段，但差距即技術跨距的來源，必須量化。",
+    "小型魚的整數生命值使其回收率無法精確對齊目標值（本表小魚為 0.92，大魚約 0.82–0.85）。這個梯度本身就是最佳策略偏向小魚的原因，須在技術水準敏感度分析中呈現。",
+    "本檔案的數字為工作範例，不是可直接送測的配置。任何實際送測配置都必須走完 steering/math-verification.md 的三層驗證流程並產出 PAR sheet。"
+  ],
+  "lastUpdated": "2026-07-29"
+}

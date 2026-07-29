@@ -1,0 +1,117 @@
+{
+  "templateType": "fish-game-expert/risk-register-v1",
+  "description": "魚機專案合規風險登記冊範本。核心設計是 engineeringMitigable 欄位：法律地位與分類風險不可由工程緩解，必須升級至法律顧問，不應被指派成一項開發任務。",
+  "registerMetadata": {
+    "projectName": null,
+    "client": null,
+    "targetMarkets": [],
+    "preparedBy": null,
+    "preparedDate": null,
+    "reviewCadence": null,
+    "notes": "reviewCadence 建議至少每季一次，並在每次法規觀察清單複查後更新。"
+  },
+  "scoringScheme": {
+    "likelihoodScale": {
+      "1": "極低 — 已有反向證據",
+      "2": "低 — 理論上可能，無實例",
+      "3": "中 — 同業曾發生",
+      "4": "高 — 本專案已有徵兆",
+      "5": "極高 — 已確認存在"
+    },
+    "impactScale": {
+      "1": "輕微 — 內部返工，不影響時程",
+      "2": "次要 — 影響時程但不影響市場進入",
+      "3": "中度 — 需重新驗證與重新送測",
+      "4": "重大 — 市場進入延後或需架構重寫",
+      "5": "災難 — 認證撤銷、刑事風險或市場不可進入"
+    },
+    "scoreFormula": "score = likelihood × impact",
+    "escalationRule": "score >= 15 須升級至專案指導層。",
+    "engineeringMitigableRule": "⚠️ 法律地位與分類風險的 engineeringMitigable 一律為 false。這類風險不可被指派為開發任務，也不可用「加強合規功能」緩解；正確處置是取得法律意見、改變兌現模式，或放棄該市場。把不可緩解的風險寫成一項待辦，是本領域最常見的專案管理失誤。"
+  },
+  "risks": [
+    {
+      "id": "R-001",
+      "category": "派彩控制完整性",
+      "description": "既有機台程式碼中存在補償式派彩控制（控分／場控／保底／記血），在送測前才被發現。此為架構違規而非參數問題，移除後數學模型須完整重新驗證，且日回收波動將顯著上升。",
+      "likelihood": 4,
+      "impact": 5,
+      "score": 20,
+      "engineeringMitigable": true,
+      "mitigation": "依 steering/payout-control-integrity.md 第 3 節執行靜態檢查、判定函式簽章檢查與三項行為測試（長期漂移、注入偏差、狀態隔離）。確認後移除，並依 steering/math-verification.md 重跑完整驗證。同時向商業方說明波動上升為預期行為。",
+      "owner": null,
+      "status": "open",
+      "reviewDate": null
+    },
+    {
+      "id": "R-002",
+      "category": "法律分類",
+      "description": "目標市場採 predominant factor test，但技術跨距量測結果不足以支撐技術性主張（或市場採 material element test 使該主張根本不可行），導致產品在該市場無合法途徑。",
+      "likelihood": 3,
+      "impact": 5,
+      "score": 15,
+      "engineeringMitigable": false,
+      "mitigation": "不可由工程緩解。依 steering/skill-chance-classification.md 產出量化卷冊作為法律意見的事實基礎，由當地執業律師判斷。同時評估改變兌現模式（改為純娛樂或獎品兌換）或放棄該市場。",
+      "owner": null,
+      "status": "open",
+      "reviewDate": null
+    },
+    {
+      "id": "R-003",
+      "category": "數學模型",
+      "description": "各砲倍 RTP 不一致，最高砲倍的實測 RTP 低於低砲倍（常見成因為傷害計算整數截斷、最低傷害保底，或未揭露的單次賠付上限）。此為常見退測原因。",
+      "likelihood": 4,
+      "impact": 3,
+      "score": 12,
+      "engineeringMitigable": true,
+      "mitigation": "依 steering/math-verification.md 逐砲倍驗證，排查整數截斷與保底邏輯。若必須設單次賠付上限，須於賠率表與 PAR sheet 明示並納入 RTP 計算。",
+      "owner": null,
+      "status": "open",
+      "reviewDate": null
+    },
+    {
+      "id": "R-004",
+      "category": "AML 與可稽核性",
+      "description": "系統僅記錄最後一擊而未記錄逐發傷害序列與命中前後生命值，導致同桌價值轉移（對打洗分）在資料上不可偵測。此為資料模型層缺陷，無法以事後功能補上。",
+      "likelihood": 3,
+      "impact": 4,
+      "score": 12,
+      "engineeringMitigable": true,
+      "mitigation": "依 steering/rng-capture-determination.md 第 6 節補齊稽核欄位，並依 steering/aml-kyc-player-account.md 第 4.4 節建立座位共現、定向最後一擊流與將死停火三項偵測。偵測輸出不得回饋至判定路徑。",
+      "owner": null,
+      "status": "open",
+      "reviewDate": null
+    },
+    {
+      "id": "R-005",
+      "category": "市場准入與商業可行性",
+      "description": "場所配額制市場（例如英國）可能將一台 8 人桌認定為八台機器，使場所的機器配額成為商業瓶頸；且類別獎金上限可能使高倍數魚種在數學上不可行。",
+      "likelihood": 3,
+      "impact": 4,
+      "score": 12,
+      "engineeringMitigable": false,
+      "mitigation": "不可由工程緩解。須於專案評估階段以書面技術問答向監管機關確認配額認定方式與投注／獎金上限的適用單位，再決定該市場的產品形態（減少座位數或改變賠率結構）。",
+      "owner": null,
+      "status": "open",
+      "reviewDate": null
+    },
+    {
+      "id": "R-006",
+      "category": "變更管理",
+      "description": "台灣內銷機台具備 OTA 更新能力。依電子遊戲場業管理條例第 7 條，軟體經修改即視為新型機種須重新申請檢驗及評鑑分類，OTA 使「擅自修改」易於發生且難以舉證未發生。",
+      "likelihood": 3,
+      "impact": 4,
+      "score": 12,
+      "engineeringMitigable": true,
+      "mitigation": "依 steering/change-management-recert.md 第 4.1 節：內銷版與出口版分屬不同建置分支；若保留遠端更新能力，須要求實體授權介入、更新寫入不可就地修改之日誌、雜湊值可由稽核人員現場讀取。並將 30 日評鑑窗口排入時程。",
+      "owner": null,
+      "status": "open",
+      "reviewDate": null
+    }
+  ],
+  "notes": [
+    "本範本的 risks 陣列為示例項，須依實際專案的落差評估結果重建，見 templates/advisory/compliance-gap-assessment.json。",
+    "R-002 與 R-005 的 engineeringMitigable 為 false，是本登記冊最重要的設計特徵：它讓不可緩解的風險在文件上無法被偽裝成一項開發任務。"
+  ],
+  "lastUpdated": "2026-07-29"
+}

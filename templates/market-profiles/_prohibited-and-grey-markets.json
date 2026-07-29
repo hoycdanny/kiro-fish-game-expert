@@ -1,0 +1,87 @@
+{
+  "templateType": "fish-game-expert/prohibited-grey-market-register-v1",
+  "description": "魚機（fish machine / fish table）明確禁止或高風險灰區市場登記冊。本檔案存在的目的是防止顧問把「如何合規」的框架套用到根本沒有合法途徑的市場。",
+  "advisoryPrinciple": "Technical compliance CANNOT resolve a legal status. 若某市場已將 fish table 列為違法裝置或執法目標，正確的顧問建議是不要進入，而不是調整產品參數。認證、RTP 設計與負責任遊戲功能都無法使一個違法裝置變成合法產品。",
+  "whyFishMachinesAreDifferent": "老虎機在多數市場的法律地位明確：它是博彩機具，問題只在於有無牌照。魚機不同——它在不同市場分別被認定為賭博機具、技術遊戲、娛樂機具或違法裝置，而在美國多州它已被立法或司法明文指名為取締對象。因此魚機的市場評估必須從法律地位開始，不能從技術規格開始。",
+  "markets": [
+    {
+      "marketCode": "FL",
+      "name": "United States — Florida",
+      "legalStatus": "prohibited",
+      "basis": "Florida Gaming Control Commission 於 2025 年多次執法行動中將 fish tables 與違法拉霸機並列查扣，並伴隨對場所負責人的刑事指控。現金型魚機無合法部署途徑。",
+      "confidence": "MEDIUM",
+      "notes": "執法行動與聯邦機關（稅務與國土安全部門）聯合進行，風險不限於設備沒入。詳見 florida-fgcc.json。"
+    },
+    {
+      "marketCode": "NC",
+      "name": "United States — North Carolina",
+      "legalStatus": "prohibited",
+      "basis": "Gift Surplus, LLC v. State ex rel. Cooper（N.C. Supreme Court, 2022）認定該款強調技術操作的機台中機率成分優於技術成分，違反 N.C. Gen. Stat. §14-306.4 對以機率性視訊遊戲經營 sweepstakes 的禁止。",
+      "confidence": "HIGH",
+      "notes": "⚠️ 這是魚機領域最重要的美國判決：北卡採用對供應商最有利的 predominant factor test，該類產品仍然敗訴。任何「我們有技術成分所以安全」的主張都應以此判決檢驗。詳見 north-carolina-ale.json。"
+    },
+    {
+      "marketCode": "HI",
+      "name": "United States — Hawaii",
+      "legalStatus": "prohibited",
+      "basis": "Hawaii SB3281 SD1（2026 會期）立法理由直接以「fish games」「fish tables」「fishing games」點名此類裝置，與 sweepstakes 機台並列為在州內擴散的違法電子博彩裝置。夏威夷無合法商業博彩制度。",
+      "confidence": "HIGH",
+      "notes": "對「立法者觀點」是 HIGH；該法案是否已通過生效為 UNVERIFIED，引用時須區分。詳見 hawaii-ag.json。"
+    },
+    {
+      "marketCode": "TX",
+      "name": "United States — Texas",
+      "legalStatus": "grey",
+      "basis": "德州刑法對 gambling device 設有法定例外，其構成要件（獎品性質與價值上限）決定魚機的可行性，但本次未取得條文原文。8-liner 類機台的長期存在是執法選擇的結果，不是法律許可。",
+      "confidence": "UNVERIFIED",
+      "notes": "⚠️ 執法密度依郡而異，州檢察長意見與地方檢察官立場可能不一致。第一個交付物應是法律意見與郡層級執法調查。詳見 texas-oag.json。"
+    },
+    {
+      "marketCode": "CN",
+      "name": "China (Mainland)",
+      "legalStatus": "prohibited",
+      "basis": "具現金或變相兌現功能的機台屬刑事範疇；娛樂型遊戲遊藝設備另受行政管理。中國大陸不存在合法的商業博彩機台制度。",
+      "confidence": "MEDIUM",
+      "notes": "中國大陸對魚機供應商的重要性主要在製造供應鏈，而非合法內銷市場。變相兌現（代幣回收、第三方結算、線上帳戶轉移）同樣落入認定範圍。詳見 china-prc.json。"
+    },
+    {
+      "marketCode": "KR",
+      "name": "South Korea",
+      "legalStatus": "prohibited",
+      "basis": "게임산업진흥에 관한 법률 體系下，사행성（投機性）遊戲物無法取得等級分類，因而無法合法流通。魚機的高倍數賠付與連續投入結構是사행성認定的高風險特徵。",
+      "confidence": "MEDIUM",
+      "notes": "사행성概念沒有英美法系的對應物，不可用 predominant factor 或 material element 的框架推論。詳見 south-korea-gmc.json。"
+    },
+    {
+      "marketCode": "JP",
+      "name": "Japan",
+      "legalStatus": "prohibited",
+      "basis": "刑法賭博罪體系下遊戲場所不得以現金兌現遊戲成果。遊戲場所受風営法體系由公安委員会許可與監督，非博彩牌照制度。",
+      "confidence": "MEDIUM",
+      "notes": "禁止的是現金兌現，景品（獎品）與純娛樂型仍有途徑，但景品價值上限與兌換規範須查證。詳見 japan-npa.json。"
+    },
+    {
+      "marketCode": "DE",
+      "name": "Germany",
+      "legalStatus": "in-transition",
+      "basis": "德國線上遊戲許可類別以 virtuelle Automatenspiele 與線上撲克為主。魚機是否落入可許可類別必須逐案向 GGL 確認，不可假設存在對應類別。",
+      "confidence": "UNVERIFIED",
+      "notes": "這是「不是禁止，但可能沒有可申請的類別」的典型情況。對供應商的實際後果與禁止相同，直到 GGL 書面確認為止。詳見 germany-ggl.json。"
+    },
+    {
+      "marketCode": "PA",
+      "name": "United States — Pennsylvania",
+      "legalStatus": "in-transition",
+      "basis": "In re: Three Pennsylvania Skill Amusement Devices：下級法院採 predominant factor test 認定未持照營運不受 Crimes Code §5513(a) 禁止，該爭點上至州最高法院，狀態仍在確認中。",
+      "confidence": "MEDIUM",
+      "notes": "⚠️ 此市場示範了法律地位可能在專案週期內改變。應納入法規觀察清單，見 steering/change-management-recert.md。詳見 pennsylvania-pgcb.json。"
+    }
+  ],
+  "howToUseThisRegister": [
+    "在任何技術討論之前先查本登記冊。若目標市場在此，第一個交付物是法律意見，不是產品規格。",
+    "legalStatus 為 prohibited 的市場，不要提供「如何調整以符合規定」的建議，因為不存在可符合的規定。",
+    "legalStatus 為 grey 或 in-transition 的市場，可以規劃，但必須把法律地位風險列為不可由工程緩解的風險，見 templates/advisory/risk-register.json。",
+    "台灣的專供出口豁免不會使目的地市場變成合法。出口到本登記冊上的市場，商業與信譽風險仍然存在，見 steering/advisory-engagement.md 的四方責任矩陣。"
+  ],
+  "lastUpdated": "2026-07-29"
+}

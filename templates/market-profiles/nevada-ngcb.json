@@ -1,0 +1,281 @@
+{
+  "templateType": "fish-game-expert/market-profile-v1",
+  "marketCode": "NV",
+  "name": "Nevada — Nevada Gaming Control Board (NGCB)",
+  "legalStatus": "regulated",
+  "regulator": {
+    "name": "Nevada Gaming Control Board / Nevada Gaming Commission",
+    "url": "https://gaming.nv.gov",
+    "notes": "內華達是製造商授權與型式核准的核心轄區。Regulation 14（2026-02-26 生效版）規範 gaming device 與 game 的製造、銷售、分銷與核准，含最低派彩與獨立測試實驗室送審要求。魚機若要在內華達合法運作，必然是以 gaming device 身分進入，不存在「娛樂機」旁門。"
+  },
+  "classificationTest": {
+    "value": "not-applicable",
+    "confidence": "MEDIUM",
+    "source": "Regulation 14, Manufacture, Sale, Distribution and Approval of Gaming Devices and Games（2026-02-26 生效）：https://prod.gaming.nv.gov/contentassets/1a1da722f77249f3ad951853533a776a/regulation-14-manufacture-sale-distribution-and-approval-of-gaming-devices-and-games-adp-02.26.2026-eff-02.26.2026.pdf",
+    "notes": "內華達的路徑不是先論證技術對機率，而是直接走 gaming device 核准。因此分類測試在此不是准入關鍵；關鍵是 Regulation 14 的技術要求能否被魚機形態滿足。"
+  },
+  "monetisation": {
+    "cashOut": {
+      "status": "allowed",
+      "confidence": "MEDIUM",
+      "source": "Regulation 14（gaming device 之核准與運作制度）",
+      "notes": "以核准之 gaming device 身分在授權場所運作時得以現金派彩。前提是完成型式核准，且僅限授權營運者的場所。"
+    },
+    "prizeRedemption": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "彩票／獎品兌換模式在內華達的處理未經確認。內華達的制度以現金派彩的 gaming device 為主軸，非現金獎品計價的明文處理可參照 Massachusetts 205 CMR 143 作為對照。"
+    },
+    "maxPrizeValue": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次派彩上限。不得推論為無上限；Regulation 14 與相關技術標準須逐條核對。"
+    },
+    "prizeBuyback": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "realCurrencyAtMachine": {
+      "status": "allowed",
+      "confidence": "MEDIUM",
+      "source": "Regulation 14（gaming device 以真實貨幣投注運作）",
+      "notes": "與台灣完全相反：內華達的 gaming device 本來就收法定貨幣。⚠️ 同一款魚機的金流模組無法在台灣與內華達之間共用，硬體選型須分市場規劃，見 steering/cabinet-hardware-compliance.md。"
+    },
+    "paymentCardAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "無現金存取（cashless wagering）在內華達有專門規範，本次未取得原文，不填值。"
+    },
+    "tokenSpecConstraint": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得代幣規格限制（與台灣 §17 I ⑤ 的明文限制形成對照，不可互相推論）。"
+    },
+    "sweepstakesModel": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "在已有合法 gaming device 路線的轄區，sweepstakes 構造無實益；其在內華達法下的處理未經確認。"
+    }
+  },
+  "productConstraints": {
+    "minGameCycleMs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未於本次建置中核對 Regulation 14 與技術標準是否含遊戲循環時間下限。魚機射速即投注速度，此為必查項。"
+    },
+    "maxStakePerBullet": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單發投注上限。"
+    },
+    "maxBetMultiplier": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得砲倍上限。"
+    },
+    "maxWinPerCapture": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次捕獲派彩上限。"
+    },
+    "autoFire": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自動發射之處理未經確認。美式 gaming device 標準通常要求每次遊戲須有玩家啟動動作，此原則是否使自動發射受限須確認，見 steering/responsible-gaming.md。"
+    },
+    "crossTablePool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨桌獎池（progressive）在內華達有專門的技術與會計要求，本次未取得原文，不填值。"
+    },
+    "multiSeatSharedPool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ 共享魚池是魚機與傳統 gaming device 最根本的差異。同一條魚由多位玩家共同攻擊、由最後一擊者取得派彩，這在以單一玩家單一遊戲為原型的技術標準中沒有直接對應條款。送審前應以書面問答確認判定與紀錄要求，見 steering/multiplayer-fairness.md。"
+    },
+    "featureBuy": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "特殊武器購買之處理未經確認。"
+    },
+    "celebrationOfNonWin": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得相關規範。魚機高頻小額捕獲使此情形遠比老虎機頻繁。"
+    },
+    "otherProhibitions": [
+      {
+        "item": "gaming device 之製造、銷售與分銷須經授權，且機型須經核准",
+        "confidence": "MEDIUM",
+        "source": "Regulation 14（2026-02-26 生效）",
+        "notes": "供應商本身需要製造商授權，這與僅需遊戲送審的市場不同。授權申請的背景調查（suitability）時程通常遠長於技術測試，應在專案規劃時視為關鍵路徑。"
+      },
+      {
+        "item": "須經獨立測試實驗室送審",
+        "confidence": "MEDIUM",
+        "source": "Regulation 14（獨立測試實驗室送審要求）",
+        "notes": "實驗室測試是核准程序的一環而非替代。魚機的共享魚池與捕獲判定不在傳統測試腳本內，須先與實驗室確認範圍書。"
+      }
+    ]
+  },
+  "rtp": {
+    "minimum": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ Regulation 14 確認含最低派彩要求，但本次建置未逐條讀取其數值，因此不填。這是刻意的：內華達的最低派彩率數字在業界廣為流傳，但填入未經原文核對的數值會使整份檔案失去送審可信度。取得條文後應升級為 HIGH。"
+    },
+    "wagerUnitBasis": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ 最低派彩率的計算基礎在魚機上究竟綁定一發子彈、一次捕獲或一局，Regulation 14 未見針對魚機的對應說明。這是內華達最關鍵的待查項，因為它決定數學模型的驗證方式，見 steering/math-verification.md。"
+    },
+    "nonCashPrizeValuation": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得內華達對非現金獎品計價的處理。Massachusetts 205 CMR 143 有明文處理，可作為提出方案時的對照參考，但不可直接套用。"
+    },
+    "perTierParityRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得各砲倍 RTP 一致性要求。若最低派彩率要求適用於每一種可選投注設定，則各砲倍檔位須各自達標，此解釋須確認。"
+    }
+  },
+  "playerAccount": {
+    "minimumAge": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未於本次建置中核對明文年齡條款（實體場所以入場管制為主）。"
+    },
+    "kycRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "實體機台無玩家帳戶；無現金存取或忠誠卡機制則涉及身分與 AML 要求，未查證，見 steering/aml-kyc-player-account.md。"
+    },
+    "selfExclusion": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "spendLimits": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得法定投入限額。"
+    }
+  },
+  "auditLog": {
+    "retentionPeriod": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得保存期要求；相關要求可能在技術標準與內部控制最低標準內。"
+    },
+    "requiredFields": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得法定欄位集。魚機須能重建完整對局（含每發子彈、傷害歸屬、魚離場），遠超一般 spin log，見 steering/rng-capture-determination.md。"
+    },
+    "tamperEvidence": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得明文要求。美式 gaming device 標準通常含程式驗證與防篡改要求，須核對原文。"
+    }
+  },
+  "dataResidency": {
+    "requirement": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得資料落地要求。"
+    },
+    "crossBorderTransfer": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證，見 steering/data-protection-privacy.md。"
+    }
+  },
+  "certification": {
+    "scheme": {
+      "value": "Regulation 14 型式核准：獨立測試實驗室送審 ＋ NGCB／Commission 核准；製造、銷售、分銷須另有授權",
+      "confidence": "MEDIUM",
+      "source": "https://prod.gaming.nv.gov/contentassets/1a1da722f77249f3ad951853533a776a/regulation-14-manufacture-sale-distribution-and-approval-of-gaming-devices-and-games-adp-02.26.2026-eff-02.26.2026.pdf",
+      "notes": "Regulation 14 是本檔案唯一的一級來源，確認了「有型式核准制度、有最低派彩要求、須經獨立實驗室」三件事。條號層級與具體數值未核對，故不填。GLI 標準（https://gaminglabs.com/gli-standards/）在美國各轄區常被引用，但內華達是否直接採用須確認。"
+    },
+    "decisionWindow": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得核准時程。製造商授權的背景調查時程與機型核准時程應分別估算。"
+    },
+    "exportExemption": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。⚠️ 不可以台灣 §6 的出口豁免類推內華達；兩者制度無關。"
+    },
+    "acceptedLabs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "Regulation 14 要求獨立測試實驗室，但本次未取得認可清單。若需互相獨立之兩份報告，注意 GLI 已於 2023-05-19 收購 iTech Labs（https://gaminglabs.com/press-releases/gaming-laboratories-international-gli-group-invests-in-itech-labs/）；BMM Testlabs（https://bmm.com/）為另一選項。"
+    },
+    "penalties": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得罰則條文。無照製造或分銷 gaming device 在美國多數轄區具刑事風險，應以法律意見確認。"
+    },
+    "otherObligations": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "製造商授權的持續義務（含 suitability 維持、變更通報）未核對原文。"
+    }
+  },
+  "verificationRequired": [
+    "逐條讀取 Regulation 14，取得最低派彩要求的確切數值與計算基礎（最高優先）",
+    "釐清最低派彩率的計算單位在魚機上對應一發子彈、一次捕獲或一局",
+    "確認最低派彩率是否須於每一砲倍檔位各自達標",
+    "確認共享魚池、傷害歸屬與最後一擊派彩在型式核准中的判定與紀錄要求",
+    "確認 progressive（跨桌獎池）的技術與會計要求",
+    "確認自動發射是否違反「每次遊戲須有玩家啟動動作」類要求（若存在）",
+    "確認是否採用 GLI 標準或內華達自有技術標準，並取得現行版本",
+    "取得認可獨立測試實驗室清單，並與實驗室確認魚機測試範圍書",
+    "確認製造商／分銷商授權的申請要件與背景調查時程",
+    "確認無現金存取（cashless wagering）規範對機台支付媒介的限制",
+    "確認遊戲紀錄保存期、必要欄位與防篡改要求",
+    "確認變更管理與重新送審的觸發條件（調整魚種賠率是否構成須重新核准的變更）"
+  ],
+  "lastUpdated": "2026-07-29",
+  "notes": [
+    "內華達的門檻不是法律地位而是工程與授權：魚機必須以 gaming device 身分通過型式核准，而供應商本身需要製造商授權。後者的背景調查通常是專案的關鍵路徑，比技術測試更難壓縮。",
+    "Regulation 14 確認存在最低派彩要求，但本檔案刻意不填數值。已知「有要求」與已知「要求是多少」是兩件事，混淆兩者是魚機顧問工作中最常見的錯誤來源。",
+    "⚠️ 共享魚池在以單一玩家為原型的美式技術標準中沒有直接對應。這不是填表問題，而是需要主動向實驗室與監管機關提出判定與紀錄方案的設計工作，見 steering/multiplayer-fairness.md。"
+  ]
+}

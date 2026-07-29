@@ -1,0 +1,275 @@
+{
+  "templateType": "fish-game-expert/market-profile-v1",
+  "marketCode": "MI",
+  "name": "Michigan — Michigan Gaming Control Board (MGCB)",
+  "legalStatus": "regulated",
+  "regulator": {
+    "name": "Michigan Gaming Control Board (MGCB)",
+    "url": "https://www.michigan.gov/mgcb",
+    "notes": "⚠️ 本次建置未取得密西根的一級規範文件。僅以「密西根同時規範商業賭場、部落賭場與線上遊戲，且供應商須取得授權」這一廣為確立的制度事實作為 MEDIUM 依據。上列網址為 MGCB 的官方入口，但本次建置未驗證其可達性。"
+  },
+  "classificationTest": {
+    "value": "not-applicable",
+    "confidence": "MEDIUM",
+    "source": "密西根以遊戲設備與線上遊戲之授權核准制度處理准入（一般性制度描述，未取得條文原文）",
+    "notes": "魚機若進入密西根，須以受規範的遊戲設備或線上遊戲身分取得核准。密西根另有部落賭場，其設備標準來自部落與州的 compact，屬另一套制度，見 tribal-class-iii-nigc.json。"
+  },
+  "monetisation": {
+    "cashOut": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "在核准路徑與遊戲類別歸屬未確認前不填。"
+    },
+    "prizeRedemption": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "maxPrizeValue": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次派彩上限。不得推論為無上限。"
+    },
+    "prizeBuyback": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "realCurrencyAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "paymentCardAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "tokenSpecConstraint": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "sweepstakesModel": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    }
+  },
+  "productConstraints": {
+    "minGameCycleMs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得技術標準原文。魚機射速即投注速度，此為必查項。"
+    },
+    "maxStakePerBullet": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單發投注上限。"
+    },
+    "maxBetMultiplier": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得砲倍上限。"
+    },
+    "maxWinPerCapture": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次捕獲派彩上限。"
+    },
+    "autoFire": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自動發射之處理未經確認，見 steering/responsible-gaming.md。"
+    },
+    "crossTablePool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨桌獎池之處理未經確認。"
+    },
+    "multiSeatSharedPool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "共享魚池、傷害歸屬與最後一擊派彩之要求未經確認，見 steering/multiplayer-fairness.md。"
+    },
+    "featureBuy": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "celebrationOfNonWin": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "otherProhibitions": [
+      {
+        "item": "遊戲供應商須取得 MGCB 授權後方得向授權營運者供應",
+        "confidence": "MEDIUM",
+        "source": "密西根遊戲管制制度之一般性描述（未取得條文原文）",
+        "notes": "供應商授權的背景調查是專案關鍵路徑。此外密西根的商業賭場、線上遊戲與部落賭場是三條不同的准入路徑，供應商須分別確認適用性。"
+      }
+    ]
+  },
+  "rtp": {
+    "minimum": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得條文原文，不填數值。"
+    },
+    "wagerUnitBasis": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ 原子投注單位是一發子彈；最低派彩率的計算單位未經確認，見 steering/math-verification.md。"
+    },
+    "nonCashPrizeValuation": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。Massachusetts 205 CMR 143 有明文處理，可作為提案對照。"
+    },
+    "perTierParityRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證，仍應作為設計基線。"
+    }
+  },
+  "playerAccount": {
+    "minimumAge": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得條文原文，不填值。"
+    },
+    "kycRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上遊戲必有身分驗證與地理定位要求，具體內容未取得原文，見 steering/aml-kyc-player-account.md。"
+    },
+    "selfExclusion": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "密西根有排除名單制度，但本次未取得規格文件，不填值。"
+    },
+    "spendLimits": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    }
+  },
+  "auditLog": {
+    "retentionPeriod": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "requiredFields": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證，建議依 steering/rng-capture-determination.md 實作完整欄位集含魚離場紀錄。"
+    },
+    "tamperEvidence": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    }
+  },
+  "dataResidency": {
+    "requirement": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ 美國線上遊戲轄區常有伺服器落地或指定設施要求，密西根的具體要求未取得原文。此項對共享魚池架構影響重大，列為高優先待查。"
+    },
+    "crossBorderTransfer": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證，見 steering/data-protection-privacy.md。"
+    }
+  },
+  "certification": {
+    "scheme": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得 MGCB 技術標準與核准程序原文。美國多州引用 GLI 標準（https://gaminglabs.com/gli-standards/），但密西根是否採用須確認，不得假設。"
+    },
+    "decisionWindow": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "exportExemption": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用。"
+    },
+    "acceptedLabs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得認可測試機構清單。"
+    },
+    "penalties": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "otherObligations": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    }
+  },
+  "verificationRequired": [
+    "驗證 MGCB 官方網址可達性，並取得現行技術標準與供應商授權要件（最高優先）",
+    "確認魚機在商業賭場、線上遊戲與部落賭場三條路徑下的可行性差異",
+    "取得最低派彩率要求的條文與數值",
+    "釐清最低派彩率的計算單位（子彈／捕獲／一局）",
+    "確認伺服器落地或指定設施要求，評估對共享魚池即時架構的影響",
+    "確認是否採用 GLI 標準並取得適用版本",
+    "取得認可測試機構清單",
+    "確認共享魚池與最後一擊派彩的判定與紀錄要求",
+    "確認跨桌獎池之技術與會計要求",
+    "確認自動發射之處理立場",
+    "取得排除名單制度的技術整合規格",
+    "確認遊戲紀錄保存期與必要欄位"
+  ],
+  "lastUpdated": "2026-07-29",
+  "notes": [
+    "密西根的特點是三條路徑並存（商業賭場、線上遊戲、部落賭場）。同一款魚機在三條路徑下面對不同的標準與核准機關，不能以一份技術文件通行。",
+    "本檔案為刻意的低覆蓋檔案：無一級來源即不填數值。verificationRequired 的第一項是驗證官方網址與取得標準，這是後續所有工作的前置條件。",
+    "部落賭場路徑的設備標準來自 compact 而非州法，且 NIGC 25 CFR Part 547 僅適用 Class II。詳見 tribal-class-iii-nigc.json。"
+  ]
+}

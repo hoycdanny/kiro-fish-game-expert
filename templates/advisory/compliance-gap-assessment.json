@@ -1,0 +1,488 @@
+{
+  "templateType": "fish-game-expert/compliance-gap-assessment-v1",
+  "description": "合規落差評估表範本，對應 steering/advisory-engagement.md 的階段二。結構為：參與案metadata、六項基礎變數與七項魚機必問項的intake紀錄，然後逐評估領域比對現況與目標市場要求。⚠️ 本表提供技術合規分析，不是法律意見；法律地位落差不可用工程手段緩解，必須升級至律師而非列入路線圖。待填欄位為 null 或空字串。",
+  "engagement": {
+    "engagementId": null,
+    "clientName": null,
+    "clientRole": null,
+    "allowedClientRoles": [
+      "cabinet-manufacturer（機台製造商）",
+      "game-software-supplier-b2b（遊戲軟體供應商）",
+      "premises-operator（場所業者）",
+      "online-operator-b2c（線上營運商）"
+    ],
+    "assessorName": null,
+    "assessmentDate": null,
+    "assessmentVersion": null,
+    "buildHashAssessed": null,
+    "configHashAssessed": null,
+    "scopeStatement": "",
+    "outOfScope": "",
+    "fourPartyResponsibilityMatrixCompleted": null,
+    "notes": "四方責任矩陣（機台製造商／遊戲軟體供應商／場所業者／線上營運商）必須在階段一填完且無空格，並與合約條款一致。未填的後果是可預期的：事故發生時各方都認為對方負責，而監管機關只找持牌那一方。"
+  },
+  "intake": {
+    "gameEngine": {
+      "value": null,
+      "whyItMatters": "決定 RNG 整合方式與客戶端／伺服器程式碼共用的可行性",
+      "evidenceSource": null,
+      "notes": "需一併確認引擎預設的隨機來源是否被誤用於結果性判定（Unity 的 System.Random、Unreal 的 FMath::RandRange、Godot 的 randi() 都不可用）。"
+    },
+    "deploymentForm": {
+      "value": null,
+      "allowedValues": [
+        "physical-cabinet",
+        "online-multiplayer",
+        "hybrid"
+      ],
+      "whyItMatters": "決定適用標準是機具類（GLI-11）或線上互動系統類（GLI-19）",
+      "evidenceSource": null
+    },
+    "monetisationModel": {
+      "value": null,
+      "allowedValues": [
+        "cash-in-cash-out",
+        "cash-in-prize-or-ticket-redemption",
+        "cash-in-no-redemption",
+        "virtual-currency-no-redemption",
+        "sweepstakes"
+      ],
+      "whyItMatters": "決定法律分類，是六項中最關鍵的一項",
+      "evidenceSource": null,
+      "notes": "五種模式在同一個市場的法律結論可能完全不同。「不可兌回」不是宣告就成立的事實，而是需要用系統設計與場所稽核維持的狀態。"
+    },
+    "targetMarkets": {
+      "value": [],
+      "whyItMatters": "決定所有數值門檻與是否存在合法部署途徑",
+      "evidenceSource": null,
+      "notes": "⚠️ 若客戶的答案是「先做出來再看賣到哪」，應先停下來。魚機的架構約束依市場而異，且伺服器權威判定、對局重播、傷害歸屬可稽核性三項無法事後補上。"
+    },
+    "tableTopology": {
+      "value": null,
+      "seatCount": null,
+      "tableShape": null,
+      "whyItMatters": "決定多人公平性驗證範圍與座位間期望值分析情境",
+      "evidenceSource": null,
+      "notes": "長方形桌型的長邊座位可及範圍大於短邊座位，是座位不公平的常見結構來源。"
+    },
+    "developmentStage": {
+      "value": null,
+      "allowedValues": [
+        "concept",
+        "prototype",
+        "in-development",
+        "feature-complete",
+        "live-in-unregulated-market",
+        "live-and-certified-elsewhere",
+        "porting-legacy-cabinet-to-online"
+      ],
+      "whyItMatters": "決定修復是設計選擇還是重寫成本",
+      "evidenceSource": null,
+      "notes": "移植既有機台到線上時，控分邏輯通常已深植於程式碼，且原始開發者可能已不在。"
+    }
+  },
+  "fishSpecificIntake": [
+    {
+      "index": 1,
+      "item": "是否存在控分機制（控分／場控／保底／記血／回收率調節）",
+      "howToAsk": "⚠️ 不要問「有沒有控分」，要問「捕獲判定函式的輸入參數有哪些」",
+      "answer": null,
+      "answerAccepted": null,
+      "evidenceSource": null,
+      "consequenceIfAdverse": "架構違規，不是參數問題；無法透過調整數值解決",
+      "guidance": "steering/payout-control-integrity.md"
+    },
+    {
+      "index": 2,
+      "item": "判定是否伺服器權威",
+      "howToAsk": "追問「客戶端上報的是什麼，伺服器產生的是什麼」。「客戶端判定、伺服器驗證」不算權威",
+      "answer": null,
+      "answerAccepted": null,
+      "evidenceSource": null,
+      "consequenceIfAdverse": "判定層需重寫，不是加一層網路",
+      "guidance": "steering/platform-systems-compliance.md、steering/rng-capture-determination.md 第 3.1 節"
+    },
+    {
+      "index": 3,
+      "item": "共享魚池模型是 A／B／C",
+      "howToAsk": "請對方描述「兩個座位同時打同一條魚，賠付怎麼分」",
+      "answer": null,
+      "answerAccepted": null,
+      "evidenceSource": null,
+      "consequenceIfAdverse": "模型 A 需揭露座位間期望值依賴；模型 B 需驗證分配基準為投入成本而非傷害量",
+      "guidance": "steering/multiplayer-fairness.md"
+    },
+    {
+      "index": 4,
+      "item": "是否具備對局重播能力",
+      "howToAsk": "追問「能不能用記錄的資料完整重現某一分鐘的桌況」",
+      "answer": null,
+      "answerAccepted": null,
+      "evidenceSource": null,
+      "consequenceIfAdverse": "無重播即無變更分類的量測儀器，也無爭議處理能力，且不具備送測就緒條件",
+      "guidance": "steering/change-management-recert.md 第 2.1 節"
+    },
+    {
+      "index": 5,
+      "item": "各砲倍 RTP 是否一致",
+      "howToAsk": "要求提供逐砲倍的模擬結果，不接受「設計上應該一致」",
+      "answer": null,
+      "answerAccepted": null,
+      "evidenceSource": null,
+      "consequenceIfAdverse": "「大砲難打」是明確的退測原因",
+      "guidance": "steering/math-model.md 第 4.2 節"
+    },
+    {
+      "index": 6,
+      "item": "是否記錄魚離場",
+      "howToAsk": "追問「被打到剩 5% 血然後游出畫面的魚，資料在哪裡」",
+      "answer": null,
+      "answerAccepted": null,
+      "evidenceSource": null,
+      "consequenceIfAdverse": "損失項未揭露，RTP 驗證缺口，理論值與模擬值無法對齊",
+      "guidance": "steering/math-verification.md"
+    },
+    {
+      "index": 7,
+      "item": "後台是否有回收率設定項",
+      "howToAsk": "要求匯出完整後台選單樹與每一項的可調範圍",
+      "answer": null,
+      "answerAccepted": null,
+      "evidenceSource": null,
+      "consequenceIfAdverse": "未揭露的可調數學參數是退測原因，且同時構成隱匿",
+      "guidance": "steering/cabinet-hardware-compliance.md 第 3.2 節"
+    }
+  ],
+  "fishSpecificIntakeCompleteness": {
+    "allSevenAnswered": null,
+    "vagueAnswersRejected": null,
+    "notes": "七項必須逐項取得明確答覆，不接受「應該沒有」。答案通常決定整個專案的可行性。"
+  },
+  "severityScale": [
+    {
+      "level": "critical",
+      "meaning": "無法部署或存在裝置查扣／刑事風險"
+    },
+    {
+      "level": "high",
+      "meaning": "必然導致退件或認證撤銷"
+    },
+    {
+      "level": "medium",
+      "meaning": "預期會被挑戰，需補件或補驗證"
+    },
+    {
+      "level": "low",
+      "meaning": "文件或流程層的補強"
+    }
+  ],
+  "gapNatureScale": [
+    {
+      "nature": "文件層",
+      "typicalCost": "低",
+      "example": "PAR sheet 缺少策略區間、缺少損失項揭露"
+    },
+    {
+      "nature": "流程層",
+      "typicalCost": "低至中",
+      "example": "無變更請求流程、無法規觀察清單"
+    },
+    {
+      "nature": "數學層",
+      "typicalCost": "中",
+      "example": "各砲倍 RTP 不一致、獎池 RTP 未計入"
+    },
+    {
+      "nature": "架構層",
+      "typicalCost": "高，通常是重寫",
+      "example": "客戶端判定、無重播、傷害歸屬不可稽核、控分內建於判定路徑"
+    },
+    {
+      "nature": "法律層",
+      "typicalCost": "不可用工程緩解",
+      "example": "該市場不存在合法部署途徑、兌現模式構成賭博"
+    }
+  ],
+  "assessmentDomains": [
+    {
+      "domain": "classification（法律分類：技術性／機率性）",
+      "coreQuestion": "在目標市場這是賭博機具、技術遊戲還是違法裝置",
+      "guidance": "steering/skill-chance-classification.md",
+      "currentState": "",
+      "requirement": "",
+      "requirementSource": null,
+      "requirementConfidence": "UNVERIFIED",
+      "gap": "",
+      "gapNature": "法律層",
+      "severity": null,
+      "remediable": false,
+      "remediableNote": "⚠️ 法律地位與分類落差不可用工程手段緩解。在英國式測試下，只要結果可以被機率影響即為 game of chance，提高技術權重對分類結果的貢獻是零。正確處置是升級至當地執業律師，不是列入工程路線圖。",
+      "evidence": [],
+      "roadmapItemRef": null
+    },
+    {
+      "domain": "jurisdiction（市場約束矩陣）",
+      "coreQuestion": "獎品上限、年齡、金流裝置、最低派彩率、資料落地",
+      "guidance": "steering/jurisdiction-matrix.md",
+      "currentState": "",
+      "requirement": "",
+      "requirementSource": null,
+      "requirementConfidence": "UNVERIFIED",
+      "gap": "",
+      "gapNature": null,
+      "severity": null,
+      "remediable": null,
+      "remediableNote": "數值門檻可用設計調整達成；門檻本身是否存在合法部署途徑則不可。兩者必須分開評估。",
+      "evidence": [],
+      "roadmapItemRef": null
+    },
+    {
+      "domain": "math-model（數學模型）",
+      "coreQuestion": "魚種賠率、生命值、砲倍矩陣、RTP 構成",
+      "guidance": "steering/math-model.md",
+      "currentState": "",
+      "requirement": "",
+      "requirementSource": null,
+      "requirementConfidence": "UNVERIFIED",
+      "gap": "",
+      "gapNature": null,
+      "severity": null,
+      "remediable": null,
+      "remediableNote": "",
+      "evidence": [],
+      "roadmapItemRef": null
+    },
+    {
+      "domain": "math-verification（數學驗證與 PAR sheet）",
+      "coreQuestion": "理論值、模擬值、策略敏感度、樣本量推導、PAR sheet 完整性",
+      "guidance": "steering/math-verification.md",
+      "currentState": "",
+      "requirement": "",
+      "requirementSource": null,
+      "requirementConfidence": "UNVERIFIED",
+      "gap": "",
+      "gapNature": null,
+      "severity": null,
+      "remediable": null,
+      "remediableNote": "",
+      "evidence": [],
+      "roadmapItemRef": null
+    },
+    {
+      "domain": "rng-and-capture-determination（RNG 與捕獲判定）",
+      "coreQuestion": "CSPRNG、每發獨立性、判定生命週期、魚群生成、稽核欄位",
+      "guidance": "steering/rng-capture-determination.md",
+      "currentState": "",
+      "requirement": "",
+      "requirementSource": null,
+      "requirementConfidence": "UNVERIFIED",
+      "gap": "",
+      "gapNature": null,
+      "severity": null,
+      "remediable": null,
+      "remediableNote": "魚群生成是最常被遺漏的消耗點：捕獲判定用 CSPRNG 但生成用弱隨機，是實務上最常見的漏洞。",
+      "evidence": [],
+      "roadmapItemRef": null
+    },
+    {
+      "domain": "payout-control-integrity（派彩控制完整性）",
+      "coreQuestion": "是否存在補償式控分",
+      "guidance": "steering/payout-control-integrity.md",
+      "currentState": "",
+      "requirement": "",
+      "requirementSource": null,
+      "requirementConfidence": "UNVERIFIED",
+      "gap": "",
+      "gapNature": null,
+      "severity": null,
+      "remediable": null,
+      "remediableNote": "可用工程移除，但移除後數學需重驗、波動會顯著上升、商業模型可能要調整——這三個後果必須在專案初期告知商業方。",
+      "evidence": [],
+      "roadmapItemRef": null
+    },
+    {
+      "domain": "multiplayer-fairness（多人公平性）",
+      "coreQuestion": "共享模型、傷害歸屬、延遲補償、座位公平、共謀偵測",
+      "guidance": "steering/multiplayer-fairness.md",
+      "currentState": "",
+      "requirement": "",
+      "requirementSource": null,
+      "requirementConfidence": "UNVERIFIED",
+      "gap": "",
+      "gapNature": null,
+      "severity": null,
+      "remediable": null,
+      "remediableNote": "傷害歸屬可稽核性屬架構層，無法事後補上過去的可稽核性。",
+      "evidence": [],
+      "roadmapItemRef": null
+    },
+    {
+      "domain": "platform-and-systems（平台與系統）",
+      "coreQuestion": "伺服器權威、斷線處理、錢包幂等、對局重播、完整性驗證",
+      "guidance": "steering/platform-systems-compliance.md",
+      "currentState": "",
+      "requirement": "",
+      "requirementSource": null,
+      "requirementConfidence": "UNVERIFIED",
+      "gap": "",
+      "gapNature": null,
+      "severity": null,
+      "remediable": null,
+      "remediableNote": "",
+      "evidence": [],
+      "roadmapItemRef": null
+    },
+    {
+      "domain": "cabinet-hardware（機台硬體）",
+      "coreQuestion": "金流裝置、代幣與彩票、後台選單、竄改偵測、座位硬體對等",
+      "guidance": "steering/cabinet-hardware-compliance.md",
+      "currentState": "",
+      "requirement": "",
+      "requirementSource": null,
+      "requirementConfidence": "UNVERIFIED",
+      "gap": "",
+      "gapNature": null,
+      "severity": null,
+      "remediable": null,
+      "remediableNote": "台灣 §17 第 1 項第 5 款禁止機台使用真幣與支付性卡片，並限制代幣規格，直接約束硬體選型。",
+      "evidence": [],
+      "roadmapItemRef": null
+    },
+    {
+      "domain": "certification（認證準備）",
+      "coreQuestion": "標準適用性、11 份文件集、實驗室選擇與獨立性",
+      "guidance": "steering/certification-prep.md",
+      "currentState": "",
+      "requirement": "",
+      "requirementSource": null,
+      "requirementConfidence": "UNVERIFIED",
+      "gap": "",
+      "gapNature": null,
+      "severity": null,
+      "remediable": null,
+      "remediableNote": "",
+      "evidence": [],
+      "roadmapItemRef": null
+    },
+    {
+      "domain": "responsible-gaming（負責任遊戲）",
+      "coreQuestion": "限額、自我排除、自動發射管控、時間提醒、砲倍升幅確認",
+      "guidance": "steering/responsible-gaming.md",
+      "currentState": "",
+      "requirement": "",
+      "requirementSource": null,
+      "requirementConfidence": "UNVERIFIED",
+      "gap": "",
+      "gapNature": null,
+      "severity": null,
+      "remediable": null,
+      "remediableNote": "射速直接決定投注速度，是實質的投注速度控制，屬受規範參數而非美術參數。",
+      "evidence": [],
+      "roadmapItemRef": null
+    },
+    {
+      "domain": "change-management（變更管理與重新認證）",
+      "coreQuestion": "建置與配置雜湊綁定、變更分類、通報、多市場版本策略",
+      "guidance": "steering/change-management-recert.md",
+      "currentState": "",
+      "requirement": "",
+      "requirementSource": null,
+      "requirementConfidence": "UNVERIFIED",
+      "gap": "",
+      "gapNature": null,
+      "severity": null,
+      "remediable": null,
+      "remediableNote": "台灣 §7 規定軟體經修改視為新型機種，須重新申請檢驗及評鑑分類（信心 HIGH），使 OTA 更新在內銷機台上是高風險設計。",
+      "evidence": [],
+      "roadmapItemRef": null
+    },
+    {
+      "domain": "incident-handling（事故與故障處理）",
+      "coreQuestion": "分級、止血與證據保全順序、多座位補救、通報軌道",
+      "guidance": "steering/incident-malfunction-handling.md",
+      "currentState": "",
+      "requirement": "",
+      "requirementSource": null,
+      "requirementConfidence": "UNVERIFIED",
+      "gap": "",
+      "gapNature": null,
+      "severity": null,
+      "remediable": null,
+      "remediableNote": "",
+      "evidence": [],
+      "roadmapItemRef": null
+    },
+    {
+      "domain": "aml-kyc-player-account（AML／KYC 與帳戶）",
+      "coreQuestion": "年齡驗證、帳戶狀態機、同桌價值轉移偵測",
+      "guidance": "steering/aml-kyc-player-account.md",
+      "currentState": "",
+      "requirement": "",
+      "requirementSource": null,
+      "requirementConfidence": "UNVERIFIED",
+      "gap": "",
+      "gapNature": null,
+      "severity": null,
+      "remediable": null,
+      "remediableNote": "同桌讓分是魚機獨有的價值轉移管道，不會被傳統博彩 AML 規則捕捉到。偵測結果不得回饋到捕獲判定，處置在帳戶層。",
+      "evidence": [],
+      "roadmapItemRef": null
+    },
+    {
+      "domain": "data-protection（資料保護與隱私）",
+      "coreQuestion": "保存期衝突、跨境傳輸、重播資料的分類與最小化",
+      "guidance": "steering/data-protection-privacy.md",
+      "currentState": "",
+      "requirement": "",
+      "requirementSource": null,
+      "requirementConfidence": "UNVERIFIED",
+      "gap": "",
+      "gapNature": null,
+      "severity": null,
+      "remediable": null,
+      "remediableNote": "對局重播快照包含其他玩家的個人資料，「為了查事故」不是無限存取個資的授權。",
+      "evidence": [],
+      "roadmapItemRef": null
+    }
+  ],
+  "summary": {
+    "totalGaps": null,
+    "architecturalLayerGaps": {
+      "count": null,
+      "list": [],
+      "notes": "⚠️ 架構層落差必須獨立標示，不可與文件層落差並列成一張清單——那會讓客戶低估總成本一個量級。"
+    },
+    "legalLayerGaps": {
+      "count": null,
+      "list": [],
+      "escalatedToCounsel": null,
+      "notes": "法律層落差不進路線圖，走升級程序。"
+    },
+    "mathLayerGaps": {
+      "count": null,
+      "list": []
+    },
+    "processLayerGaps": {
+      "count": null,
+      "list": []
+    },
+    "documentationLayerGaps": {
+      "count": null,
+      "list": []
+    },
+    "submissionReadiness": null,
+    "blockingItems": [],
+    "linkedRiskRegister": "templates/advisory/risk-register.json",
+    "linkedRoadmap": "templates/advisory/market-entry-roadmap.json"
+  },
+  "redFlagsRaised": [
+    {
+      "flag": "",
+      "raisedDate": null,
+      "escalatedInWriting": null,
+      "clientRequestRecorded": "",
+      "riskCommunicated": "",
+      "legalQuestionRouted": ""
+    }
+  ]
+}

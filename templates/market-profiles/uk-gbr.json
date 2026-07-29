@@ -1,0 +1,292 @@
+{
+  "templateType": "fish-game-expert/market-profile-v1",
+  "marketCode": "GB",
+  "name": "Great Britain — Gambling Commission (UKGC)",
+  "legalStatus": "regulated",
+  "regulator": {
+    "name": "Gambling Commission",
+    "url": "https://www.gamblingcommission.gov.uk/licensees-and-businesses/guide/gaming-machine-categories",
+    "notes": "英國的關鍵不是「魚機能不能過」，而是「魚機幾乎一定被歸為 gaming machine」，接著 A–D 類的投注與獎金上限會使多數魚機的數學模型不成立。"
+  },
+  "classificationTest": {
+    "value": "chance-influence",
+    "confidence": "HIGH",
+    "source": "Gambling Act 2005 §6；UKGC Skill with prizes (SWPs) guidance",
+    "notes": "UKGC 指引明確：只要遊戲結果可以被機率影響，即為 game of chance；機率成分是否大於技術成分、能否被高超技術消除，均不影響認定。且一組技術遊戲中只要有一款屬機率遊戲，整台機器即為 gaming machine。魚機的捕獲判定含隨機抽樣，因此不可能主張為 Skill With Prizes。指引另列「呈現上像賭博」的判準：外觀、名稱是否使用 stake／jackpot 等博彩語彙、機殼與畫面是否含 BAR、鈴、幸運 7、水果、轉盤、骰子、捲軸帶、隨機選號等符號、玩家動作是否類似下注、以及廣告與招牌等情境線索。"
+  },
+  "monetisation": {
+    "cashOut": {
+      "status": "allowed",
+      "confidence": "HIGH",
+      "source": "Gambling Act 2005；UKGC Gaming machine categories",
+      "notes": "作為 gaming machine 運作時得以現金派彩，但受該類別的獎金上限拘束。"
+    },
+    "prizeRedemption": {
+      "status": "allowed",
+      "confidence": "MEDIUM",
+      "source": "UKGC Gaming machine categories（Category D 含 non-money prize 子類別）",
+      "notes": "Category D 有非現金獎品子類別（例如夾娃娃機類型）。魚機若走此路線，限額極低。具體子類別的適用需查 The Categories of Gaming Machine Regulations 2007。"
+    },
+    "maxPrizeValue": {
+      "value": {
+        "Category C": "£100（獎金上限）",
+        "Category D": "低於 Category C，依子類別而定"
+      },
+      "confidence": "HIGH",
+      "source": "UKGC Gaming machine categories",
+      "notes": "⚠️ £100 的獎金上限在 £1 投注下等於最高 ×100 賠率倍數。魚機常見的 ×150、×300、×500 魚種在 Category C 下數學上不可行，這是可行性問題而非調參問題。見 steering/math-model.md。"
+    },
+    "prizeBuyback": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "英國無等同台灣 §14 的明文買回禁止。實務上若非現金獎品可被場所買回，可能改變機器分類，需查證。"
+    },
+    "realCurrencyAtMachine": {
+      "status": "allowed",
+      "confidence": "MEDIUM",
+      "source": "UKGC Gaming machine categories（機器以投注額表述，隱含接受法定貨幣）",
+      "notes": "與台灣相反：英國的 gaming machine 本來就收真幣。硬體選型後果與台灣完全不同，同一款機台的金流模組無法共用。"
+    },
+    "paymentCardAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "非現金支付在實體機台的可用性受 LCCP 與相關政策影響，須查 UKGC 現行規定。"
+    },
+    "tokenSpecConstraint": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得等同台灣的代幣規格限制。"
+    },
+    "sweepstakesModel": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "美式 sweepstakes 構造在英國博彩法下的處理未在本檔案範圍內查證。鑑於 §6 的機率影響規則極為寬泛，此路線的可行性低。"
+    }
+  },
+  "productConstraints": {
+    "minGameCycleMs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "英國對線上老虎機有明文的遊戲循環時間下限（Remote Gambling and Software Technical Standards）。該要求是否及如何適用於魚機形態（尤其「一次循環」對應到一發子彈或一次捕獲）未經確認，必須以書面技術問答向 UKGC 或實驗室釐清。這是英國市場最關鍵的待查項，因為射速直接決定投注速度。"
+    },
+    "maxStakePerBullet": {
+      "value": {
+        "Category C": "£1",
+        "Category D": "低於 Category C，依子類別而定"
+      },
+      "confidence": "HIGH",
+      "source": "UKGC Gaming machine categories",
+      "notes": "若「投注」對應到一發子彈，則 £1 是單發上限，滿座 8 人的連續發射仍受此拘束。若監管機關認為「投注」對應到一次捕獲，數字含義完全不同——這個對應必須事先釐清。"
+    },
+    "maxBetMultiplier": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "無直接的砲倍檔位規範，但由 maxStakePerBullet 間接封頂。"
+    },
+    "maxWinPerCapture": {
+      "value": {
+        "Category C": "£100",
+        "Category D": "依子類別而定"
+      },
+      "confidence": "HIGH",
+      "source": "UKGC Gaming machine categories",
+      "notes": "此上限直接封頂最高魚種賠率倍數。跨桌獎池若使單次派出超過類別上限，該功能在此類別下不可行。"
+    },
+    "autoFire": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ 英國禁止線上老虎機的 autoplay。自動發射是否被視為等同機制、或是否落入不同規範，未經確認。不可假設允許，也不可假設禁止。應以書面技術問答釐清，見 steering/responsible-gaming.md。"
+    },
+    "crossTablePool": {
+      "status": "restricted",
+      "confidence": "MEDIUM",
+      "source": "UKGC Gaming machine categories（類別獎金上限）",
+      "notes": "跨桌獎池的單次派出不得超過該類別的獎金上限，這使有意義的累積獎池在 Category C 的 £100 下幾乎無法設計。實體機台的連線獎池另有其規範，須查證。"
+    },
+    "multiSeatSharedPool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "多座位共享魚池與最後一擊分配規則在英國機器分類與公平呈現要求下的處理未經確認。鑑於指引重視「呈現」，最後一擊規則若未清楚揭露，可能構成誤導呈現風險。"
+    },
+    "featureBuy": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "英國對線上老虎機的 feature buy 有政策立場，是否延伸至魚機的特殊武器購買未經確認。"
+    },
+    "celebrationOfNonWin": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "英國對線上老虎機有相關的產品設計要求。是否適用於魚機的捕獲慶祝特效未經確認。魚機的高頻小額捕獲使此問題比老虎機更常出現。"
+    },
+    "otherProhibitions": [
+      {
+        "item": "一組遊戲中只要有一款屬 game of chance，整台機器即為 gaming machine",
+        "confidence": "HIGH",
+        "source": "UKGC Skill with prizes (SWPs) guidance",
+        "notes": "常見的「主遊戲是魚機、附一個小拉霸」設計會直接觸發。若目標是避開 gaming machine 分類，機台上不能有任何機率遊戲。"
+      },
+      {
+        "item": "即使遊戲本身不含機率，仍可能因「呈現上像賭博」被認定",
+        "confidence": "HIGH",
+        "source": "UKGC Skill with prizes (SWPs) guidance",
+        "notes": "判準含名稱是否使用 stake、jackpot 等語彙，畫面是否含 BAR、鈴、幸運 7、水果、轉盤、骰子、捲軸帶或隨機選號。魚機常見的 JACKPOT 字樣、金幣特效與 ×300 高倍數呈現都是風險點。"
+      }
+    ]
+  },
+  "rtp": {
+    "minimum": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "英國未見適用於實體 gaming machine 的單一最低派彩率數字；相關要求分散於技術標準與牌照條件。不得填入推測值。"
+    },
+    "wagerUnitBasis": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ 這是英國市場的核心待查項。£1 的投注上限若對應一發子彈與對應一次捕獲，產品設計完全不同。必須以書面技術問答釐清。"
+    },
+    "nonCashPrizeValuation": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "Category D 的非現金獎品計價基準未查證。"
+    },
+    "perTierParityRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得明文要求，但仍應作為設計基線。"
+    }
+  },
+  "playerAccount": {
+    "minimumAge": {
+      "value": {
+        "Category C": "18 歲以上",
+        "Category D": "無年齡限制"
+      },
+      "confidence": "HIGH",
+      "source": "UKGC Gaming machine categories；UK DCMS Category D consultation",
+      "notes": "⚠️ Category D 無年齡限制的代價是投注與獎金限額更低。把魚機定位為 Category D 以進入家庭娛樂中心，通常使商業模型不成立。DCMS 已就 Category D 機器展開諮詢，此類別的規則可能變動，應納入法規觀察清單。"
+    },
+    "kycRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "實體機台以現場年齡查驗為主；線上魚機則須依 LCCP 的身分驗證要求，未在本檔案範圍內查證。"
+    },
+    "selfExclusion": {
+      "value": "線上營運商須整合 GAMSTOP 全國自我排除系統",
+      "confidence": "MEDIUM",
+      "source": "https://www.gamstop.co.uk/",
+      "notes": "這是營運商層義務，非遊戲供應商義務。供應商須確保帳戶狀態檢查發生在發射請求受理之前，見 steering/aml-kyc-player-account.md。"
+    },
+    "spendLimits": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上營運商的財務限額要求須依 UKGC 現行規定查證。"
+    }
+  },
+  "auditLog": {
+    "retentionPeriod": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "須依 LCCP 與相關技術標準查證。"
+    },
+    "requiredFields": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "須依技術標準查證。魚機的對局重播需求遠超一般 spin log，應主動與監管機關確認可接受的紀錄形態。"
+    },
+    "tamperEvidence": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "須查證。"
+    }
+  },
+  "dataResidency": {
+    "requirement": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "須查證。"
+    },
+    "crossBorderTransfer": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "英國脫歐後的資料傳輸機制須另行評估，見 steering/data-protection-privacy.md。"
+    }
+  },
+  "certification": {
+    "scheme": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "英國的測試與型式核准安排須依 UKGC 現行技術標準與測試策略查證。不得假設等同 GLI 認證即可。"
+    },
+    "decisionWindow": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "須查證。"
+    },
+    "exportExemption": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用。"
+    },
+    "acceptedLabs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "須查 UKGC 認可的測試機構清單。"
+    },
+    "penalties": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "無照提供設施與供應未經核准機器的罰則須依 Gambling Act 2005 相關條文查證。"
+    },
+    "otherObligations": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "場所類型與機器配額（premises entitlements）決定可設置的類別與數量，須查證。"
+    }
+  },
+  "verificationRequired": [
+    "釐清「一次投注」在魚機上對應到一發子彈或一次捕獲，這決定 £1 投注上限的實際含義（最高優先）",
+    "確認線上老虎機的遊戲循環時間下限是否及如何適用於魚機的射速",
+    "確認自動發射是否落入線上老虎機 autoplay 禁令或其他規範",
+    "確認 Category C 與各 Category D 子類別的完整投注與獎金限額現行值",
+    "確認適用於實體 gaming machine 與線上遊戲的最低派彩率要求（若有）",
+    "確認 UKGC 認可的測試機構清單與型式核准程序",
+    "確認 feature buy 政策立場是否延伸至特殊武器購買",
+    "確認 celebration of non-win 要求是否適用於魚機的捕獲慶祝特效",
+    "確認多座位共享魚池與最後一擊規則的呈現與揭露要求",
+    "確認場所配額（premises entitlements）對多座位大型機台的計算方式：一台 8 人桌是一台機器還是八台",
+    "追蹤 DCMS 對 Category D 機器的諮詢結果"
+  ],
+  "lastUpdated": "2026-07-29",
+  "notes": [
+    "英國的分類結論是本 Power 中最明確的：魚機幾乎必然是 gaming machine。爭點不在能否進入，而在類別限額是否讓產品在數學上成立。",
+    "最後一項 verificationRequired 值得單獨注意：若一台 8 人桌在場所配額上被計為八台機器，場所的機器配額會立即成為商業瓶頸，這個問題在專案評估階段就應釐清。",
+    "英國的「呈現上像賭博」判準對魚機的美術與 UI 設計有直接約束，這是老虎機領域不存在的設計限制，因為老虎機本來就是賭博呈現。"
+  ]
+}

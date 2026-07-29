@@ -1,0 +1,89 @@
+{
+  "templateType": "fish-game-expert/market-profile-schema-v1",
+  "description": "Schema for fish machine (魚機 / fish shooting game / fish table) market compliance profiles. Every regulatory value is wrapped in a confidence-annotated object so that consultants never cite an unverified number as fact. Fish machines differ from slots in that the FIRST question is legal classification, not RTP, so this schema puts classificationTest and monetisation ahead of productConstraints.",
+  "confidenceLevels": {
+    "HIGH": "Confirmed from the regulator's official document, the statute text, a court judgment, or the standard body text. Usable as a design baseline.",
+    "MEDIUM": "From a regulator website summary, an authoritative industry source, or a law firm analysis. Usable as a planning assumption but MUST be upgraded to HIGH before certification submission.",
+    "UNVERIFIED": "Not confirmed. A guessed value MUST NOT be filled in. Must be added to verificationRequired."
+  },
+  "valueObject": {
+    "value": "The regulatory value. Use null when unknown, and set confidence to UNVERIFIED. Use \"none\" (string) when the market has been confirmed to impose no such limit.",
+    "confidence": "HIGH | MEDIUM | UNVERIFIED",
+    "source": "Citation precise enough to retrieve: instrument name plus article/section number, or case name plus court and year.",
+    "notes": "Optional. Caveats, measurement basis, engineering implications."
+  },
+  "requiredTopLevelFields": [
+    "templateType",
+    "marketCode",
+    "name",
+    "legalStatus",
+    "regulator",
+    "classificationTest",
+    "monetisation",
+    "productConstraints",
+    "rtp",
+    "playerAccount",
+    "auditLog",
+    "dataResidency",
+    "certification",
+    "verificationRequired",
+    "lastUpdated"
+  ],
+  "legalStatusValues": [
+    "regulated",
+    "regulated-arcade",
+    "compact-based",
+    "prohibited",
+    "grey",
+    "offshore-only",
+    "in-transition"
+  ],
+  "featureStatusValues": [
+    "allowed",
+    "restricted",
+    "prohibited",
+    "unverified"
+  ],
+  "classificationTestValues": {
+    "predominant-factor": "Skill vs chance weighed; the activity is lawful skill only if skill dominates. Fish machines have a narrow but real path here, and Gift Surplus (NC 2022) shows the path can still fail.",
+    "material-element": "Gambling if chance is present to any material degree. A fish machine's capture sampling will normally fail this test.",
+    "any-chance": "Gambling if any chance is present. A fish machine cannot pass.",
+    "chance-influence": "Great Britain's rule under Gambling Act 2005 §6: a game whose result CAN be influenced by chance is a game of chance regardless of whether skill exceeds chance. One chance game in a group makes the whole machine a gaming machine.",
+    "administrative-classification": "Classification is decided by a prior administrative evaluation rather than a judicial test, e.g. Taiwan's 評鑑分類 under 電子遊戲場業管理條例 §6.",
+    "not-applicable": "The market licenses the product category directly without a skill/chance threshold question.",
+    "unverified": "Which test applies has not been confirmed."
+  },
+  "monetisationKeys": {
+    "cashOut": "featureStatus. Whether the player may convert game credit to cash.",
+    "prizeRedemption": "featureStatus plus maxPrizeValue. Prize or ticket redemption model.",
+    "maxPrizeValue": "Value cap per redemption event, with currency and the tier it applies to.",
+    "prizeBuyback": "featureStatus. Whether the venue may buy prizes back from the player. Buyback is functionally cash-out.",
+    "realCurrencyAtMachine": "featureStatus. Whether coin or note acceptors taking legal tender are permitted on the cabinet.",
+    "paymentCardAtMachine": "featureStatus. Whether credit/debit/cash/stored-value cards or other payment-bearing media may be read at the cabinet.",
+    "tokenSpecConstraint": "Any constraint on amusement token dimensions, design or weight relative to circulating coinage.",
+    "sweepstakesModel": "featureStatus. Whether the US sweepstakes construction is viable."
+  },
+  "productConstraintKeys": {
+    "minGameCycleMs": "Minimum time between chargeable game events, if regulated. For fish machines note whether it binds per bullet, per capture or per arena.",
+    "maxStakePerBullet": "Maximum stake per bullet, which is the atomic betting unit for a fish machine.",
+    "maxBetMultiplier": "Cap on the highest 砲倍 tier, whether expressed directly or derived from a stake cap.",
+    "maxWinPerCapture": "Win cap per capture event or per prize. Note the basis, because it directly caps the highest 魚種 payout multiplier.",
+    "autoFire": "featureStatus plus restrictions. 自動發射 is the fish-machine analogue of slot autoplay.",
+    "crossTablePool": "featureStatus. 跨桌獎池 / progressive pooling across tables.",
+    "multiSeatSharedPool": "featureStatus plus restrictions on 共享魚池 and on 最後一擊 payout allocation.",
+    "featureBuy": "featureStatus. Purchasing a special weapon or arena entry directly.",
+    "celebrationOfNonWin": "featureStatus. Win celebration where the return is less than or equal to the stake.",
+    "otherProhibitions": "Array of market specific bans that do not fit the keys above."
+  },
+  "rtpKeys": {
+    "minimum": "Minimum payout percentage, if any.",
+    "wagerUnitBasis": "How the market's minimum payout rule maps onto a fish machine: per bullet, per capture, per game session, or unresolved. Most markets have NOT resolved this, so expect UNVERIFIED.",
+    "nonCashPrizeValuation": "How non-cash prizes are valued when computing payout percentage. Relevant to prize/ticket redemption fish machines.",
+    "perTierParityRequired": "Whether RTP must be equal across all 砲倍 tiers."
+  },
+  "notes": [
+    "An absence of a published rule is NOT proof that no rule exists. Many technical limits sit in licence conditions that are not public. Record such cases as UNVERIFIED, not as \"none\".",
+    "Fish machines have more UNVERIFIED values than slots because most technical standards were written for single-player devices and do not address shared-pool multiplayer at all. That is a property of the domain, not a gap in research effort.",
+    "Legal status for a fish machine can carry criminal consequences. This profile is a technical compliance starting point, not legal advice. See steering/jurisdiction-matrix.md section 0 and steering/skill-chance-classification.md."
+  ]
+}

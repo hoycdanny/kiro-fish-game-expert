@@ -1,0 +1,274 @@
+{
+  "templateType": "fish-game-expert/market-profile-v1",
+  "marketCode": "SE",
+  "name": "Sweden — Spelinspektionen（Swedish Gambling Authority）",
+  "legalStatus": "regulated",
+  "regulator": {
+    "name": "Spelinspektionen (Swedish Gambling Authority)",
+    "url": "https://www.spelinspektionen.se/",
+    "notes": "瑞典的授權制度自 2019 年起開放，最具制度特徵的是全國自我排除系統 Spelpaus（https://www.spelpaus.se/）。本次建置取得監管機關與 Spelpaus 官方入口，但未取得技術標準與遊戲類別定義全文。"
+  },
+  "classificationTest": {
+    "value": "not-applicable",
+    "confidence": "MEDIUM",
+    "source": "https://www.spelinspektionen.se/（以牌照類別涵蓋之遊戲為准入基礎）",
+    "notes": "瑞典以牌照類別制度處理准入，不採司法上的技術對機率測試。門檻在於魚機是否落在商業線上遊戲牌照涵蓋之遊戲類別內，此歸屬未經確認。"
+  },
+  "monetisation": {
+    "cashOut": {
+      "status": "allowed",
+      "confidence": "MEDIUM",
+      "source": "https://www.spelinspektionen.se/（線上商業遊戲牌照以真實貨幣投注與派彩）",
+      "notes": "取得牌照後以真實貨幣派彩為常態。"
+    },
+    "prizeRedemption": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上環境無實體獎品兌換層。"
+    },
+    "maxPrizeValue": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次派彩上限。不得推論為無上限。"
+    },
+    "prizeBuyback": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用於線上環境；未查證。"
+    },
+    "realCurrencyAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "本欄為實體機殼欄位，本檔案以線上牌照為主軸。"
+    },
+    "paymentCardAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "本欄為實體機殼欄位，不適用。"
+    },
+    "tokenSpecConstraint": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上環境無實體代幣。"
+    },
+    "sweepstakesModel": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "美式 sweepstakes 構造在瑞典法下無實益且未經確認。"
+    }
+  },
+  "productConstraints": {
+    "minGameCycleMs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得遊戲循環時間下限。魚機射速即投注速度，此為必查項。"
+    },
+    "maxStakePerBullet": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單發投注上限。"
+    },
+    "maxBetMultiplier": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得砲倍上限。"
+    },
+    "maxWinPerCapture": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次捕獲派彩上限。"
+    },
+    "autoFire": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自動發射之處理未經確認。瑞典的負責博彩要求相對嚴格，不可假設允許，見 steering/responsible-gaming.md。"
+    },
+    "crossTablePool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨桌獎池之處理未經確認。"
+    },
+    "multiSeatSharedPool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "共享魚池、傷害歸屬與最後一擊分配之要求未經確認，見 steering/multiplayer-fairness.md。"
+    },
+    "featureBuy": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "特殊武器購買之處理未經確認。"
+    },
+    "celebrationOfNonWin": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得相關規範。"
+    },
+    "otherProhibitions": [
+      {
+        "item": "遊戲須在玩家已被 Spelpaus 排除時拒絕受理",
+        "confidence": "MEDIUM",
+        "source": "https://www.spelpaus.se/；https://www.spelinspektionen.se/",
+        "notes": "⚠️ 對魚機的具體後果：帳戶狀態檢查必須發生在發射請求受理之前，而非在結算時。魚機的高頻連續發射使「檢查時點」成為實作重點，若在扣款後才檢查，將產生需要退款與紀錄修正的爭議事件，見 steering/incident-malfunction-handling.md。"
+      }
+    ]
+  },
+  "rtp": {
+    "minimum": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得最低派彩率要求。不得填入推測值。"
+    },
+    "wagerUnitBasis": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ 原子投注單位是一發子彈。瑞典規則的綁定單位未見公開對應，須以書面技術問答釐清，見 steering/math-verification.md。"
+    },
+    "nonCashPrizeValuation": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上環境通常無非現金獎品。可參照 Massachusetts 205 CMR 143 的處理作為概念對照。"
+    },
+    "perTierParityRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得明文要求，仍應作為設計基線。"
+    }
+  },
+  "playerAccount": {
+    "minimumAge": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未於本次建置中核對明文年齡條款。"
+    },
+    "kycRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "牌照制度下應有身分驗證與 AML 要求，具體門檻未核對，見 steering/aml-kyc-player-account.md。"
+    },
+    "selfExclusion": {
+      "value": "須整合 Spelpaus 全國自我排除系統",
+      "confidence": "MEDIUM",
+      "source": "https://www.spelpaus.se/；https://www.spelinspektionen.se/",
+      "notes": "這是營運商層義務，但供應商必須提供對應的介面契約：在受理發射前查詢帳戶可玩狀態、在排除生效時安全中止進行中的對局並正確處理已投入子彈。與英國 GAMSTOP 的結構類似但為不同系統，不可共用整合。"
+    },
+    "spendLimits": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未於本次建置中確認法定投入或存款限額的具體數值與適用範圍。"
+    }
+  },
+  "auditLog": {
+    "retentionPeriod": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得保存期要求。"
+    },
+    "requiredFields": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得法定欄位集，建議依 steering/rng-capture-determination.md 實作含魚離場紀錄的完整欄位。"
+    },
+    "tamperEvidence": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    }
+  },
+  "dataResidency": {
+    "requirement": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得資料落地要求。"
+    },
+    "crossBorderTransfer": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "瑞典為 EU 成員國，GDPR 適用，具體安排未查證，見 steering/data-protection-privacy.md。"
+    }
+  },
+  "certification": {
+    "scheme": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得瑞典的技術標準與測試安排全文。不得假設等同丹麥 SCP 模組或 GLI 標準。"
+    },
+    "decisionWindow": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得審核時程。"
+    },
+    "exportExemption": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用。"
+    },
+    "acceptedLabs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得認可測試機構清單。"
+    },
+    "penalties": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得罰則條文。"
+    },
+    "otherObligations": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "供應商是否須獨立授權或登錄未經確認。"
+    }
+  },
+  "verificationRequired": [
+    "確認魚機是否落在商業線上遊戲牌照涵蓋之遊戲類別內",
+    "取得 Spelpaus 的技術整合規格，確認查詢時點與中止進行中對局的處理要求",
+    "確認被排除玩家在對局進行中生效時，已發射子彈與待判定捕獲的正確處理方式",
+    "確認法定投入或存款限額的具體數值與適用範圍",
+    "確認是否有最低派彩率要求及其綁定單位（子彈／捕獲／一局）",
+    "確認是否有遊戲循環時間下限，以及是否適用於魚機射速",
+    "確認自動發射是否落入負責博彩相關限制",
+    "取得技術標準與認可測試機構清單",
+    "確認跨桌獎池與共享魚池的處理與揭露要求",
+    "確認遊戲紀錄保存期、必要欄位與對局重播可接受形態",
+    "確認供應商是否須獨立授權或登錄"
+  ],
+  "lastUpdated": "2026-07-29",
+  "notes": [
+    "瑞典檔案中唯一可靠的具體制度是 Spelpaus。它看似營運商義務，實際上對魚機供應商產生明確的介面設計要求：可玩狀態檢查必須前置於發射受理。",
+    "魚機的高頻連續投注使負責博彩機制的實作時點比老虎機更敏感。一秒內數十發子彈的情況下，「事後檢查」等於「已違規數十次」。",
+    "技術標準與遊戲類別歸屬皆未取得，因此本檔案不宜作為數學設計基線；應先完成 verificationRequired 前四項再啟動數學工作。"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "kiro-fish-game-expert",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Kiro Power — Fish machine (魚機 / fish table) compliance advisor covering skill-vs-chance classification across 23 jurisdictions, capture-determination RNG, multiplayer fairness, payout-control integrity, certification and responsible gaming, with confidence-annotated regulatory data",
+  "keywords": [
+    "kiro",
+    "kiro-power",
+    "fish-game",
+    "fish-table",
+    "魚機",
+    "捕魚機",
+    "compliance",
+    "gaming",
+    "certification"
+  ],
+  "scripts": {
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "fast-check": "^3.23.0",
+    "typescript": "^5.7.0",
+    "vitest": "^2.1.8"
+  }
+}

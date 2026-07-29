@@ -1,0 +1,332 @@
+{
+  "templateType": "fish-game-expert/market-profile-v1",
+  "marketCode": "TW",
+  "name": "Taiwan — 電子遊戲場業（經濟部）",
+  "legalStatus": "regulated-arcade",
+  "regulator": {
+    "name": "經濟部（中央主管機關）；直轄市、縣（市）政府（地方主管機關）",
+    "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0080024",
+    "notes": "電子遊戲場業管理條例 §2 定義三級主管機關。中央負責機具評鑑分類與查驗，地方負責營業級別證與場所稽查。台灣同時是全球魚機的主要製造與出口基地，因此本檔案對供應商的重要性高於其內銷市場規模。"
+  },
+  "classificationTest": {
+    "value": "administrative-classification",
+    "confidence": "HIGH",
+    "source": "電子遊戲場業管理條例 §4、§6",
+    "notes": "台灣不使用司法上的技術／機率測試。分類由中央主管機關的事前評鑑決定，分為益智類、鋼珠類、娛樂類，分類標準由中央主管機關定之。§4 第 2 項另設硬條件：電子遊戲機不得有賭博或妨害風化之設計及裝置。魚機通常落入娛樂類，對應限制級營業場所。"
+  },
+  "monetisation": {
+    "cashOut": {
+      "status": "prohibited",
+      "confidence": "HIGH",
+      "source": "電子遊戲場業管理條例 §14 第 2 項第 1 款",
+      "notes": "禁止提供現金、有價證券或其他通貨為獎品。違反者依 §27 處 NT$20 萬–100 萬罰鍰，涉有賭博嫌疑者移送司法機關。"
+    },
+    "prizeRedemption": {
+      "status": "allowed",
+      "confidence": "HIGH",
+      "source": "電子遊戲場業管理條例 §14 第 1 項",
+      "notes": "得提供獎品供人兌換或直接操作取得。這是魚機在台灣唯一合法的兌現層。"
+    },
+    "maxPrizeValue": {
+      "value": {
+        "限制級": "NT$2,000 per redemption or per direct acquisition",
+        "普通級": "NT$1,000 per redemption or per direct acquisition"
+      },
+      "confidence": "HIGH",
+      "source": "電子遊戲場業管理條例 §14 第 1 項",
+      "notes": "獎品價值以業者原始進貨發票作為兌換價值依據（§14 第 3 項），不得以市價或建議售價主張。上限得由主管機關依物價波動逐年調整（§14 第 4 項），因此設計時應查核當期公告值。此上限是最高 魚種賠率倍數 的實質硬上界，見 steering/math-model.md。"
+    },
+    "prizeBuyback": {
+      "status": "prohibited",
+      "confidence": "HIGH",
+      "source": "電子遊戲場業管理條例 §14 第 2 項第 2 款",
+      "notes": "禁止買回提供給客人之獎品。代幣買回、彩票折現、獎品回收給現金在功能上都是 cash-out，均落入此禁止範圍。經中央主管機關許可之非營利公益性團體得經營公益收購站，收購限制級場所兌換之獎品（§14 第 5 項），這是唯一的例外途徑且不歸業者操作。"
+    },
+    "realCurrencyAtMachine": {
+      "status": "prohibited",
+      "confidence": "HIGH",
+      "source": "電子遊戲場業管理條例 §17 第 1 項第 5 款",
+      "notes": "不得於電子遊戲機使用真幣。投幣器與鈔票器均不可收受法定貨幣。違反者依 §30 處 NT$10 萬–50 萬罰鍰並限期改善。"
+    },
+    "paymentCardAtMachine": {
+      "status": "prohibited",
+      "confidence": "HIGH",
+      "source": "電子遊戲場業管理條例 §17 第 1 項第 5 款",
+      "notes": "不得使用信用卡、金融卡、現金卡、儲值卡或其他作為簽帳、提款、轉帳或支付之電磁紀錄物或晶片。僅承載會員識別碼而不承載支付功能的會員卡是否落入本款文義，尚未確認，列為 verificationRequired。"
+    },
+    "tokenSpecConstraint": {
+      "value": "娛樂用代幣之大小、式樣或重量不得與真幣相同或近似",
+      "confidence": "HIGH",
+      "source": "電子遊戲場業管理條例 §17 第 1 項第 5 款",
+      "notes": "此條直接約束代幣採購規格，見 steering/cabinet-hardware-compliance.md。"
+    },
+    "sweepstakesModel": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "美式 sweepstakes 構造在台灣的可行性未經確認。§4 的「不得有賭博之設計及裝置」與 §17 第 1 項第 6 款的「不得有涉及賭博行為」可能使此構造無實益，但需法律意見。"
+    }
+  },
+  "productConstraints": {
+    "minGameCycleMs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "條例本文未見遊戲循環時間下限。分類標準（由中央主管機關另定）是否含此類參數尚未查證。不得以「條例未規定」推論為無限制。"
+    },
+    "maxStakePerBullet": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "條例本文未見單發投注上限。實務上由獎品價值上限與代幣比例間接約束。"
+    },
+    "maxBetMultiplier": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未見直接規範。應查分類標準與評鑑委員會的實務要求。"
+    },
+    "maxWinPerCapture": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "條例規範的是每次兌換或取得獎品之價值（§14），不是單次捕獲賠付。但單次捕獲若產生遠超上限的彩票量，兌換環節即成為法遵瓶頸，實務上應把 §14 上限反推為賠付設計約束。"
+    },
+    "autoFire": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "條例未提及自動發射。應向評鑑委員會確認其對連續投入機制的實務立場。"
+    },
+    "crossTablePool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨桌獎池的累積與派出結構可能被評鑑委員會視為賭博性設計（§4 第 2 項）。這是台灣內銷魚機最需要事前確認的功能之一。"
+    },
+    "multiSeatSharedPool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "多人同桌本身在台灣普遍存在於實機，但共享魚池與最後一擊分配規則是否需在評鑑時揭露、有無限制，未經確認。"
+    },
+    "featureBuy": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "以代幣直接購買特殊武器或關卡進場權的合規性未確認。"
+    },
+    "celebrationOfNonWin": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未見對等值或低於投入之慶祝回饋的規範。"
+    },
+    "otherProhibitions": [
+      {
+        "item": "不得有賭博或妨害風化之設計及裝置",
+        "confidence": "HIGH",
+        "source": "電子遊戲場業管理條例 §4 第 2 項",
+        "notes": "這是魚機在台灣最重要的單一條文。它是對機具設計本身的禁止，而非對營運行為的禁止，因此補償式控分、兌現導向設計、賭博語彙呈現都可能觸及。"
+      },
+      {
+        "item": "不得有涉及賭博、妨害風化或其他犯罪行為",
+        "confidence": "HIGH",
+        "source": "電子遊戲場業管理條例 §17 第 1 項第 6 款",
+        "notes": "違反者依 §31 由主管機關命其停業，經法院判決有罪確定者廢止營業級別證與公司或商業登記。"
+      },
+      {
+        "item": "不得陳列、使用未經中央主管機關評鑑分類及公告之電子遊戲機，或擅自修改已評鑑分類之機台",
+        "confidence": "HIGH",
+        "source": "電子遊戲場業管理條例 §7 第 1 項",
+        "notes": "違反者依 §23 第 3 項處 NT$10 萬–50 萬罰鍰。"
+      },
+      {
+        "item": "機具結構或軟體經修改者，視為新型機種，應即申請檢驗及評鑑分類",
+        "confidence": "HIGH",
+        "source": "電子遊戲場業管理條例 §7 第 2 項",
+        "notes": "台灣沒有「小修補」概念。這使 OTA 更新機制在內銷機台上是高風險設計，見 steering/change-management-recert.md。"
+      },
+      {
+        "item": "不得設置本條例施行前已公告查禁之電子遊戲機",
+        "confidence": "HIGH",
+        "source": "電子遊戲場業管理條例 §21",
+        "notes": "違反者依 §35 處 NT$50 萬–250 萬罰鍰並廢止相關登記。既有查禁清單應於機種選型前查核。"
+      },
+      {
+        "item": "同一營業場所不得混合營業級別經營",
+        "confidence": "HIGH",
+        "source": "電子遊戲場業管理條例 §5 第 2 項",
+        "notes": "違反者依 §25 處 NT$20 萬–100 萬罰鍰。產品後果是同一款魚機無法同時服務兩種級別場所而只做一個兌換設計，因為級別決定獎品上限。"
+      },
+      {
+        "item": "營業場所應距離國民中、小學、高中、職校、醫院五十公尺以上",
+        "confidence": "HIGH",
+        "source": "電子遊戲場業管理條例 §9",
+        "notes": "場所業者義務，供應商在評估市場容量時應納入。"
+      },
+      {
+        "item": "同一門牌以設立一電子遊戲場業為限",
+        "confidence": "HIGH",
+        "source": "電子遊戲場業管理條例 §11 第 2 項",
+        "notes": "場所業者義務。"
+      }
+    ]
+  },
+  "rtp": {
+    "minimum": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "條例本文未見最低派彩率條文。台灣走事前評鑑分類而非派彩率門檻。不得因此推論無任何派彩要求；分類標準是否含相關參數應向評鑑委員會確認。"
+    },
+    "wagerUnitBasis": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "因無最低派彩率條文，投注單位的法定對應問題在台灣未浮現。但送評鑑時仍應明確聲明以一發子彈為投注單位，見 steering/math-verification.md。"
+    },
+    "nonCashPrizeValuation": {
+      "value": "以業者原始進貨發票作為兌換獎品價值之依據",
+      "confidence": "HIGH",
+      "source": "電子遊戲場業管理條例 §14 第 3 項",
+      "notes": "這是少數有明文計價基準的市場。對供應商的意義是：以特定獎品組合為前提的遊戲設計，其可行性取決於場所業者的實際進貨成本，而非市價。"
+    },
+    "perTierParityRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "台灣未明文要求各砲倍 RTP 一致。但這仍是本 Power 的設計基線，因為它同時是其他市場的要求，且不一致本身可能被評鑑委員會視為賭博性設計的跡象。"
+    }
+  },
+  "playerAccount": {
+    "minimumAge": {
+      "value": {
+        "限制級": "18 歲（禁止未滿 18 歲者進入）",
+        "普通級": "無全面年齡下限，但禁止未滿 15 歲者於上課時間及夜間 10 時以後進入及滯留"
+      },
+      "confidence": "HIGH",
+      "source": "電子遊戲場業管理條例 §5 第 1 項、§17 第 1 項第 1 款、第 2 款",
+      "notes": "違反第 1 款或第 2 款者依 §29 處 NT$20 萬–100 萬罰鍰。從業人員得請消費者出示年齡證明（§17 第 2 項）。實體場所無帳戶概念，年齡管制在入場查驗。"
+    },
+    "kycRequired": {
+      "value": "none",
+      "confidence": "MEDIUM",
+      "source": "電子遊戲場業管理條例（全文未見 KYC 要求）",
+      "notes": "實體娛樂場所無玩家帳戶，故無 KYC 制度。若導入會員卡機制，其法律性質需先釐清（見 paymentCardAtMachine）。"
+    },
+    "selfExclusion": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "無全國自我排除系統。條例未設此機制。"
+    },
+    "spendLimits": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "條例未設投入限額。獎品價值上限是產出側限制，非投入側限制。"
+    }
+  },
+  "auditLog": {
+    "retentionPeriod": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "條例未見遊戲紀錄保存期規定。§20 賦予主管機關定期或不定期派員檢查權，規避、妨礙或拒絕者依 §34 處 NT$10 萬–50 萬罰鍰，因此實務上須有可供檢查的紀錄，但期間未經確認。"
+    },
+    "requiredFields": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "無法定欄位清單。建議仍依 steering/rng-capture-determination.md 的完整欄位集實作，含魚離場紀錄。"
+    },
+    "tamperEvidence": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "條例未明文要求防篡改機制，但 §7 的禁止擅自修改在實務上需要可證明未修改的技術手段。"
+    }
+  },
+  "dataResidency": {
+    "requirement": {
+      "value": "none",
+      "confidence": "MEDIUM",
+      "source": "電子遊戲場業管理條例（全文未見資料落地要求）",
+      "notes": "實體機台通常為單機或場所內網，資料落地問題不顯著。若導入雲端後台或線上功能，個人資料保護法的適用需另行評估。"
+    },
+    "crossBorderTransfer": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "個人資料保護法的國際傳輸限制未在本檔案範圍內查證。"
+    }
+  },
+  "certification": {
+    "scheme": {
+      "value": "兩軌並行：軟體評鑑分類（§6 第 1 項）＋ 機具結構商品檢驗（§6 第 5 項）",
+      "confidence": "HIGH",
+      "source": "電子遊戲場業管理條例 §6",
+      "notes": "台灣不採用 GLI 標準體系。製造業、進口人或軟體設計廠商應於製造或進口前，就其軟體向中央主管機關申請核發評鑑分類文件；出廠或進口時申請查驗，合格者發給機具類別標示證。機具結構另依商品檢驗法申請檢驗。兩者是不同程序、不同時程，缺一不可。"
+    },
+    "decisionWindow": {
+      "value": "30 日",
+      "confidence": "HIGH",
+      "source": "電子遊戲場業管理條例 §6 第 4 項",
+      "notes": "中央主管機關應自收受評鑑申請書之日起 30 日內完成評鑑分類之決定，並公告結果。任何影響數學或判定的變更在台灣至少意味著一個月的行政等待，內容更新排程必須以此為節拍。"
+    },
+    "exportExemption": {
+      "value": "專供出口電子遊戲機之製造不在評鑑分類義務範圍內",
+      "confidence": "HIGH",
+      "source": "電子遊戲場業管理條例 §6 第 1 項但書",
+      "notes": "⚠️ 這是台灣成為魚機製造與出口重鎮的制度原因，也是最常被誤解的條文。出口免評鑑只免除台灣的評鑑義務，完全不涉及目的地市場的合法性。見 steering/skill-chance-classification.md 與 steering/advisory-engagement.md 的四方責任矩陣。"
+    },
+    "acceptedLabs": {
+      "value": "中央主管機關成立之評鑑委員會；查驗得委託相關團體協助",
+      "confidence": "HIGH",
+      "source": "電子遊戲場業管理條例 §6 第 2 項、第 3 項",
+      "notes": "非商業測試實驗室模式。GLI、BMM、iTech Labs、eCOGRA 的認證在台灣評鑑程序中不具替代效力。"
+    },
+    "penalties": {
+      "value": {
+        "未領營業級別證經營（§15）": "§22：1 年以下有期徒刑、拘役或科或併科 NT$50 萬–250 萬罰金",
+        "廠商未申請評鑑分類（§6 I）": "§23 第 1 項：NT$20 萬–100 萬罰鍰",
+        "陳列使用未評鑑機台或擅自修改（§7 I）": "§23 第 3 項：NT$10 萬–50 萬罰鍰",
+        "擅自變更營業級別或機具類別、混合營業級別（§5 II）": "§25：NT$20 萬–100 萬罰鍰",
+        "違反獎品兌換規定（§14）": "§27：NT$20 萬–100 萬罰鍰；涉有賭博嫌疑者移送司法機關",
+        "違反年齡管制（§17 I ①②）": "§29：NT$20 萬–100 萬罰鍰",
+        "違反支付工具與代幣規定（§17 I ⑤）": "§30：NT$10 萬–50 萬罰鍰",
+        "規避、妨礙或拒絕檢查（§20 I）": "§34：NT$10 萬–50 萬罰鍰",
+        "設置已公告查禁機台（§21）": "§35：NT$50 萬–250 萬罰鍰並廢止相關登記"
+      },
+      "confidence": "HIGH",
+      "source": "電子遊戲場業管理條例 第四章 罰則",
+      "notes": "未領證經營是唯一直接載明有期徒刑的條文。獎品兌換違規另有移送司法機關的路徑，實務上通向刑法賭博罪。"
+    },
+    "otherObligations": {
+      "value": "營業前應就營業場所投保公共意外責任保險，營業期間應續予投保（§13）",
+      "confidence": "HIGH",
+      "source": "電子遊戲場業管理條例 §13、§26",
+      "notes": "違反者依 §26 處 NT$20 萬–100 萬罰鍰並命限期改善，屆期未改善者廢止營業級別證。屬場所業者義務。"
+    }
+  },
+  "verificationRequired": [
+    "取得中央主管機關訂定的「電子遊戲機分類標準」全文，確認娛樂類的具體判準與魚機的歸類依據",
+    "確認評鑑委員會對補償式派彩控制（控分／場控）的實務立場，以及是否要求揭露",
+    "確認跨桌獎池在 §4 第 2 項「賭博性設計」下的實務認定",
+    "確認自動發射（auto-fire）與連續投入機制在評鑑實務上是否受限",
+    "確認僅承載會員識別碼而不具支付功能的會員卡是否落入 §17 I ⑤ 的「電磁紀錄物或晶片」文義",
+    "查核當期公告的獎品價值上限（§14 第 4 項允許主管機關依物價波動逐年調整）",
+    "確認評鑑分類是否要求提交數學模型文件，以及其詳細程度",
+    "確認是否有適用的最低派彩率或機率揭露要求（條例本文無，但分類標準或行政指導可能有）",
+    "確認遊戲紀錄的實務保存期要求（§20 檢查權隱含須有可供檢查之紀錄）",
+    "取得 §21 已公告查禁電子遊戲機清單並比對擬售機種",
+    "確認多人同桌共享魚池與最後一擊分配規則在評鑑時的揭露要求"
+  ],
+  "lastUpdated": "2026-07-29",
+  "notes": [
+    "台灣對魚機供應商的重要性主要在製造端與 §6 出口豁免，而非內銷市場規模。",
+    "台灣是本 Power 中 HIGH 信心值密度最高的市場，因為其技術與兌現限制寫在成文法而非不公開的牌照條件中。",
+    "條例本文可查到的是兌現、支付工具、年齡、變更管理與罰則；數學與判定層的要求則在未公開的分類標準中，因此 productConstraints 與 rtp 多數為 UNVERIFIED。這個分佈本身就是有用的資訊：台灣的合規風險集中在兌現與變更管理，不在 RTP。"
+  ]
+}

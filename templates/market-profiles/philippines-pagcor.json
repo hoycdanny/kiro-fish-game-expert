@@ -1,0 +1,279 @@
+{
+  "templateType": "fish-game-expert/market-profile-v1",
+  "marketCode": "PH",
+  "name": "Philippines — PAGCOR（Philippine Amusement and Gaming Corporation）",
+  "legalStatus": "regulated",
+  "regulator": {
+    "name": "Philippine Amusement and Gaming Corporation (PAGCOR)",
+    "url": "https://www.pagcor.ph",
+    "notes": "PAGCOR 同時是監管機關與營運者，這個雙重角色在評估其技術標準約束力時必須納入考量。菲律賓對魚機供應鏈的重要性在於：許多亞洲風格線上魚機供應商以菲律賓或庫拉索授權作為授權來源，見 steering/jurisdiction-matrix.md。"
+  },
+  "classificationTest": {
+    "value": "not-applicable",
+    "confidence": "MEDIUM",
+    "source": "https://www.pagcor.ph（以授權涵蓋之遊戲業務類別為準，非以技術／機率門檻判定）",
+    "notes": "菲律賓不以司法上的技術對機率測試作為准入判準，而以是否取得 PAGCOR 授權為準。因此關鍵問題是魚機是否落在授權涵蓋的線上遊戲類別內，此歸屬未經確認。"
+  },
+  "monetisation": {
+    "cashOut": {
+      "status": "allowed",
+      "confidence": "MEDIUM",
+      "source": "https://www.pagcor.ph（domestic online gaming 須取得 PAGCOR 授權，其本質為真實貨幣投注）",
+      "notes": "在取得授權的前提下以真實貨幣派彩為常態。⚠️ 但授權範圍與市場邊界極為關鍵：offshore POGO／IGL 自 2024-12-31 起禁止，僅面向境內市場的線上博彩仍須 PAGCOR 授權。"
+    },
+    "prizeRedemption": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上環境無實體彩票／獎品兌換層；陸上娛樂機的獎品兌換規範未在本次建置中查證。"
+    },
+    "maxPrizeValue": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次派彩上限。不得推論為無上限。"
+    },
+    "prizeBuyback": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "realCurrencyAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "本檔案以線上授權為主軸；陸上機台的金流模組規範未查證。"
+    },
+    "paymentCardAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "tokenSpecConstraint": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "sweepstakesModel": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "美式 sweepstakes 構造在菲律賓法下無實益且未經確認。"
+    }
+  },
+  "productConstraints": {
+    "minGameCycleMs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得遊戲循環時間下限。魚機射速即投注速度，若有此類要求須先釐清綁定單位。"
+    },
+    "maxStakePerBullet": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單發投注上限。"
+    },
+    "maxBetMultiplier": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得砲倍上限。"
+    },
+    "maxWinPerCapture": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次捕獲派彩上限。"
+    },
+    "autoFire": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自動發射之處理未經確認。"
+    },
+    "crossTablePool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨桌獎池之處理未經確認。"
+    },
+    "multiSeatSharedPool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "共享魚池、傷害歸屬與最後一擊分配的揭露要求未經確認，見 steering/multiplayer-fairness.md。"
+    },
+    "featureBuy": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "特殊武器購買之處理未經確認。"
+    },
+    "celebrationOfNonWin": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得相關規範。"
+    },
+    "otherProhibitions": [
+      {
+        "item": "offshore gaming（POGO／IGL）自 2024-12-31 起禁止",
+        "confidence": "MEDIUM",
+        "source": "https://www.pagcor.ph",
+        "notes": "⚠️ 這是本檔案最重要的一項。過去以菲律賓 offshore 授權向境外市場供應線上魚機的路線已關閉。既有部署若仍以此為授權來源，須立即重新評估授權基礎與市場邊界。"
+      },
+      {
+        "item": "面向境內市場的線上遊戲須取得 PAGCOR 授權",
+        "confidence": "MEDIUM",
+        "source": "https://www.pagcor.ph",
+        "notes": "境內線上市場仍是可行路線，但與 offshore 是不同授權類別，不可混用既有文件。"
+      }
+    ]
+  },
+  "rtp": {
+    "minimum": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得最低派彩率要求。不得填入推測值。"
+    },
+    "wagerUnitBasis": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ 原子投注單位是一發子彈，但監管規則綁定於子彈、捕獲或一局未見公開對應，須以書面技術問答釐清，見 steering/math-verification.md。"
+    },
+    "nonCashPrizeValuation": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "perTierParityRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得明文要求，仍應作為設計基線。"
+    }
+  },
+  "playerAccount": {
+    "minimumAge": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未於本次建置中確認法定最低年齡。"
+    },
+    "kycRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上授權下必有身分驗證與 AML 要求，具體門檻未經確認，見 steering/aml-kyc-player-account.md。"
+    },
+    "selfExclusion": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未確認是否有全國性自我排除機制。"
+    },
+    "spendLimits": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得法定投入限額。"
+    }
+  },
+  "auditLog": {
+    "retentionPeriod": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得保存期要求。"
+    },
+    "requiredFields": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得法定欄位集，建議依 steering/rng-capture-determination.md 實作含魚離場紀錄的完整欄位。"
+    },
+    "tamperEvidence": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    }
+  },
+  "dataResidency": {
+    "requirement": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得資料落地要求。"
+    },
+    "crossBorderTransfer": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "菲律賓 Data Privacy Act 的跨境傳輸限制未在本檔案範圍內查證，見 steering/data-protection-privacy.md。"
+    }
+  },
+  "certification": {
+    "scheme": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得 PAGCOR 現行技術標準與測試要求全文。不得假設等同 GLI 認證即可。"
+    },
+    "decisionWindow": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得審核時程。"
+    },
+    "exportExemption": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用。"
+    },
+    "acceptedLabs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得認可測試機構清單。若需兩份互相獨立的測試報告，注意 GLI 已收購 iTech Labs（2023-05-19），兩者不再獨立。"
+    },
+    "penalties": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得罰則條文。offshore 禁令的執法後果尤應以法律意見確認。"
+    },
+    "otherObligations": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "供應商是否需要獨立授權（相對於營運商授權）未經確認。"
+    }
+  },
+  "verificationRequired": [
+    "確認 offshore（POGO／IGL）禁令的生效範圍與過渡處理，以及對既有供應合約的影響（最高優先）",
+    "確認魚機是否落在 PAGCOR 境內線上遊戲授權涵蓋的類別之內",
+    "確認供應商（B2B）是否需要獨立於營運商的授權或登錄",
+    "取得 PAGCOR 現行技術標準、測試要求與認可實驗室清單",
+    "確認是否有最低派彩率要求及其綁定單位（子彈／捕獲／一局）",
+    "確認跨桌獎池與共享魚池的揭露與限制",
+    "確認自動發射之處理立場",
+    "確認遊戲紀錄保存期、必要欄位與對局重播可接受形態",
+    "確認玩家帳戶層（年齡、KYC、自我排除、投入限額）之法定要求",
+    "確認 Data Privacy Act 對玩家資料跨境傳輸的限制"
+  ],
+  "lastUpdated": "2026-07-29",
+  "notes": [
+    "菲律賓在魚機供應鏈中的角色被 2024-12-31 的 offshore 禁令實質改寫。過去「以菲律賓授權服務全亞洲」的模式已不可持續，這是商業結構問題而非技術問題。",
+    "PAGCOR 同時是監管者與營運者，技術標準的取得與解釋通常需要透過授權關係而非公開文件，這也是本檔案技術層 UNVERIFIED 密度高的結構性原因。",
+    "⚠️ 授權來源與服務市場必須逐一對應。取得菲律賓授權不代表可合法服務日本、韓國、中國等玩家；那些市場的合法性須各自評估，見 _prohibited-and-grey-markets.json。"
+  ]
+}

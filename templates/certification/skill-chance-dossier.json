@@ -1,0 +1,372 @@
+{
+  "templateType": "fish-game-expert/skill-chance-dossier-v1",
+  "description": "技術性／機率性分類舉證卷宗範本，依 steering/skill-chance-classification.md 第 5 節建立。內容為：目標市場適用的法律測試、設計上的技術影響點及其對期望值的量化貢獻、六項量化指標、模擬方法與樣本量，以及呈現層是否「看起來像賭博」的自我檢查。本卷宗同時是律師意見書的事實基礎與送測時的說明材料。待填欄位為 null 或空字串。",
+  "caveat": "⚠️ 本卷宗提供的是可重現的技術事實與量化分析，供目標市場的執業律師作為出具意見的事實基礎，它本身不是法律意見，也不構成任何分類結論。分類結論具刑事後果（部分市場的結果是裝置查扣而非罰款），最終判定必須由該市場的執業律師出具。本 Power 不出具「合規」結論，只出具事實、爭點與查證路徑。",
+  "engagementMetadata": {
+    "dossierVersion": null,
+    "preparedBy": null,
+    "preparedDate": null,
+    "productName": null,
+    "buildHash": null,
+    "configHash": null,
+    "parSheetRef": null,
+    "legalCounselRecipient": null,
+    "notes": "卷宗必須綁定特定建置與配置雜湊。技術跨距是該配置的屬性，配置改變後本卷宗失效，見 steering/change-management-recert.md。"
+  },
+  "applicableLegalTest": {
+    "targetMarket": null,
+    "jurisdictionLevel": null,
+    "testType": null,
+    "allowedTestTypes": [
+      "predominant-factor（優勢因素測試，又稱 dominant element test）",
+      "material-element（實質要素測試）",
+      "any-chance（任何機率測試）",
+      "uk-gambling-act-2005（英國：只要結果可以被機率影響即為 game of chance）",
+      "administrative-classification（行政評鑑分類，例如台灣）",
+      "other"
+    ],
+    "confirmedBy": null,
+    "confirmationDate": null,
+    "confidence": "UNVERIFIED",
+    "sourceCitation": "",
+    "viabilityOfSkillGameRoute": null,
+    "notes": "⚠️ 測試型別必須由當地律師確認，不得依產業文章推論。若目標市場採用 material-element 或 any-chance 測試，技術遊戲路線應視為不可行——魚機的捕獲判定本身就是機率抽樣，在任何合理解讀下都是實質要素——此時本卷宗的量化數據不會改變結論，正確動作是改走持照路線或放棄該市場。若採用英國式測試，UKGC 對 SWP 的指引明確表示：只要遊戲結果可以被機率影響即為 Gambling Act 2005 意義下的 game of chance，機率成分是否大於技術成分、能否被高超技術消除，均不影響認定；在此測試下「提高技術權重」這個工程動作對分類結果的貢獻是零。",
+    "adversePrecedents": [
+      {
+        "case": "Gift Surplus, LLC v. State ex rel. Cooper（北卡羅來納州最高法院，2022）",
+        "relevance": "就一款強調技術操作的機台，在採用優勢因素測試的州仍認定機率成分優於技術成分，因而屬州法禁止的機率性視訊遊戲。不要假設「有操作 = 通過測試」。",
+        "url": "https://www.nccourts.gov/documents/appellate-court-opinions/gift-surplus-llc-v-state-ex-rel-cooper"
+      },
+      {
+        "case": "In re: Three Pennsylvania Skill Amusement Devices（賓州）",
+        "relevance": "下級法院採用優勢因素測試，該爭點後續上到州最高法院。同一市場的法律狀態可能在專案週期內改變，必須設定法規追蹤。",
+        "url": "https://law.justia.com/cases/pennsylvania/supreme-court/2026/50-map-2024.html"
+      },
+      {
+        "case": "夏威夷 SB3281（2026 會期）",
+        "relevance": "立法理由直接以 fish games／fish tables／fishing games 點名，是立法者觀點的第一手證據。",
+        "url": "https://data.capitol.hawaii.gov/sessions/session2026/Bills/SB3281_SD1_.HTM"
+      }
+    ],
+    "alternativeRoutesEvaluated": {
+      "licensedRoute": null,
+      "marketExit": null,
+      "notes": "技術遊戲路線失敗時的替代方案應該一開始就在桌上，而不是被查扣之後才討論。"
+    }
+  },
+  "monetisationContext": {
+    "monetisationModel": null,
+    "allowedValues": [
+      "cash-in-cash-out",
+      "cash-in-prize-or-ticket-redemption",
+      "cash-in-no-redemption",
+      "virtual-currency-no-redemption",
+      "sweepstakes"
+    ],
+    "redemptionEnforcementMechanism": "",
+    "thirdPartyAccountTradingRisk": null,
+    "notes": "分類不只看遊戲機制，也看價值流。相同的遊戲程式在不同兌現模式下分類可能不同。「不可兌回」不是宣告就成立的事實，而是需要用系統設計與場所稽核維持的狀態。"
+  },
+  "skillInfluencePoints": [
+    {
+      "id": "aiming",
+      "name": "瞄準角度與提前量",
+      "mechanismDescription": "",
+      "affectsExpectedValue": null,
+      "affectsWhichLayer": "命中機率層（P(命中某魚)）",
+      "quantifiedEvContributionPercentagePoints": null,
+      "measurementMethod": "",
+      "measurableByPlayerPractice": null,
+      "notes": "命中機率由幾何運算決定（碰撞範圍、魚群密度、子彈飛行時間與魚的移動），這一層是技術成分的所在。命中率是乘法項，是技術跨距的主要來源。"
+    },
+    {
+      "id": "betMultiplierChoice",
+      "name": "砲倍選擇",
+      "mechanismDescription": "",
+      "affectsExpectedValue": null,
+      "affectsWhichLayer": "單發成本與潛在報酬，通常不影響 RTP 比率",
+      "quantifiedEvContributionPercentagePoints": null,
+      "measurementMethod": "",
+      "measurableByPlayerPractice": null,
+      "notes": "⚠️ 若各砲倍 RTP 一致（合規基線），砲倍選擇對期望回收「率」的貢獻應為 0，只影響變異與絕對金額。若量測出非零貢獻，那不是技術成分的證據，而是各砲倍 RTP 不一致的證據，屬退測風險，見 steering/math-model.md 第 4.2 節。"
+    },
+    {
+      "id": "targetSpeciesChoice",
+      "name": "目標魚種選擇",
+      "mechanismDescription": "",
+      "affectsExpectedValue": null,
+      "affectsWhichLayer": "基礎魚種 RTP 的權重 w_i(s)",
+      "quantifiedEvContributionPercentagePoints": null,
+      "measurementMethod": "",
+      "measurableByPlayerPractice": null,
+      "notes": "不同魚種的期望回收率若不相等，目標選擇即影響期望值。刻意讓魚種期望回收率有差距是製造策略深度的手段，但差距即等於技術跨距的來源，必須量化。"
+    },
+    {
+      "id": "firingTiming",
+      "name": "發射時機",
+      "mechanismDescription": "",
+      "affectsExpectedValue": null,
+      "affectsWhichLayer": "命中機率層（魚群密度隨時間變化）",
+      "quantifiedEvContributionPercentagePoints": null,
+      "measurementMethod": "",
+      "measurableByPlayerPractice": null,
+      "notes": "通常影響很小。若量測結果接近 0，應如實記錄 0，不要為了充實卷宗而高估。"
+    },
+    {
+      "id": "itemTiming",
+      "name": "道具使用時機",
+      "mechanismDescription": "",
+      "affectsExpectedValue": null,
+      "affectsWhichLayer": "特殊武器 RTP 貢獻層",
+      "quantifiedEvContributionPercentagePoints": null,
+      "measurementMethod": "",
+      "measurableByPlayerPractice": null,
+      "notes": "雷射砲、冰凍、鎖定追蹤的使用時機（魚群密度高時使用 vs 取得即用）是可觀測的策略差異。量化時的分母必須是取得成本，不是觸發當下那一發的成本。"
+    },
+    {
+      "id": "cashOutTiming",
+      "name": "何時離桌",
+      "mechanismDescription": "",
+      "affectsExpectedValue": false,
+      "affectsWhichLayer": "個人結果變異，不影響長期 RTP",
+      "quantifiedEvContributionPercentagePoints": 0,
+      "measurementMethod": "",
+      "measurableByPlayerPractice": null,
+      "notes": "離桌時機不改變長期期望值，只改變個人結果的變異與樣本長度。⚠️ 把它列為技術成分的論據在監管檢視下通常不被接受，本欄位固定為 0 是刻意的，不應為了拉高總技術貢獻而填入非零值。"
+    }
+  ],
+  "skillInfluenceSummary": {
+    "totalQuantifiedEvContributionPercentagePoints": null,
+    "reconcilesWithSkillSpread": null,
+    "unexplainedResidual": null,
+    "notes": "各影響點的量化貢獻加總應與 quantifiedMetrics.skillSpread 對齊。若無法對齊，殘差必須說明，不可留白——殘差通常來自代理人設計中未被拆解的複合行為。"
+  },
+  "quantifiedMetrics": {
+    "rtpRandomStrategy": {
+      "definition": "隨機瞄準、隨機目標選擇、不使用道具的策略下的長期 RTP（技術下界）",
+      "value": null,
+      "confidenceInterval": null,
+      "sampleSize": null,
+      "agentRef": "A"
+    },
+    "rtpOptimalStrategy": {
+      "definition": "已知最佳策略（最佳目標選擇與道具時機、完美提前量）下的長期 RTP（技術上界）",
+      "value": null,
+      "confidenceInterval": null,
+      "sampleSize": null,
+      "agentRef": "D"
+    },
+    "skillSpread": {
+      "definition": "技術跨距 = RTP_optimal − RTP_random，以百分點表示",
+      "value": null,
+      "confidenceInterval": null,
+      "notes": "這是本卷宗最核心的單一數字。"
+    },
+    "hitRateSpread": {
+      "definition": "命中率跨距 = 熟練玩家與隨機瞄準的實際命中率差",
+      "skilledHitRate": null,
+      "randomHitRate": null,
+      "value": null,
+      "notes": "命中率是操作技術可測量性的直接證據，且它在 RTP 公式中是乘法項，影響很大。"
+    },
+    "learningCurve": {
+      "definition": "相同玩家在 N 小時後的 RTP 變化，用於證明「練習有用」",
+      "cohortDescription": "",
+      "measurementHours": null,
+      "rtpAtStart": null,
+      "rtpAfterNHours": null,
+      "deltaPercentagePoints": null,
+      "sampleSizePlayers": null,
+      "isHumanCohortOrAgentProxy": null,
+      "notes": "若使用代理人代理人類學習曲線，必須明確標示為代理量測而非人類實測，並說明代理設計的依據。以代理數據冒充人類實測是卷宗可信度的致命傷。"
+    },
+    "varianceDecomposition": {
+      "definition": "結果變異中歸因於策略 vs 歸因於機率的比例，是優勢因素測試的核心數字",
+      "varianceAttributedToStrategy": null,
+      "varianceAttributedToChance": null,
+      "strategyShare": null,
+      "chanceShare": null,
+      "decompositionMethod": "",
+      "sampleSize": null,
+      "notes": "此項是優勢因素測試最直接對應的量化指標，也是最容易被對造挑戰方法論的一項。分解方法必須寫明並可重現。"
+    }
+  },
+  "interpretation": {
+    "skillSpreadThresholds": [
+      {
+        "band": "< 2 個百分點",
+        "meaning": "玩家操作實質上不影響期望值",
+        "action": "⚠️ 技術性主張不成立，且在事實層面就不成立，無論法律測試為何。若市場策略依賴此主張，設計需重做而非重新論述。不應以此數據向律師主張技術遊戲定位。"
+      },
+      {
+        "band": "2–10 個百分點",
+        "meaning": "技術有影響，但機率仍可能佔優",
+        "action": "可作為論據，但預期會被挑戰，需完整卷宗與可重現的模擬方法。"
+      },
+      {
+        "band": "> 10 個百分點",
+        "meaning": "技術影響顯著",
+        "action": "檢查 rtpOptimalStrategy 是否達到或超過 100%。"
+      }
+    ],
+    "optimalStrategySolvencyThreshold": {
+      "condition": "rtpOptimalStrategy >= 1.00（100%）",
+      "classification": "營運存亡問題（operational solvency），不是合規問題",
+      "meaning": "熟練玩家可長期獲利",
+      "action": "⚠️ 必須調整，通常透過壓低命中率天花板（魚體碰撞範圍與魚群密度設計）或縮小魚種期望回收率差距。此項與技術跨距大小是同一組設計參數的兩面：把技術跨距拉大到足以支撐分類主張，同時可能把最佳策略 RTP 推過 100%。"
+    },
+    "randomStrategyFloorThreshold": {
+      "condition": "rtpRandomStrategy < 目標市場最低派彩率門檻",
+      "meaning": "最不熟練的玩家低於法定門檻",
+      "action": "高風險。多數市場的最低派彩率條文文義適用於所有玩法，不是平均值，「平均 RTP 達標」的辯解通常站不住。應在送測前以書面技術問答確認實驗室立場。"
+    },
+    "assessedBand": null,
+    "assessedSolvencyStatus": null,
+    "assessedFloorStatus": null,
+    "overallFactualPosition": "",
+    "notes": "本節提供的是判讀門檻，不是分類結論。overallFactualPosition 應以事實陳述撰寫（例如「技術跨距量測為 X 個百分點，落在 2–10 區間」），不得寫成「本產品屬技術遊戲」。"
+  },
+  "simulationMethod": {
+    "usesProductionResolutionCode": null,
+    "abstractedLayers": "",
+    "agents": [
+      {
+        "agentId": "A",
+        "label": "隨機",
+        "aiming": "隨機角度",
+        "targetSelection": "隨機",
+        "itemUsage": "不使用",
+        "implementationRef": null
+      },
+      {
+        "agentId": "B",
+        "label": "新手",
+        "aiming": "直接對準當前位置（不算提前量）",
+        "targetSelection": "偏好大魚",
+        "itemUsage": "取得即用",
+        "implementationRef": null
+      },
+      {
+        "agentId": "C",
+        "label": "典型",
+        "aiming": "含提前量，中等精度",
+        "targetSelection": "偏好中型魚",
+        "itemUsage": "取得後短暫等待",
+        "implementationRef": null
+      },
+      {
+        "agentId": "D",
+        "label": "最佳",
+        "aiming": "完美提前量",
+        "targetSelection": "期望回收率最高魚種",
+        "itemUsage": "最佳時機",
+        "implementationRef": null
+      }
+    ],
+    "measuredSigma": null,
+    "sampleSizeDerivation": {
+      "formula": "n >= (z * sigma / epsilon)^2",
+      "targetAbsoluteErrorEpsilon": null,
+      "confidenceLevel": null,
+      "zValue": null,
+      "derivedSampleSizePerAgent": null,
+      "actualSampleSizePerAgent": null
+    },
+    "stratifiedSamplingForRareEvents": null,
+    "multiplayerScenariosIncluded": null,
+    "reproducibility": {
+      "seedsRecorded": null,
+      "configHashRecorded": null,
+      "rerunInstructionsRef": null,
+      "notes": "卷宗的證據價值取決於第三方能否重現。若律師或實驗室無法用文件中的資訊重跑模擬，數據在爭訟中的份量會大幅降低。"
+    },
+    "notes": "模擬必須呼叫產品實際的捕獲判定與賠付結算程式碼，只抽換渲染與網路層。詳細方法與判讀規則見 steering/math-verification.md 第 4 節，數據應與 PAR sheet 第 11 節一致。"
+  },
+  "presentationSelfCheck": {
+    "basis": "UKGC 對 Skill With Prizes 的指引所列「呈現上像賭博」判準。即使遊戲本身不含機率，仍可能因呈現而被認定。來源：https://www.gamblingcommission.gov.uk/licensees-and-businesses/guide/skill-with-prizes-swps",
+    "checks": [
+      {
+        "criterion": "遊戲名稱或介面文案使用博彩語彙（stake、bet、jackpot、下注、投注、彩金等）",
+        "present": null,
+        "evidence": "",
+        "remediation": ""
+      },
+      {
+        "criterion": "機殼或畫面含博彩符號：BAR、鈴（bells）、幸運 7（lucky 7s）、水果符號（fruit symbols）",
+        "present": null,
+        "evidence": "",
+        "remediation": ""
+      },
+      {
+        "criterion": "畫面含轉盤（wheel）、骰子（dice）、捲軸帶（reel）或隨機選號（random-number）圖像",
+        "present": null,
+        "evidence": "",
+        "remediation": ""
+      },
+      {
+        "criterion": "玩家動作類似下注（選擇金額後確認、押注式互動、加注升級）",
+        "present": null,
+        "evidence": "",
+        "remediation": ""
+      },
+      {
+        "criterion": "廣告、招牌與行銷情境線索暗示賭博",
+        "present": null,
+        "evidence": "",
+        "remediation": ""
+      },
+      {
+        "criterion": "魚種賠率以「×100」「×300」等倍數呈現，是否構成博彩式賠率呈現",
+        "present": null,
+        "evidence": "",
+        "remediation": "",
+        "confidence": "UNVERIFIED",
+        "notes": "倍數呈現是魚機的核心 UI 元素，其是否落入博彩語彙判準未經確認，應以書面技術問答向監管機關或實驗室確認。"
+      },
+      {
+        "criterion": "同一機台或同一應用內另含任何機率遊戲（例如附帶的拉霸小遊戲）",
+        "present": null,
+        "evidence": "",
+        "remediation": "",
+        "notes": "⚠️ 英國的規則是：一組技術遊戲中只要有一款屬機率遊戲，整台機器即被歸類為 gaming machine。常見的「主遊戲是魚機、附一個小拉霸」設計會直接觸發，且這是設計決定而非呈現細節。"
+      },
+      {
+        "criterion": "金幣特效、JACKPOT 字樣、老虎機式中獎慶祝動畫",
+        "present": null,
+        "evidence": "",
+        "remediation": ""
+      }
+    ],
+    "flaggedCount": null,
+    "overallPresentationRisk": null,
+    "notes": "呈現層自我檢查是本卷宗最容易被跳過、也最容易翻盤的一節。即使機制上具備技術成分，呈現判準可能直接改變結論。此檢查應在美術定稿前執行，不是在送測前。"
+  },
+  "openLegalQuestions": [
+    {
+      "question": "目標市場採用哪一種法律測試，且該結論的時效性如何",
+      "routedTo": "當地執業律師",
+      "status": "open"
+    },
+    {
+      "question": "本兌現模式在目標市場是否存在合法部署途徑（答案可能是「沒有」）",
+      "routedTo": "當地執業律師",
+      "status": "open"
+    },
+    {
+      "question": "倍數式賠率呈現是否構成博彩語彙呈現",
+      "routedTo": "監管機關或實驗室書面技術問答",
+      "status": "open"
+    },
+    {
+      "question": "台灣專供出口豁免下，目的地市場對「明知供應違法裝置」是否有追訴基礎",
+      "routedTo": "目的地市場執業律師",
+      "status": "open",
+      "notes": "台灣電子遊戲場業管理條例 §6 的專供出口豁免只免除台灣的評鑑分類義務，不免除目的地的任何義務，也不免除商業與聲譽風險。"
+    }
+  ],
+  "notes": [
+    "本卷宗的用途有三：律師意見書的事實基礎、送測時的說明材料、以及設計決策的量化依據。三者對同一份數據的要求不同，但都要求可重現。",
+    "若量化結果顯示技術跨距不足，正確輸出是告訴客戶目前沒有可主張的立場，而不是調整方法論讓數字看起來更好。",
+    "分類結論會過期。應把目標市場的立法與訴訟動態納入法規觀察清單並定期複查，見 steering/change-management-recert.md 第 9 節。"
+  ]
+}

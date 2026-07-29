@@ -1,0 +1,267 @@
+{
+  "templateType": "fish-game-expert/market-profile-v1",
+  "marketCode": "NC",
+  "name": "United States — North Carolina (Alcohol Law Enforcement / State courts)",
+  "legalStatus": "prohibited",
+  "regulator": {
+    "name": "North Carolina Department of Public Safety — Alcohol Law Enforcement（執法）；州法院（分類判定）",
+    "url": "https://www.nccourts.gov/documents/appellate-court-opinions/gift-surplus-llc-v-state-ex-rel-cooper",
+    "notes": "北卡的關鍵不是監管機關的技術標準，而是一份最高法院判決。Gift Surplus, LLC v. State ex rel. Cooper（2022）認定該款強調技術操作的機台中機率成分優於技術成分，違反 N.C. Gen. Stat. §14-306.4 對機率性視訊 sweepstakes 的禁止。"
+  },
+  "classificationTest": {
+    "value": "predominant-factor",
+    "confidence": "HIGH",
+    "source": "Gift Surplus, LLC v. State ex rel. Cooper（N.C. Supreme Court, 2022）",
+    "notes": "北卡採優勢因素測試，且該判決顯示魚機／sweepstakes 型設計在此測試下仍然敗訴。這是魚機領域最重要的美國判決之一：它證明「有技術操作」不等於通過優勢因素測試。"
+  },
+  "monetisation": {
+    "cashOut": {
+      "status": "prohibited",
+      "confidence": "HIGH",
+      "source": "N.C. Gen. Stat. §14-306.4；Gift Surplus（2022）",
+      "notes": "透過機率性視訊遊戲經營 sweepstakes 屬州法禁止。"
+    },
+    "prizeRedemption": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "獎品／彩票兌換制度未經確認。"
+    },
+    "maxPrizeValue": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "獎品價值上限未取得條文，不填數值。"
+    },
+    "prizeBuyback": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "買回獎品之處理未經確認。買回在功能上等同 cash-out。"
+    },
+    "realCurrencyAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "機台是否得收受法定貨幣未經確認。"
+    },
+    "paymentCardAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "機台是否得讀取支付卡未經確認。"
+    },
+    "tokenSpecConstraint": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "代幣規格限制未經確認。"
+    },
+    "sweepstakesModel": {
+      "status": "prohibited",
+      "confidence": "HIGH",
+      "source": "N.C. Gen. Stat. §14-306.4；Gift Surplus（2022）",
+      "notes": "sweepstakes 路線已由最高法院關閉。這是北卡魚機場所大規模關閉的直接原因。"
+    }
+  },
+  "productConstraints": {
+    "minGameCycleMs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "遊戲循環時間下限未經確認。魚機另須釐清該限制係綁定一發子彈、一次捕獲或一個場景。"
+    },
+    "maxStakePerBullet": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "單發投注上限未經確認。子彈是魚機的原子投注單位。"
+    },
+    "maxBetMultiplier": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "最高砲倍檔位限制未經確認。"
+    },
+    "maxWinPerCapture": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "單次捕獲賠付上限未經確認。此上限一旦存在，即直接封頂最高魚種賠率倍數。"
+    },
+    "autoFire": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自動發射之處理未經確認，見 steering/responsible-gaming.md。"
+    },
+    "crossTablePool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨桌獎池之處理未經確認。"
+    },
+    "multiSeatSharedPool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "多座位共享魚池與最後一擊分配規則之處理未經確認，見 steering/multiplayer-fairness.md。"
+    },
+    "featureBuy": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "直接購買特殊武器或關卡進場權之處理未經確認。"
+    },
+    "celebrationOfNonWin": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "等值或低於投入之慶祝回饋規範未經確認。"
+    },
+    "otherProhibitions": [
+      {
+        "item": "以機率性視訊遊戲經營 sweepstakes",
+        "confidence": "HIGH",
+        "source": "N.C. Gen. Stat. §14-306.4（經 Gift Surplus 2022 適用於強調技術操作的機台）",
+        "notes": "判決的可移轉性很高：任何捕獲判定含隨機抽樣的魚機，在此測試下都面臨相同認定風險。"
+      }
+    ]
+  },
+  "rtp": {
+    "minimum": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得最低派彩率條文，不填數值。"
+    },
+    "wagerUnitBasis": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "最低派彩率規則在魚機上的對應單位（一發子彈或一次捕獲）未經確認。這是幾乎所有市場共通的未解問題。"
+    },
+    "nonCashPrizeValuation": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "非現金獎品之計價基準未經確認。"
+    },
+    "perTierParityRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得各砲倍 RTP 一致性之明文要求，但仍應作為設計基線，見 steering/math-model.md。"
+    }
+  },
+  "playerAccount": {
+    "minimumAge": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "年齡下限未取得條文，不填數值。"
+    },
+    "kycRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "身分驗證要求未經確認。"
+    },
+    "selfExclusion": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自我排除機制未經確認。"
+    },
+    "spendLimits": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "投入限額要求未經確認。"
+    }
+  },
+  "auditLog": {
+    "retentionPeriod": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "紀錄保存期未經確認。"
+    },
+    "requiredFields": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "法定紀錄欄位未經確認。建議仍依 steering/rng-capture-determination.md 的完整欄位集實作，含魚離場紀錄。"
+    },
+    "tamperEvidence": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "防篡改要求未經確認。"
+    }
+  },
+  "dataResidency": {
+    "requirement": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "資料落地要求未經確認。"
+    },
+    "crossBorderTransfer": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨境傳輸限制未經確認。"
+    }
+  },
+  "certification": {
+    "scheme": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "測試與型式核准安排未經確認。"
+    },
+    "decisionWindow": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "審核時程未經確認。"
+    },
+    "exportExemption": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用或未經確認。"
+    },
+    "acceptedLabs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "認可測試機構清單未經確認。"
+    },
+    "penalties": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "罰則未取得條文，不填數值。"
+    },
+    "otherObligations": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "其他義務未經確認。"
+    }
+  },
+  "verificationRequired": [
+    "取得 N.C. Gen. Stat. §14-306.4 條文原文與後續修正",
+    "確認 Gift Surplus 判決後是否有更晚的判例調整優勢因素測試的適用",
+    "確認純娛樂（不可兌回）型魚機在北卡是否存在合法途徑",
+    "確認彩票／獎品兌換型是否落入 §14-306.4 的文義",
+    "確認部落場域（Eastern Band of Cherokee Indians）內的處理是否不同"
+  ],
+  "lastUpdated": "2026-07-29",
+  "notes": [
+    "本檔案的核心價值在於 classificationTest：北卡是「採用最有利測試但魚機類產品仍敗訴」的實證，應在任何技術性主張的討論中被引用，見 steering/skill-chance-classification.md。",
+    "⚠️ 供應商常誤以為優勢因素測試是安全的。Gift Surplus 顯示法院會實質檢視機率對結果的決定力，而非接受設計者的描述。"
+  ]
+}

@@ -1,0 +1,575 @@
+{
+  "templateType": "fish-game-expert/gli-submission-checklist-v1",
+  "description": "魚機送測整體檢查清單範本，依 steering/certification-prep.md 建立。涵蓋標準選擇決策樹輸出、11 份文件提交集、書面技術問答記錄、實驗室選擇記錄，以及退件風險自我檢查。⚠️ 認證不會讓一個在該市場非法的裝置變成合法：法律地位未由律師確認就開始送測準備，最壞結果是拿到一份在該市場無法使用的證書。待填欄位為 null 或空字串。",
+  "submissionMetadata": {
+    "submissionId": null,
+    "productName": null,
+    "buildHash": null,
+    "configHash": null,
+    "rngModuleHash": null,
+    "targetMarkets": [],
+    "preparedBy": null,
+    "preparedDate": null,
+    "readinessDeclaration": null,
+    "notes": "本 Power 不宣告「合規」，只宣告「送測就緒」或「未就緒並列出阻礙項」。任何架構層落差未關閉即為未就緒，不論文件多完整。"
+  },
+  "prerequisites": [
+    {
+      "item": "目標市場的法律地位已由當地執業律師確認",
+      "status": null,
+      "evidenceRef": null,
+      "blocking": true,
+      "notes": "決定是否有送測的意義。此項未完成而開始準備文件，是把成本花在會被作廢的產物上。"
+    },
+    {
+      "item": "兌現模式已定案",
+      "status": null,
+      "evidenceRef": null,
+      "blocking": true,
+      "notes": "決定適用標準與最低派彩率的計算方式。"
+    },
+    {
+      "item": "架構層落差已關閉：伺服器權威判定、對局重播、傷害歸屬可稽核性",
+      "status": null,
+      "evidenceRef": null,
+      "blocking": true,
+      "notes": "⚠️ 這三項無法事後補上，且是多數送測文件的資料來源。沒有對局重播能力的專案不具備送測就緒條件——它無法提供實驗室要求的判定序列證據，也無法回應「這條魚為什麼打不死」這類必然會被問到的問題。"
+    }
+  ],
+  "standardSelection": {
+    "decisionTreeInputs": {
+      "deploymentForm": null,
+      "allowedDeploymentForms": [
+        "physical-cabinet",
+        "online-multiplayer",
+        "hybrid"
+      ],
+      "monetisationModel": null,
+      "allowedMonetisationModels": [
+        "cash",
+        "prize-or-ticket-redemption",
+        "no-redemption",
+        "virtual-currency",
+        "sweepstakes"
+      ],
+      "crossTablePoolPresent": null,
+      "centralMonitoringOrAuditSystemPresent": null,
+      "redemptionKioskPresent": null,
+      "separateBonusOrPromotionalSystemPresent": null
+    },
+    "mappingSource": {
+      "title": "Arizona Department of Gaming — Appendix A（設備類別對標準的對照）",
+      "url": "https://gaming.az.gov/sites/default/files/Appendix%20A%20-%20Generic_1.pdf",
+      "confidence": "HIGH（就該文件本身而言）",
+      "adoptionByOtherMarkets": "UNVERIFIED（各市場是否採用同一對照須逐市場確認）",
+      "standardsIndex": "https://gaminglabs.com/gli-standards/"
+    },
+    "candidateStandards": [
+      {
+        "standard": "GLI-11",
+        "title": "Gaming Devices",
+        "appliesWhen": "部署形態為實體機台（現金或獎品／彩票兌現）",
+        "applicable": null,
+        "versionTargeted": null,
+        "url": "https://gaminglabs.com/wp-content/uploads/2018/09/GLI-11-Gaming-Devices-V3-0.pdf",
+        "notes": "GLI-11 是機具標準，且是為單人裝置撰寫的。共享魚池、傷害歸屬、延遲補償在標準文本中沒有直接對應，需以書面技術問答補齊。"
+      },
+      {
+        "standard": "GLI-19",
+        "title": "Interactive Gaming Systems",
+        "appliesWhen": "部署形態為線上多人",
+        "applicable": null,
+        "versionTargeted": null,
+        "notes": "⚠️ 常見錯誤是以為線上魚機「送 GLI-11 就好」。線上系統的範圍在 GLI-19。混合部署則是 GLI-11 與 GLI-19 兩軌並行，且兩版數學組態各自驗證。"
+      },
+      {
+        "standard": "GLI-12",
+        "title": "Progressive Gaming Devices",
+        "appliesWhen": "存在跨桌獎池（累積型獎池），實體或線上皆然",
+        "applicable": null,
+        "versionTargeted": null,
+        "notes": "跨桌獎池的抽取比例即等於其 RTP 貢獻，必中上限必須揭露並計入 RTP。"
+      },
+      {
+        "standard": "GLI-13",
+        "title": "Online Monitoring and Control Systems",
+        "appliesWhen": "存在中央監控或稽核系統",
+        "applicable": null,
+        "versionTargeted": null
+      },
+      {
+        "standard": "GLI-20",
+        "title": "Redemption Kiosks",
+        "appliesWhen": "存在兌換機（獎品／彩票兌現）",
+        "applicable": null,
+        "versionTargeted": null
+      },
+      {
+        "standard": "GLI-17 / GLI-18",
+        "title": "Bonus Systems / Promotional Systems",
+        "appliesWhen": "存在獨立的紅利或促銷系統",
+        "applicable": null,
+        "versionTargeted": null
+      }
+    ],
+    "selectedStandards": [],
+    "labConfirmedListComplete": null,
+    "labConfirmationRef": null,
+    "nonGliMarkets": [
+      {
+        "market": "台灣",
+        "procedure": "不是 GLI。兩軌並行：軟體走評鑑分類（電子遊戲場業管理條例 §6 第 1 項），機具結構走商品檢驗法（§6 第 5 項）。§6 第 4 項的 30 日評鑑分類決定期必須排進時程。",
+        "confidence": "HIGH",
+        "applicable": null
+      },
+      {
+        "market": "美國部落 Class III",
+        "procedure": "無聯邦技術標準；標準來自部落－州協議（compact），由部落博彩監理機關執行",
+        "confidence": "HIGH",
+        "applicable": null
+      },
+      {
+        "market": "美國部落 Class II",
+        "procedure": "25 CFR Part 547 的聯邦最低技術標準（https://www.ecfr.gov/current/title-25/chapter-III/subchapter-D/part-547）",
+        "confidence": "HIGH",
+        "applicable": null
+      },
+      {
+        "market": "內華達",
+        "procedure": "Regulation 14 的機具核准程序，含獨立測試實驗室提交要求",
+        "confidence": "HIGH（就該規例存在而言）",
+        "applicable": null
+      },
+      {
+        "market": "麻州",
+        "procedure": "205 CMR 143，含非現金獎品的最低派彩率計價方式",
+        "confidence": "HIGH（就該規則存在而言）",
+        "applicable": null
+      },
+      {
+        "market": "安大略",
+        "procedure": "AGCO Registrar's Standards for Internet Gaming 逐條檢核",
+        "confidence": "HIGH（就該標準存在而言）",
+        "applicable": null
+      },
+      {
+        "market": "丹麥",
+        "procedure": "Spillemyndigheden SCP.00–SCP.07 模組化認證方案（變更管理為獨立模組 SCP.06）",
+        "confidence": "HIGH（就模組結構而言）",
+        "applicable": null
+      }
+    ],
+    "notes": "⚠️ 「我們有 GLI 證書」不等於任何市場都接受。GLI 的產品認證方案 PC-QS-011 定義證書範圍與 GLIACCESS 查驗方式；證書涵蓋的是特定標準版本下的特定建置與配置，市場接受度是另一件事，須依 steering/jurisdiction-matrix.md 逐市場確認。"
+  },
+  "documentSet": [
+    {
+      "index": 1,
+      "document": "PAR sheet",
+      "coreContent": "理論 RTP、策略區間、魚種賠率、生命值分佈、砲倍矩陣、損失項、獎池分配",
+      "fishSpecific": false,
+      "template": "templates/certification/par-sheet.json",
+      "guidance": "steering/math-verification.md",
+      "status": null,
+      "owner": null,
+      "artefactRef": null,
+      "notes": "必須綁定 buildHash 與 configHash。"
+    },
+    {
+      "index": 2,
+      "document": "RNG 提交包",
+      "coreContent": "CSPRNG 選型、熵源、種子管理、批次取樣機制、每發子彈的獨立性論證、統計測試輸出",
+      "fishSpecific": false,
+      "template": "templates/certification/rng-submission-package.json",
+      "guidance": "steering/rng-capture-determination.md",
+      "status": null,
+      "owner": null,
+      "artefactRef": null
+    },
+    {
+      "index": 3,
+      "document": "技術／機率分類卷宗",
+      "coreContent": "技術貢獻度量化、不同技術水準的實測 RTP 分佈、呈現層自我檢查",
+      "fishSpecific": false,
+      "template": "templates/certification/skill-chance-dossier.json",
+      "guidance": "steering/skill-chance-classification.md",
+      "status": null,
+      "owner": null,
+      "artefactRef": null,
+      "notes": "僅在市場適用技術測試時需要。"
+    },
+    {
+      "index": 4,
+      "document": "捕獲模型規格",
+      "coreContent": "生命值模型、每發傷害分佈、命中判定、捕獲判定生命週期",
+      "fishSpecific": true,
+      "template": "templates/capture-model/weighted-hp-medium-volatility.json",
+      "guidance": "steering/math-model.md、steering/rng-capture-determination.md",
+      "status": null,
+      "owner": null,
+      "artefactRef": null,
+      "notes": "老虎機的送測範本裡沒有對應項，最常被遺漏。"
+    },
+    {
+      "index": 5,
+      "document": "傷害歸屬與最後一擊規格",
+      "coreContent": "共享模型 A／B／C、分配基準、捨入規則、斷線傷害處理",
+      "fishSpecific": true,
+      "template": null,
+      "guidance": "steering/multiplayer-fairness.md",
+      "status": null,
+      "owner": null,
+      "artefactRef": null,
+      "notes": "建議在與實驗室初次接觸時即提供本份與第 6 份，作為術語對齊材料。"
+    },
+    {
+      "index": 6,
+      "document": "對局重播規格",
+      "coreContent": "spawn seed、事件流結構、逐位元相同的驗證證據、重播工具說明",
+      "fishSpecific": true,
+      "template": null,
+      "guidance": "steering/platform-systems-compliance.md",
+      "status": null,
+      "owner": null,
+      "artefactRef": null,
+      "notes": "必須說明 spawn seed 由 CSPRNG 產生、記錄用於重播、不用於預先決定結果，否則容易被誤判為 pre-determined outcome。"
+    },
+    {
+      "index": 7,
+      "document": "原始碼與建置／配置雜湊",
+      "coreContent": "提交範圍、雜湊演算法與摘要位元數、建置可重現性",
+      "fishSpecific": false,
+      "template": null,
+      "guidance": "steering/change-management-recert.md 第 5 節",
+      "status": null,
+      "owner": null,
+      "artefactRef": null
+    },
+    {
+      "index": 8,
+      "document": "組態清冊",
+      "coreContent": "列出後台選單每一個可調項與其可調範圍，每組數學組態各附 PAR sheet",
+      "fishSpecific": false,
+      "template": null,
+      "guidance": "steering/cabinet-hardware-compliance.md 第 3.2 節",
+      "status": null,
+      "owner": null,
+      "artefactRef": null,
+      "notes": "⚠️ 要求是列舉全部，不是列舉重要的。實務失敗形態：送測時提供了魚種賠率的三組配置，但後台還有魚群密度、射速上限、離場速度三個可調項未申報——三項都影響 RTP，實驗室在原始碼審查時會看到，而未申報的可調數學參數同時構成隱匿。若後台有「回收率」或「抽水率」設定項，必須說明其實作：若為選擇一組不同的固定機率配置（每組各自驗證 RTP）是合規的；若為動態調節目標則是補償式控分，屬架構違規。"
+    },
+    {
+      "index": 9,
+      "document": "多人公平性與座位對等報告",
+      "coreContent": "各座位 RTP／命中率的模擬結果、魚群入場方向分佈、BOSS 可及性",
+      "fishSpecific": true,
+      "template": null,
+      "guidance": "steering/multiplayer-fairness.md 第 4 節",
+      "status": null,
+      "owner": null,
+      "artefactRef": null
+    },
+    {
+      "index": 10,
+      "document": "損失項揭露",
+      "coreContent": "魚離場、場景重置、未完成捕獲的投入，及其在 RTP 中的計入方式",
+      "fishSpecific": true,
+      "template": null,
+      "guidance": "steering/math-verification.md 第 6 節第 15 項",
+      "status": null,
+      "owner": null,
+      "artefactRef": null,
+      "notes": "僅揭露規則而無事件資料仍無法通過驗證。"
+    },
+    {
+      "index": 11,
+      "document": "負責任遊戲功能聲明",
+      "coreContent": "限額、自我排除、時間提醒、自動發射管控、砲倍升幅確認",
+      "fishSpecific": false,
+      "template": null,
+      "guidance": "steering/responsible-gaming.md",
+      "status": null,
+      "owner": null,
+      "artefactRef": null
+    }
+  ],
+  "documentSetCompleteness": {
+    "totalRequired": 11,
+    "totalComplete": null,
+    "fishSpecificDocumentsComplete": null,
+    "notes": "第 4、5、6、10 份是魚機特有的，老虎機送測範本裡沒有對應項，也因此最常被遺漏。"
+  },
+  "technicalQueryLog": {
+    "purpose": "魚機的核心問題在現行標準文本中沒有直接答案，因為標準是為單人裝置寫的。書面技術問答並保留書面回覆，是唯一能把信心等級從 UNVERIFIED 提升到 HIGH 的途徑。口頭確認、業務窗口的口頭保證、同業經驗都不構成 HIGH。",
+    "flagshipQuery": {
+      "queryId": "Q-001",
+      "priority": "必問，且必須在架構與數學定案前問",
+      "question": "對一台多人同桌魚機而言，構成「一次遊戲（one game）」與「一次投注（one wager）」的單位是什麼？本產品聲明的原子投注單位為一發子彈（one bullet），因為子彈是唯一與扣款一對一對應、且具有獨立判定的事件；請確認貴實驗室／主管機關是否接受以一發子彈作為最低派彩率、最高投注額與最高獎金限制的計算分母，若不接受，請說明應採用的單位。",
+      "whyItMatters": [
+        "最低派彩率：分母是一發子彈還是一次捕獲，算出的比率不同",
+        "最高投注額限制（例如英國 Cat C 的 £1）：是單發子彈的彈值受限，還是每秒投入受限",
+        "最高獎金限制（例如 Cat C 的 £100）：是單次捕獲賠付受限，還是單場受限",
+        "game recall 的「最近 N 局」：N 局是 N 發子彈還是 N 次捕獲",
+        "事件上報粒度"
+      ],
+      "powerPosition": "原子投注單位是一發子彈（one bullet），且必須在提交文件中明文宣告",
+      "marketAcceptanceConfidence": "UNVERIFIED",
+      "submittedTo": null,
+      "submittedDate": null,
+      "responseSummary": "",
+      "responseDate": null,
+      "confidenceAfterResponse": "UNVERIFIED",
+      "artefactRef": null,
+      "notes": "⚠️ 若某市場認定「一次遊戲」是一次捕獲，則整個投注上限與派彩率計算基礎都要重算。這是架構前的問題，不是文件後的問題。"
+    },
+    "queries": [
+      {
+        "queryId": "Q-002",
+        "priority": "必問，且必須在數學模型定案前問",
+        "question": "獎品／彩票兌換型裝置的最低派彩率，其分子的計價基準採零售價、業者進貨成本，或其他基準？",
+        "whyItMatters": "若兌現模式是獎品或彩票，最低派彩率的分子不是現金而是實物價值，而計價基準直接反過來約束數學設計：若基準是進貨成本，則同一個 RTP 目標所需的獎品採購結構完全不同。",
+        "referencePoints": [
+          "麻州 205 CMR 143 明確處理非現金獎品在最低派彩率計算中的計價方式（https://www.mass.gov/doc/205-cmr-143-gaming-devices-and-electronic-gaming-equipment/download）",
+          "台灣電子遊戲場業管理條例 §14 第 3 項：獎品價值以業者原始進貨發票為依據；限制級每次兌換上限 NT$2,000、普通級 NT$1,000；禁止以現金、有價證券或其他通貨為獎品；禁止買回獎品（信心 HIGH）"
+        ],
+        "submittedTo": null,
+        "submittedDate": null,
+        "responseSummary": "",
+        "responseDate": null,
+        "confidenceAfterResponse": "UNVERIFIED",
+        "artefactRef": null
+      },
+      {
+        "queryId": "Q-003",
+        "priority": "建議",
+        "question": "共享魚池模型 A 的「最後一擊拿全額」規則是否需要額外揭露或受到限制？",
+        "whyItMatters": "決定是否可採用模型 A",
+        "submittedTo": null,
+        "responseSummary": "",
+        "confidenceAfterResponse": "UNVERIFIED",
+        "artefactRef": null
+      },
+      {
+        "queryId": "Q-004",
+        "priority": "建議",
+        "question": "座位間期望值依賴（個別座位 RTP 依同桌組成而變）應如何在 PAR sheet 中表述？",
+        "whyItMatters": "決定 PAR sheet 結構",
+        "submittedTo": null,
+        "responseSummary": "",
+        "confidenceAfterResponse": "UNVERIFIED",
+        "artefactRef": null
+      },
+      {
+        "queryId": "Q-005",
+        "priority": "建議",
+        "question": "RTP 以策略區間（random／typical／optimal 三代理人）表述是否被接受？",
+        "whyItMatters": "決定數學驗證方法與 PAR sheet 第 10、11 節的表述方式",
+        "submittedTo": null,
+        "responseSummary": "",
+        "confidenceAfterResponse": "UNVERIFIED",
+        "artefactRef": null
+      },
+      {
+        "queryId": "Q-006",
+        "priority": "建議",
+        "question": "伺服器 tick 頻率變更是否構成需重新送測的數學變更？",
+        "whyItMatters": "決定變更分類門檻，見 steering/change-management-recert.md 第 2.2 節",
+        "submittedTo": null,
+        "responseSummary": "",
+        "confidenceAfterResponse": "UNVERIFIED",
+        "artefactRef": null
+      },
+      {
+        "queryId": "Q-007",
+        "priority": "建議",
+        "question": "對局重播能力是否可取代靜態 game recall 的欄位要求？",
+        "whyItMatters": "決定稽核日誌架構",
+        "submittedTo": null,
+        "responseSummary": "",
+        "confidenceAfterResponse": "UNVERIFIED",
+        "artefactRef": null
+      },
+      {
+        "queryId": "Q-008",
+        "priority": "建議",
+        "question": "免費試玩的捕獲機率是否必須與真錢遊戲相同？",
+        "whyItMatters": "決定新手體驗設計是否可行",
+        "submittedTo": null,
+        "responseSummary": "",
+        "confidenceAfterResponse": "UNVERIFIED",
+        "artefactRef": null
+      }
+    ],
+    "allResponsesArchived": null,
+    "responsesCitedInSubmissionDocuments": null,
+    "notes": "每一項回覆必須存檔並在提交文件中引用。這些回覆同時是變更管理與事故處理時的依據。"
+  },
+  "labSelection": {
+    "candidateLabs": [
+      {
+        "lab": "GLI",
+        "url": "https://gaminglabs.com/",
+        "considered": null
+      },
+      {
+        "lab": "BMM Testlabs",
+        "url": "https://bmm.com/",
+        "considered": null
+      },
+      {
+        "lab": "iTech Labs",
+        "url": "https://itechlabs.com/",
+        "considered": null
+      },
+      {
+        "lab": "eCOGRA",
+        "url": "https://ecogra.org/ecogra-certification/",
+        "considered": null
+      }
+    ],
+    "selectedLab": null,
+    "selectionRationale": "",
+    "secondOpinionRequired": null,
+    "secondOpinionLab": null,
+    "independenceNote": "⚠️ GLI 於 2023-05-19 宣布取得 iTech Global Pty Ltd 全部股份，因此 GLI 與 iTech Labs 自 2023 年 5 月起同屬一個集團，彼此並不獨立。若市場條件、營運商合約或投資方要求「獨立的第二意見認證」，GLI 與 iTech Labs 不得視為兩個獨立選項；此事實在事後被發現時可能使第二意見認證失效，而重做一次認證的成本遠高於一開始選對。BMM Testlabs 與 eCOGRA 是另外兩個可考慮的獨立選項。來源：https://gaminglabs.com/press-releases/gaming-laboratories-international-gli-group-invests-in-itech-labs/",
+    "realTimeSharedStateMultiplayerPrecedent": {
+      "questionAsked": "這家實驗室過去有沒有審過即時共享狀態的多人遊戲（real-time shared-state multiplayer）？",
+      "asked": null,
+      "response": "",
+      "terminologyAlignmentMaterialsProvided": null,
+      "notes": "GLI-11 與多數機具標準是為單人裝置撰寫的。審查員若沒有共享魚池、傷害歸屬、延遲補償的先例，會在以下項目上反覆往返：一次投注的定義、多座位結算的原子性、座位間期望值依賴、tick 時序作為數學參數。這些往返不是技術問題，是雙方對術語的對齊問題，但會顯著拉長時程。"
+    },
+    "marketAcceptanceOfSelectedLab": {
+      "verifiedPerMarket": null,
+      "confidence": "UNVERIFIED"
+    },
+    "quotation": {
+      "writtenQuoteObtained": null,
+      "standardsCovered": [],
+      "assumedRoundTripCount": null,
+      "translationRequirements": null,
+      "administrativeWindowsSeparatelyScheduled": null,
+      "notes": "⚠️ 本 Power 不提供時程與費用數字，一律向實驗室索取書面報價。行政核准窗口與實驗室工時是兩件事，必須分開排程；把「實驗室說六週」當成上線時程是常見的排程錯誤。"
+    }
+  },
+  "rejectionRiskSelfCheck": [
+    {
+      "index": 1,
+      "risk": "補償式控分（控分／場控／保底／記血／回收率調節）",
+      "whyRejected": "違反遊戲獨立性要求；GLI-11 對 gaming device 的界定要求遊戲結果彼此獨立",
+      "selfCheckMethod": "執行 steering/payout-control-integrity.md 第 3.3 節的三項行為測試（長期漂移、注入偏差、狀態隔離）並保留輸出",
+      "closed": null,
+      "evidenceRef": null,
+      "blocking": true
+    },
+    {
+      "index": 2,
+      "risk": "各砲倍 RTP 不一致（「大砲難打」）",
+      "whyRejected": "違反各投注額 RTP 一致要求；高砲倍 RTP 較低在許多市場屬對高投注玩家不利的差別待遇",
+      "selfCheckMethod": "逐砲倍模擬，含最高砲倍打小魚的邊界捨入情境",
+      "closed": null,
+      "evidenceRef": null,
+      "blocking": true
+    },
+    {
+      "index": 3,
+      "risk": "客戶端判定",
+      "whyRejected": "結果非伺服器產生；「客戶端判定、伺服器驗證」不算伺服器權威，攻擊者仍可在合理範圍內選擇對自己最有利的結果",
+      "selfCheckMethod": "確認客戶端無捕獲判定程式碼路徑",
+      "closed": null,
+      "evidenceRef": null,
+      "blocking": true
+    },
+    {
+      "index": 4,
+      "risk": "損失項未揭露（魚離場、場景重置）",
+      "whyRejected": "RTP 分母不完整，理論值與模擬值無法對齊",
+      "selfCheckMethod": "檢查魚離場與場景重置事件是否被記錄且計入驗算",
+      "closed": null,
+      "evidenceRef": null,
+      "blocking": true
+    },
+    {
+      "index": 5,
+      "risk": "後台可調項未全部申報",
+      "whyRejected": "未申報的可調數學參數同時構成隱匿，後果比原始缺陷重",
+      "selfCheckMethod": "匯出完整後台選單樹，逐項比對組態清冊（文件 8）",
+      "closed": null,
+      "evidenceRef": null,
+      "blocking": true
+    },
+    {
+      "index": 6,
+      "risk": "RTP 以單一數字表述，無策略區間",
+      "whyRejected": "魚機 RTP 是策略依賴的區間，單一數字無法驗證",
+      "selfCheckMethod": "提供 random／typical／optimal 三種代理人的實測分佈，並附樣本量推導",
+      "closed": null,
+      "evidenceRef": null,
+      "blocking": true
+    },
+    {
+      "index": 7,
+      "risk": "無對局重播能力",
+      "whyRejected": "無法提供判定序列證據，爭議處理與變更分類皆無依據",
+      "selfCheckMethod": "驗證同 spawn seed 加同事件流的重播結果逐位元相同",
+      "closed": null,
+      "evidenceRef": null,
+      "blocking": true
+    },
+    {
+      "index": 8,
+      "risk": "魚離場未記錄",
+      "whyRejected": "與第 4 項相關但獨立：即使揭露了規則，沒有資料仍無法驗證",
+      "selfCheckMethod": "查詢一段時間窗的離場魚紀錄，確認含剩餘生命值與各座位已投入成本",
+      "closed": null,
+      "evidenceRef": null,
+      "blocking": true
+    },
+    {
+      "index": 9,
+      "risk": "傷害歸屬不可稽核（僅記錄最後一擊）",
+      "whyRejected": "無法回應魚機的主要爭議類型（「那條魚是我打死的」「我打了半天別人搶走」「這條魚打不死一定有問題」）",
+      "selfCheckMethod": "抽查任一 captureId，確認可取得完整傷害序列與 killingBulletId",
+      "closed": null,
+      "evidenceRef": null,
+      "blocking": false
+    },
+    {
+      "index": 10,
+      "risk": "多座位賠付分配非原子交易",
+      "whyRejected": "部分失敗時帳務不一致",
+      "selfCheckMethod": "注入部分失敗，確認 captureId 幂等且逐座位賠付總和等於應付總額",
+      "closed": null,
+      "evidenceRef": null,
+      "blocking": false
+    },
+    {
+      "index": 11,
+      "risk": "tick 頻率為編譯期常數或自適應",
+      "whyRejected": "認證參數不可追溯",
+      "selfCheckMethod": "確認 tick 頻率在 configHash 涵蓋範圍內",
+      "closed": null,
+      "evidenceRef": null,
+      "blocking": false
+    }
+  ],
+  "rejectionRiskSummary": {
+    "fishSpecificHighFrequencyItems": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "allBlockingItemsClosed": null,
+    "notes": "⚠️ 前 8 項是魚機特有且高頻的退件原因。若這 8 項有任一項未關閉，不應提交。提交後被退件不只是時間損失，供應商的後續提交通常會進入加強審查。"
+  },
+  "postSubmissionReadiness": {
+    "changeManagementProcessLive": null,
+    "incidentReportingProcessLive": null,
+    "perMarketConfigsAreVersionedArtefactsNotRuntimeFlags": null,
+    "regulatoryWatchListEstablished": null,
+    "notes": "各市場配置必須是獨立版本化產物，不是同一建置上的執行期旗標；旗標會讓現場實際生效的組合無法從建置雜湊推知。"
+  }
+}

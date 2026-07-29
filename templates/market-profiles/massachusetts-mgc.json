@@ -1,0 +1,274 @@
+{
+  "templateType": "fish-game-expert/market-profile-v1",
+  "marketCode": "MA",
+  "name": "Massachusetts — Massachusetts Gaming Commission (MGC)",
+  "legalStatus": "regulated",
+  "regulator": {
+    "name": "Massachusetts Gaming Commission (MGC)",
+    "url": "https://www.mass.gov/doc/205-cmr-143-gaming-devices-and-electronic-gaming-equipment/download",
+    "notes": "麻州 205 CMR 143（Gaming Devices and Electronic Gaming Equipment）是本 Power 中對「非現金獎品如何計入最低派彩率」有明文處理的少數來源之一，這對彩票／獎品兌換型魚機具有直接參考價值，也是其他市場提案時的對照基準。"
+  },
+  "classificationTest": {
+    "value": "not-applicable",
+    "confidence": "MEDIUM",
+    "source": "205 CMR 143 Gaming Devices and Electronic Gaming Equipment",
+    "notes": "麻州以 gaming device／electronic gaming equipment 的核准制度處理准入，不以司法上的技術對機率測試作為門檻。魚機若進入麻州，必然是以受規範的 gaming device 身分，且僅限授權場所。"
+  },
+  "monetisation": {
+    "cashOut": {
+      "status": "allowed",
+      "confidence": "MEDIUM",
+      "source": "205 CMR 143（gaming device 核准與運作制度）",
+      "notes": "以核准之 gaming device 在授權場所運作時得以現金派彩。前提是完成核准程序。"
+    },
+    "prizeRedemption": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "205 CMR 143 處理了非現金獎品的計價，但獎品兌換模式本身在麻州授權場所的可行性與條件未逐條核對，不填 status。"
+    },
+    "maxPrizeValue": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次派彩或獎品價值上限。不得推論為無上限。"
+    },
+    "prizeBuyback": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。買回在功能上等同 cash-out，若擬採用須先取得明確立場。"
+    },
+    "realCurrencyAtMachine": {
+      "status": "allowed",
+      "confidence": "MEDIUM",
+      "source": "205 CMR 143（gaming device 以真實貨幣投注運作）",
+      "notes": "與台灣的真幣禁令相反，硬體金流模組不可跨市場沿用，見 steering/cabinet-hardware-compliance.md。"
+    },
+    "paymentCardAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "機台支付媒介的限制未逐條核對。"
+    },
+    "tokenSpecConstraint": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得代幣規格限制。"
+    },
+    "sweepstakesModel": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "在已有合法 gaming device 路線的轄區無實益；其在麻州法下的處理未經確認。"
+    }
+  },
+  "productConstraints": {
+    "minGameCycleMs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未逐條核對 205 CMR 143 是否含遊戲循環時間下限。魚機射速即投注速度，此為必查項。"
+    },
+    "maxStakePerBullet": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單發投注上限。"
+    },
+    "maxBetMultiplier": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得砲倍上限。"
+    },
+    "maxWinPerCapture": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次捕獲派彩上限。"
+    },
+    "autoFire": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自動發射之處理未經確認，見 steering/responsible-gaming.md。"
+    },
+    "crossTablePool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨桌獎池（progressive）之技術與會計要求未逐條核對。"
+    },
+    "multiSeatSharedPool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "共享魚池、傷害歸屬與最後一擊派彩的判定與紀錄要求未經確認，見 steering/multiplayer-fairness.md。"
+    },
+    "featureBuy": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "特殊武器購買之處理未經確認。"
+    },
+    "celebrationOfNonWin": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得相關規範。"
+    },
+    "otherProhibitions": [
+      {
+        "item": "gaming device 與 electronic gaming equipment 須依 205 CMR 143 經核准後方得使用",
+        "confidence": "MEDIUM",
+        "source": "205 CMR 143 Gaming Devices and Electronic Gaming Equipment",
+        "notes": "麻州的規範對象包含機台周邊電子設備，不只遊戲軟體。多人座位魚機的座位控制板、票券印表機與兌換終端都可能落入 electronic gaming equipment 範圍，須逐一確認。"
+      }
+    ]
+  },
+  "rtp": {
+    "minimum": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "205 CMR 143 含最低派彩百分比制度，但本次未逐條讀取其數值，因此不填。取得條文後應升級為 HIGH。"
+    },
+    "wagerUnitBasis": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ 最低派彩百分比在魚機上以一發子彈、一次捕獲或一局為計算單位，205 CMR 143 未見針對魚機的對應說明。這是麻州最關鍵的待查項，見 steering/math-verification.md。"
+    },
+    "nonCashPrizeValuation": {
+      "value": "205 CMR 143 明文處理非現金獎品在最低派彩百分比計算中的價值認定",
+      "confidence": "MEDIUM",
+      "source": "https://www.mass.gov/doc/205-cmr-143-gaming-devices-and-electronic-gaming-equipment/download",
+      "notes": "⚠️ 這是本 Power 中最有用的單一交叉參考。彩票／獎品兌換型魚機的核心數學問題正是「一張彩票值多少」，麻州提供了一個成文的計價框架。台灣以進貨發票為基準（電子遊戲場業管理條例 §14 III），麻州則在派彩率計算中處理，兩者是不同機制但可互為論證素材。具體計價方法的條文文字未逐字核對，故為 MEDIUM。"
+    },
+    "perTierParityRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得各砲倍 RTP 一致性要求。若最低派彩百分比適用於每一種可選投注設定，則各砲倍須各自達標，此解釋須確認。"
+    }
+  },
+  "playerAccount": {
+    "minimumAge": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未於本次建置中核對明文年齡條款。"
+    },
+    "kycRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "實體機台無玩家帳戶；無現金或忠誠卡機制涉及身分要求，未查證，見 steering/aml-kyc-player-account.md。"
+    },
+    "selfExclusion": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "spendLimits": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得法定投入限額。"
+    }
+  },
+  "auditLog": {
+    "retentionPeriod": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得保存期要求。"
+    },
+    "requiredFields": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得法定欄位集。若非現金獎品計入派彩率，紀錄須能證明每次兌換的獎品價值，這是超出一般遊戲紀錄的會計層需求，見 steering/rng-capture-determination.md。"
+    },
+    "tamperEvidence": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得明文要求。"
+    }
+  },
+  "dataResidency": {
+    "requirement": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得資料落地要求。"
+    },
+    "crossBorderTransfer": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證，見 steering/data-protection-privacy.md。"
+    }
+  },
+  "certification": {
+    "scheme": {
+      "value": "205 CMR 143 之 gaming device／electronic gaming equipment 核准程序",
+      "confidence": "MEDIUM",
+      "source": "https://www.mass.gov/doc/205-cmr-143-gaming-devices-and-electronic-gaming-equipment/download",
+      "notes": "確認核准制度存在且涵蓋機台周邊設備。是否採用 GLI 標準（例如 GLI-11 Gaming Devices，https://gaminglabs.com/wp-content/uploads/2018/09/GLI-11-Gaming-Devices-V3-0.pdf）須逐條核對，不可假設。"
+    },
+    "decisionWindow": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得核准時程。"
+    },
+    "exportExemption": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用。"
+    },
+    "acceptedLabs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得認可測試機構清單。若需互相獨立之兩份報告，注意 GLI 已於 2023-05-19 收購 iTech Labs，兩者不再獨立。"
+    },
+    "penalties": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得罰則條文。"
+    },
+    "otherObligations": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "供應商登錄（vendor licensing）要求未核對原文。"
+    }
+  },
+  "verificationRequired": [
+    "逐字核對 205 CMR 143 中非現金獎品的計價方法，並升級 nonCashPrizeValuation 為 HIGH（最高優先，具跨市場價值）",
+    "取得 205 CMR 143 的最低派彩百分比數值與計算基礎",
+    "釐清最低派彩百分比在魚機上的計算單位（子彈／捕獲／一局）",
+    "確認最低派彩百分比是否須於每一砲倍檔位各自達標",
+    "確認多人座位魚機的座位控制板、票券印表機與兌換終端是否屬 electronic gaming equipment",
+    "確認共享魚池與最後一擊派彩的判定與紀錄要求",
+    "確認 progressive（跨桌獎池）的技術與會計要求",
+    "確認是否採用 GLI 標準，並取得適用版本",
+    "取得認可測試機構清單與供應商登錄要求",
+    "確認自動發射之處理立場",
+    "確認遊戲紀錄保存期與獎品價值稽核所需欄位"
+  ],
+  "lastUpdated": "2026-07-29",
+  "notes": [
+    "麻州在本 Power 中的價值大於其市場規模：205 CMR 143 對非現金獎品計價的明文處理，是彩票／獎品兌換型魚機在其他市場提案時最好的成文對照素材。",
+    "非現金獎品計入派彩率會把「獎品採購成本」變成數學參數。這意味著遊戲數學與場所的獎品進貨策略耦合，一旦獎品組合更換，派彩率論證可能需要重做。",
+    "⚠️ 205 CMR 143 規範對象含機台周邊電子設備。多座位魚機的周邊件比單機老虎機多，核准範圍可能比預期廣，應在報價前確認清單。"
+  ]
+}

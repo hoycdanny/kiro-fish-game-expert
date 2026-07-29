@@ -1,0 +1,274 @@
+{
+  "templateType": "fish-game-expert/market-profile-v1",
+  "marketCode": "DE",
+  "name": "Germany — Gemeinsame Glücksspielbehörde der Länder (GGL)",
+  "legalStatus": "regulated",
+  "regulator": {
+    "name": "Gemeinsame Glücksspielbehörde der Länder (GGL)",
+    "url": "https://www.gluecksspiel-behoerde.de/",
+    "notes": "德國線上授權的核心類別是 virtuelle Automatenspiele（虛擬自動機遊戲）與線上撲克。⚠️ 魚機是否落在任一可授權類別內必須逐案向 GGL 確認，這是本市場的閘門問題，且答案可能是「否」。"
+  },
+  "classificationTest": {
+    "value": "not-applicable",
+    "confidence": "MEDIUM",
+    "source": "https://www.gluecksspiel-behoerde.de/（以法定遊戲類別授權，非以技術／機率門檻判定）",
+    "notes": "德國不以司法上的技術對機率測試決定准入，而以是否落在法定可授權遊戲類別為準。virtuelle Automatenspiele 的定義是否能涵蓋多人共享魚池、以子彈為投注單位、且結果由連續射擊過程產生的魚機，未經確認。這不是可以靠調整數學解決的問題。"
+  },
+  "monetisation": {
+    "cashOut": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "在授權類別歸屬未確認前，無法認定魚機得以真實貨幣派彩。若魚機不落在任一可授權類別，則不存在合法的現金派彩路線。"
+    },
+    "prizeRedemption": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上環境無實體獎品兌換層。"
+    },
+    "maxPrizeValue": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次派彩上限。不得推論為無上限。"
+    },
+    "prizeBuyback": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用於線上環境；未查證。"
+    },
+    "realCurrencyAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "本欄為實體機殼欄位。德國陸上 Geldspielgeräte 受完全不同的制度（工商法規與型式核准）規範，須另建檔案，不可與本檔案混用。"
+    },
+    "paymentCardAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "本欄為實體機殼欄位，不適用。"
+    },
+    "tokenSpecConstraint": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上環境無實體代幣。"
+    },
+    "sweepstakesModel": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "美式 sweepstakes 構造在德國法下的處理未經確認，且極可能無實益。"
+    }
+  },
+  "productConstraints": {
+    "minGameCycleMs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ 德國對 virtuelle Automatenspiele 設有嚴格的投注與節奏限制，但本次建置未取得條文原文，因此不填任何數值。這是德國市場最關鍵的待查項之一：若循環時間下限以「每次遊戲」為單位而魚機一秒可發射數十發，數學模型與商業模型都可能不成立。"
+    },
+    "maxStakePerBullet": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得條文原文，不填數值。須確認投注上限的法定單位是否可對映到一發子彈。"
+    },
+    "maxBetMultiplier": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得砲倍上限；若存在投注上限，將間接封頂砲倍檔位。"
+    },
+    "maxWinPerCapture": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次捕獲派彩上限。"
+    },
+    "autoFire": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自動發射之處理未經確認。德國對自動化連續投注的立場一向嚴格，不可假設允許，見 steering/responsible-gaming.md。"
+    },
+    "crossTablePool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨桌獎池之處理未經確認。若德國禁止或限制此類累積獎池，德國版需要一份獨立驗證過的數學配置，而非關閉一個功能旗標。"
+    },
+    "multiSeatSharedPool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ virtuelle Automatenspiele 的概念以單一玩家對機器為原型。多人共享魚池、傷害歸屬與最後一擊分配是否能被該類別涵蓋，是閘門問題的核心技術面，見 steering/multiplayer-fairness.md。"
+    },
+    "featureBuy": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "特殊武器購買之處理未經確認。"
+    },
+    "celebrationOfNonWin": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得相關規範。"
+    },
+    "otherProhibitions": [
+      {
+        "item": "遊戲類別歸屬未經 GGL 逐案確認前，不得假設魚機可被授權",
+        "confidence": "MEDIUM",
+        "source": "https://www.gluecksspiel-behoerde.de/",
+        "notes": "⚠️ 德國與巴西是本 Power 中閘門問題最突出的兩個市場。差別在於巴西是新市場規則仍在補齊，德國是既有類別定義可能根本不涵蓋魚機形態。後者無法靠等待解決。"
+      }
+    ]
+  },
+  "rtp": {
+    "minimum": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得條文原文，不填數值。"
+    },
+    "wagerUnitBasis": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ 這是德國市場的核心技術待查項。若法定投注限制以「一次遊戲」為單位，而魚機的一次遊戲究竟是一發子彈或一次捕獲未經確認，則所有投注與節奏限制的實際含義都是未知的，見 steering/math-verification.md。"
+    },
+    "nonCashPrizeValuation": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上環境通常無非現金獎品。"
+    },
+    "perTierParityRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得明文要求，仍應作為設計基線。"
+    }
+  },
+  "playerAccount": {
+    "minimumAge": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未於本次建置中核對明文年齡條款。"
+    },
+    "kycRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "德國制度含中央化的玩家控管機制，但具體要求未取得原文，不填值，見 steering/aml-kyc-player-account.md。"
+    },
+    "selfExclusion": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "德國有中央化的排除登錄制度，但本次未取得官方規格頁面，故不填值。供應商仍須將可玩狀態檢查前置於發射受理。"
+    },
+    "spendLimits": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "德國制度含跨營運商的存款限額機制，具體數值與適用範圍未取得原文，不填值。"
+    }
+  },
+  "auditLog": {
+    "retentionPeriod": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得保存期要求。"
+    },
+    "requiredFields": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得法定欄位集，建議依 steering/rng-capture-determination.md 實作。"
+    },
+    "tamperEvidence": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    }
+  },
+  "dataResidency": {
+    "requirement": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "德國制度含資料存取與監理介面要求，具體落地要求未取得原文，不填值。"
+    },
+    "crossBorderTransfer": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "德國為 EU 成員國，GDPR 適用，具體安排未查證，見 steering/data-protection-privacy.md。"
+    }
+  },
+  "certification": {
+    "scheme": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得 GGL 現行技術標準與測試安排全文。"
+    },
+    "decisionWindow": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得審核時程。"
+    },
+    "exportExemption": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用。"
+    },
+    "acceptedLabs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得認可測試機構清單。"
+    },
+    "penalties": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得罰則條文。德國對無照線上博彩的執法（含支付阻斷與封鎖）強度應以法律意見確認。"
+    },
+    "otherObligations": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "供應商是否須獨立授權未經確認。"
+    }
+  },
+  "verificationRequired": [
+    "向 GGL 逐案確認魚機是否落在 virtuelle Automatenspiele 或其他可授權類別內（最高優先，可能為否）",
+    "取得 virtuelle Automatenspiele 的法定定義原文，確認是否以單一玩家對機器為前提",
+    "取得投注上限與遊戲節奏限制的條文原文與現行數值",
+    "釐清法定「一次遊戲」如何對映到一發子彈、一次捕獲或一局",
+    "確認多人共享魚池與最後一擊分配是否可被授權類別涵蓋",
+    "確認跨桌獎池是否受限或禁止",
+    "確認自動發射是否落入自動化投注相關限制",
+    "取得中央化玩家控管與存款限額機制的技術整合規格",
+    "取得 GGL 技術標準、測試安排與認可測試機構清單",
+    "確認遊戲紀錄保存期、必要欄位與監理資料存取介面要求",
+    "取得法律意見評估無照供應的執法風險（含支付阻斷與網域封鎖）"
+  ],
+  "lastUpdated": "2026-07-29",
+  "notes": [
+    "德國的結論可能是「不可行」而非「需要調整」。若 virtuelle Automatenspiele 的定義以單人對機器為前提，多人共享魚池的魚機就沒有對應類別，這一點必須在投入數學工作之前釐清。",
+    "本檔案刻意不填德國已知的投注與節奏限制數值。這些數值在業界廣為流傳，但未取得條文原文即填入，會使整份檔案的可信度受損，並可能被當成送審依據，見 steering/advisory-engagement.md。",
+    "⚠️ 德國陸上 Geldspielgeräte 與線上 virtuelle Automatenspiele 是兩套完全不同的制度。以陸上型式核准經驗推論線上要求（或反向推論）是常見且高風險的錯誤。"
+  ]
+}

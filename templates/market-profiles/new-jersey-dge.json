@@ -1,0 +1,275 @@
+{
+  "templateType": "fish-game-expert/market-profile-v1",
+  "marketCode": "NJ",
+  "name": "New Jersey — Division of Gaming Enforcement (DGE)",
+  "legalStatus": "regulated",
+  "regulator": {
+    "name": "New Jersey Division of Gaming Enforcement (DGE), Department of Law and Public Safety",
+    "url": "https://www.nj.gov/oag/ge/",
+    "notes": "⚠️ 本次建置未取得紐澤西的一級規範文件，僅以「紐澤西同時規範陸上賭場設備與線上遊戲，且設備與供應商均須核准」這一廣為確立的事實作為 MEDIUM 依據。上列網址為 DGE 的慣用官方路徑，但本次建置未驗證其可達性，使用前應先確認。"
+  },
+  "classificationTest": {
+    "value": "not-applicable",
+    "confidence": "MEDIUM",
+    "source": "紐澤西以賭場遊戲設備與線上遊戲之核准制度處理准入（一般性、廣為確立的制度描述，未取得條文原文）",
+    "notes": "魚機若進入紐澤西，必然是以受規範的遊戲設備或線上遊戲身分，而非以技術遊戲主張豁免。實際門檻在於技術標準與核准程序，而非分類測試。"
+  },
+  "monetisation": {
+    "cashOut": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "在核准路徑與遊戲類別歸屬未確認前不填。授權場所與授權線上平台上的現金派彩本身是常態，但魚機是否可取得核准未經確認。"
+    },
+    "prizeRedemption": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "maxPrizeValue": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次派彩上限。不得推論為無上限。"
+    },
+    "prizeBuyback": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "realCurrencyAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "paymentCardAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "tokenSpecConstraint": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "sweepstakesModel": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。在已有合法核准路徑的轄區通常無實益。"
+    }
+  },
+  "productConstraints": {
+    "minGameCycleMs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得技術標準原文。魚機射速即投注速度，此為必查項。"
+    },
+    "maxStakePerBullet": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單發投注上限。"
+    },
+    "maxBetMultiplier": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得砲倍上限。"
+    },
+    "maxWinPerCapture": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次捕獲派彩上限。"
+    },
+    "autoFire": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自動發射之處理未經確認，見 steering/responsible-gaming.md。"
+    },
+    "crossTablePool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨桌獎池之處理未經確認。"
+    },
+    "multiSeatSharedPool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "共享魚池、傷害歸屬與最後一擊派彩之要求未經確認，見 steering/multiplayer-fairness.md。"
+    },
+    "featureBuy": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "celebrationOfNonWin": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "otherProhibitions": [
+      {
+        "item": "遊戲設備與供應商均須經核准或授權後方得供應",
+        "confidence": "MEDIUM",
+        "source": "紐澤西賭場管制制度之一般性描述（未取得條文原文）",
+        "notes": "供應商授權的背景調查通常是專案關鍵路徑，時程遠長於技術測試。這一點在美國各授權轄區普遍成立。"
+      }
+    ]
+  },
+  "rtp": {
+    "minimum": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得條文原文，不填數值。紐澤西的最低派彩率數字在業界廣為流傳，但未經原文核對不得填入。"
+    },
+    "wagerUnitBasis": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ 原子投注單位是一發子彈；最低派彩率的計算單位未經確認，見 steering/math-verification.md。"
+    },
+    "nonCashPrizeValuation": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。Massachusetts 205 CMR 143 有明文處理，可作為提案對照，但不可套用。"
+    },
+    "perTierParityRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證，仍應作為設計基線。"
+    }
+  },
+  "playerAccount": {
+    "minimumAge": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得條文原文，不填值。"
+    },
+    "kycRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上遊戲必有身分驗證與地理定位要求，具體內容未取得原文，見 steering/aml-kyc-player-account.md。"
+    },
+    "selfExclusion": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "紐澤西有自我排除制度，但本次未取得規格文件，故不填值。供應商仍須將可玩狀態檢查前置於發射受理。"
+    },
+    "spendLimits": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    }
+  },
+  "auditLog": {
+    "retentionPeriod": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "requiredFields": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證，建議依 steering/rng-capture-determination.md 實作完整欄位集。"
+    },
+    "tamperEvidence": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    }
+  },
+  "dataResidency": {
+    "requirement": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ 美國線上遊戲轄區通常要求伺服器設置於州內或指定設施，紐澤西的具體要求未取得原文，不填值。此項對共享魚池的即時架構影響重大，列為高優先待查。"
+    },
+    "crossBorderTransfer": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證，見 steering/data-protection-privacy.md。"
+    }
+  },
+  "certification": {
+    "scheme": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得 DGE 技術標準與核准程序原文。不得假設等同 GLI 認證即可。"
+    },
+    "decisionWindow": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "exportExemption": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用。"
+    },
+    "acceptedLabs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得認可測試機構清單。紐澤西設有自有測試能力，是否接受第三方實驗室報告須確認。"
+    },
+    "penalties": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    },
+    "otherObligations": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證。"
+    }
+  },
+  "verificationRequired": [
+    "驗證 DGE 官方網址可達性，並取得現行技術標準與遊戲設備核准程序文件（最高優先）",
+    "確認魚機在陸上設備與線上遊戲兩條路徑下各自的核准可行性",
+    "取得最低派彩率要求的條文與數值",
+    "釐清最低派彩率的計算單位（子彈／捕獲／一局）",
+    "確認伺服器落地與指定設施要求，評估對共享魚池即時架構的影響",
+    "確認供應商授權（vendor／casino service industry enterprise）要件與背景調查時程",
+    "確認 DGE 是否接受第三方實驗室報告或須經其自有測試",
+    "確認共享魚池與最後一擊派彩的判定與紀錄要求",
+    "確認跨桌獎池之技術與會計要求",
+    "確認自動發射之處理立場",
+    "取得自我排除制度的技術整合規格",
+    "確認遊戲紀錄保存期與必要欄位"
+  ],
+  "lastUpdated": "2026-07-29",
+  "notes": [
+    "本檔案是刻意的低覆蓋檔案：本次建置沒有紐澤西的一級來源，因此除制度存在性以外一律 UNVERIFIED。這比填入業界流傳的數值更安全，也更容易被後續研究補齊。",
+    "紐澤西同時有陸上與線上兩條路徑，兩者的技術標準與核准程序不同。把兩條路徑混為一談是常見錯誤，評估時應分開建立時程與成本。",
+    "⚠️ 伺服器落地要求（若存在）對魚機的影響大於老虎機，因為共享魚池是有狀態的即時運算，無法只把資料庫複本放進州內設施了事。"
+  ]
+}

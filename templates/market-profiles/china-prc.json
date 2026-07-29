@@ -1,0 +1,268 @@
+{
+  "templateType": "fish-game-expert/market-profile-v1",
+  "marketCode": "CN",
+  "name": "China (Mainland) — 遊戲遊藝設備管理與賭博機具刑事管制",
+  "legalStatus": "prohibited",
+  "regulator": {
+    "name": "文化和旅游部（遊戲遊藝設備與娛樂場所管理）；公安機關（賭博機具執法）",
+    "url": "https://www.mct.gov.cn",
+    "notes": "⚠️ 本 URL 為文化和旅游部的官方網域，其可達性未在本次建置中驗證。中國大陸為雙軌管制：娛樂型遊戲遊藝設備屬行政管理，具賭博功能者屬刑事範疇。"
+  },
+  "classificationTest": {
+    "value": "unverified",
+    "confidence": "UNVERIFIED",
+    "source": null,
+    "notes": "中國大陸以賭博機具的刑事認定與遊戲遊藝設備的行政管理雙軌處理，不使用技術／機率測試。認定標準須由當地律師確認。"
+  },
+  "monetisation": {
+    "cashOut": {
+      "status": "prohibited",
+      "confidence": "MEDIUM",
+      "source": "中國刑法賭博罪與賭博機具管制體系（一般認知；未取得條文原文）",
+      "notes": "具現金或變相兌現功能的機台屬刑事範疇。中國大陸不存在合法的商業博彩機台制度。"
+    },
+    "prizeRedemption": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "獎品／彩票兌換制度未經確認。"
+    },
+    "maxPrizeValue": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "獎品價值上限未取得條文，不填數值。"
+    },
+    "prizeBuyback": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "買回獎品之處理未經確認。買回在功能上等同 cash-out。"
+    },
+    "realCurrencyAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "機台是否得收受法定貨幣未經確認。"
+    },
+    "paymentCardAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "機台是否得讀取支付卡未經確認。"
+    },
+    "tokenSpecConstraint": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "代幣規格限制未經確認。"
+    },
+    "sweepstakesModel": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "sweepstakes 構造之可行性未經確認。"
+    }
+  },
+  "productConstraints": {
+    "minGameCycleMs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "遊戲循環時間下限未經確認。魚機另須釐清該限制係綁定一發子彈、一次捕獲或一個場景。"
+    },
+    "maxStakePerBullet": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "單發投注上限未經確認。子彈是魚機的原子投注單位。"
+    },
+    "maxBetMultiplier": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "最高砲倍檔位限制未經確認。"
+    },
+    "maxWinPerCapture": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "單次捕獲賠付上限未經確認。此上限一旦存在，即直接封頂最高魚種賠率倍數。"
+    },
+    "autoFire": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自動發射之處理未經確認，見 steering/responsible-gaming.md。"
+    },
+    "crossTablePool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨桌獎池之處理未經確認。"
+    },
+    "multiSeatSharedPool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "多座位共享魚池與最後一擊分配規則之處理未經確認，見 steering/multiplayer-fairness.md。"
+    },
+    "featureBuy": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "直接購買特殊武器或關卡進場權之處理未經確認。"
+    },
+    "celebrationOfNonWin": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "等值或低於投入之慶祝回饋規範未經確認。"
+    },
+    "otherProhibitions": [
+      {
+        "item": "具賭博功能或變相兌現功能之機台製造、銷售與經營",
+        "confidence": "MEDIUM",
+        "source": "中國刑法賭博罪與賭博機具管制體系（一般認知；未取得條文原文）",
+        "notes": "變相兌現（透過代幣回收、第三方結算、線上帳戶轉移等方式）同樣落入認定範圍。上分下分功能是執法關注的典型特徵。"
+      }
+    ]
+  },
+  "rtp": {
+    "minimum": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未取得最低派彩率條文，不填數值。"
+    },
+    "wagerUnitBasis": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "最低派彩率規則在魚機上的對應單位（一發子彈或一次捕獲）未經確認。這是幾乎所有市場共通的未解問題。"
+    },
+    "nonCashPrizeValuation": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "非現金獎品之計價基準未經確認。"
+    },
+    "perTierParityRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得各砲倍 RTP 一致性之明文要求，但仍應作為設計基線，見 steering/math-model.md。"
+    }
+  },
+  "playerAccount": {
+    "minimumAge": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "年齡下限未取得條文，不填數值。"
+    },
+    "kycRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "身分驗證要求未經確認。"
+    },
+    "selfExclusion": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自我排除機制未經確認。"
+    },
+    "spendLimits": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "投入限額要求未經確認。"
+    }
+  },
+  "auditLog": {
+    "retentionPeriod": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "紀錄保存期未經確認。"
+    },
+    "requiredFields": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "法定紀錄欄位未經確認。建議仍依 steering/rng-capture-determination.md 的完整欄位集實作，含魚離場紀錄。"
+    },
+    "tamperEvidence": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "防篡改要求未經確認。"
+    }
+  },
+  "dataResidency": {
+    "requirement": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "資料落地要求未經確認。"
+    },
+    "crossBorderTransfer": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨境傳輸限制未經確認。"
+    }
+  },
+  "certification": {
+    "scheme": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "測試與型式核准安排未經確認。"
+    },
+    "decisionWindow": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "審核時程未經確認。"
+    },
+    "exportExemption": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用或未經確認。"
+    },
+    "acceptedLabs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "認可測試機構清單未經確認。"
+    },
+    "penalties": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "罰則未取得條文，不填數值。"
+    },
+    "otherObligations": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "其他義務未經確認。"
+    }
+  },
+  "verificationRequired": [
+    "取得中國刑法第 303 條賭博罪與相關司法解釋原文",
+    "取得文化和旅游部關於遊戲遊藝設備管理的現行規範原文，確認娛樂型設備的內容與功能要求",
+    "確認遊戲遊藝設備的內容審核或備案程序是否適用於魚機形態",
+    "確認退幣、上下分、積分兌換等功能在行政與刑事認定上的界線",
+    "確認純娛樂型（僅計分、不兌換任何財物）魚機的可行部署途徑與備案要求",
+    "確認外資供應商在此領域的市場准入限制"
+  ],
+  "lastUpdated": "2026-07-29",
+  "notes": [
+    "⚠️ 中國大陸對魚機供應商的實際重要性主要在製造供應鏈，而非合法內銷市場。許多魚機硬體與軟體來源在此，但這不代表存在合法的現金型內銷途徑。",
+    "雙軌管制的實務含義是：同一台機器可能在行政上取得娛樂型定位，卻因現場的兌現操作而落入刑事範疇。責任邊界的劃分見 steering/advisory-engagement.md。"
+  ]
+}

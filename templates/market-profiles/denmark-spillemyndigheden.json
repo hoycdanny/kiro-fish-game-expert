@@ -1,0 +1,287 @@
+{
+  "templateType": "fish-game-expert/market-profile-v1",
+  "marketCode": "DK",
+  "name": "Denmark — Spillemyndigheden（Danish Gambling Authority）",
+  "legalStatus": "regulated",
+  "regulator": {
+    "name": "Spillemyndigheden (Danish Gambling Authority)",
+    "url": "https://spillemyndigheden.dk/en-us/businesses-and-associations/games-which-require-a-licence/online-casino/certification-programme-for-online-casino",
+    "notes": "丹麥是本 Power 中認證要求最透明的市場之一：認證計畫以模組化文件公開發布，因此 certification.scheme 可給到 HIGH。相對地，魚機的遊戲層要求（SCP.07 game requirements）內容未逐條核對，故產品限制仍為 UNVERIFIED。"
+  },
+  "classificationTest": {
+    "value": "not-applicable",
+    "confidence": "MEDIUM",
+    "source": "https://spillemyndigheden.dk/en-us/businesses-and-associations/games-which-require-a-licence/online-casino/certification-programme-for-online-casino",
+    "notes": "丹麥以「哪些遊戲需要牌照」的類別制度處理准入，而非司法上的技術對機率測試。實際門檻是魚機是否落在 online casino 牌照涵蓋的遊戲類別內，並能通過 SCP.07 的遊戲要求，兩者均未確認。"
+  },
+  "monetisation": {
+    "cashOut": {
+      "status": "allowed",
+      "confidence": "MEDIUM",
+      "source": "Spillemyndigheden online casino 牌照制度（以真實貨幣投注與派彩）",
+      "notes": "取得 online casino 牌照後以真實貨幣派彩為常態。"
+    },
+    "prizeRedemption": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上環境無實體獎品兌換層。"
+    },
+    "maxPrizeValue": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次派彩上限。不得推論為無上限。"
+    },
+    "prizeBuyback": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用於線上環境；未查證。"
+    },
+    "realCurrencyAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "本欄為實體機殼欄位。本檔案僅涵蓋 online casino；陸上機台受不同制度規範。"
+    },
+    "paymentCardAtMachine": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "本欄為實體機殼欄位，不適用。"
+    },
+    "tokenSpecConstraint": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上環境無實體代幣。"
+    },
+    "sweepstakesModel": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "美式 sweepstakes 構造在丹麥法下無實益且未經確認。"
+    }
+  },
+  "productConstraints": {
+    "minGameCycleMs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "遊戲循環時間下限可能落在 SCP.07 game requirements 之內，未逐條核對。魚機射速即投注速度，此為必查項。"
+    },
+    "maxStakePerBullet": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單發投注上限。"
+    },
+    "maxBetMultiplier": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得砲倍上限。"
+    },
+    "maxWinPerCapture": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得單次捕獲派彩上限。"
+    },
+    "autoFire": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "自動發射之處理未經確認，可能落在 SCP.07 範圍內，見 steering/responsible-gaming.md。"
+    },
+    "crossTablePool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "跨桌獎池之處理未經確認。獎池累積與派出的正確性通常需要納入認證範圍，成本應單列。"
+    },
+    "multiSeatSharedPool": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "共享魚池、傷害歸屬與最後一擊分配之要求未經確認。SCP.07 是否有可對映的條款須與認證機構確認範圍，見 steering/multiplayer-fairness.md。"
+    },
+    "featureBuy": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "特殊武器購買之處理未經確認。"
+    },
+    "celebrationOfNonWin": {
+      "status": "unverified",
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得相關規範。"
+    },
+    "otherProhibitions": [
+      {
+        "item": "軟體變更須依 SCP.06 change management 的要求處理",
+        "confidence": "HIGH",
+        "source": "Spillemyndigheden certification programme（SCP.06 change management）",
+        "notes": "⚠️ 這對魚機的營運節奏有直接後果：魚種賠率倍數、生命值、捕獲判定參數的調整都是數學變更，不能當成內容更新推送。變更管理流程須在上線前就建立，見 steering/change-management-recert.md。"
+      },
+      {
+        "item": "資訊安全管理須依 SCP.03 ISMS 建立並維持",
+        "confidence": "HIGH",
+        "source": "Spillemyndigheden certification programme（SCP.03 ISMS）",
+        "notes": "這是組織層要求而非遊戲層要求。小型遊戲供應商常低估其工作量，應在專案評估時單列。"
+      },
+      {
+        "item": "須執行 SCP.04 渗透測試與 SCP.05 弱點掃描",
+        "confidence": "HIGH",
+        "source": "Spillemyndigheden certification programme（SCP.04、SCP.05）",
+        "notes": "定期性義務，非一次性交付。魚機的即時連線架構（魚池狀態機、同桌同步）會擴大測試範圍。"
+      }
+    ]
+  },
+  "rtp": {
+    "minimum": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未逐條核對是否有最低派彩率門檻。不得填入推測值。"
+    },
+    "wagerUnitBasis": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "⚠️ 原子投注單位是一發子彈。SCP.07 的「遊戲」與「投注」定義如何對映到子彈、捕獲或一局，須以書面技術問答向 Spillemyndigheden 或認證機構釐清，見 steering/math-verification.md。"
+    },
+    "nonCashPrizeValuation": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "線上環境通常無非現金獎品。可參照 Massachusetts 205 CMR 143 的處理作為概念對照。"
+    },
+    "perTierParityRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得明文要求，仍應作為設計基線。"
+    }
+  },
+  "playerAccount": {
+    "minimumAge": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未於本次建置中核對明文年齡條款。"
+    },
+    "kycRequired": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "牌照制度下應有身分驗證與 AML 要求，具體內容未核對，見 steering/aml-kyc-player-account.md。"
+    },
+    "selfExclusion": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未於本次建置中確認全國自我排除機制的名稱與整合要求（丹麥有相關制度，但未取得官方頁面故不填值）。"
+    },
+    "spendLimits": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得法定投入限額。"
+    }
+  },
+  "auditLog": {
+    "retentionPeriod": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得保存期要求；可能落在 SCP.02 basic platform 或牌照條件內。"
+    },
+    "requiredFields": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得法定欄位集。魚機需保存足以重建對局的完整事件序列，含魚離場紀錄，見 steering/rng-capture-determination.md。"
+    },
+    "tamperEvidence": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查證；SCP.02 與 SCP.03 可能含相關要求。"
+    }
+  },
+  "dataResidency": {
+    "requirement": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得資料落地要求。"
+    },
+    "crossBorderTransfer": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "丹麥為 EU 成員國，GDPR 適用，但具體安排未查證，見 steering/data-protection-privacy.md。"
+    }
+  },
+  "certification": {
+    "scheme": {
+      "value": "Certification programme for online casino（模組化）：SCP.00 general、SCP.01 RNG、SCP.02 basic platform、SCP.03 ISMS、SCP.04 penetration testing、SCP.05 vulnerability scanning、SCP.06 change management、SCP.07 game requirements",
+      "confidence": "HIGH",
+      "source": "https://spillemyndigheden.dk/en-us/businesses-and-associations/games-which-require-a-licence/online-casino/certification-programme-for-online-casino",
+      "notes": "模組化結構的實務價值是可以逐模組估算工作量與費用。對魚機而言最關鍵的三個模組是 SCP.01（RNG，涵蓋捕獲判定的隨機來源）、SCP.07（遊戲要求）與 SCP.06（變更管理，決定日後調整魚種賠率的流程成本）。SCP.03–SCP.05 屬組織與安全層，與遊戲數學無關但同樣是准入條件。"
+    },
+    "decisionWindow": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得審核與認證時程。"
+    },
+    "exportExemption": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "不適用。"
+    },
+    "acceptedLabs": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "認證計畫要求由認證機構執行，但本次未取得認可機構清單。若需互相獨立之兩份報告，注意 GLI 已於 2023-05-19 收購 iTech Labs，兩者不再獨立。"
+    },
+    "penalties": {
+      "value": null,
+      "confidence": "UNVERIFIED",
+      "source": null,
+      "notes": "未查得罰則條文。"
+    },
+    "otherObligations": {
+      "value": "SCP.03 ISMS 為持續性義務；SCP.04 渗透測試與 SCP.05 弱點掃描為定期性義務",
+      "confidence": "HIGH",
+      "source": "https://spillemyndigheden.dk/en-us/businesses-and-associations/games-which-require-a-licence/online-casino/certification-programme-for-online-casino",
+      "notes": "丹麥的認證不是一次性事件而是持續制度。這使丹麥適合作為建立內部合規流程的基準市場：滿足 SCP.03–SCP.06 的組織能力，在其他市場多半可重用。"
+    }
+  },
+  "verificationRequired": [
+    "取得 SCP.07 game requirements 全文，確認可對映到魚機捕獲判定與共享魚池的條款",
+    "確認魚機是否落在 online casino 牌照涵蓋的遊戲類別內",
+    "確認 SCP.01 RNG 要求是否涵蓋捕獲判定的隨機抽樣形態（非傳統轉輪模型）",
+    "釐清 SCP.07 的「遊戲」與「投注」定義如何對映到一發子彈、一次捕獲或一局",
+    "確認是否有最低派彩率門檻及其數值",
+    "確認是否有遊戲循環時間下限，以及是否適用於魚機射速",
+    "確認 SCP.06 變更管理下，調整魚種賠率倍數或生命值所需的流程與重新認證範圍",
+    "取得認可認證機構清單與各模組費用與時程估算",
+    "確認跨桌獎池與共享魚池是否須納入認證範圍",
+    "確認遊戲紀錄保存期、必要欄位與對局重播可接受形態",
+    "確認全國自我排除機制的名稱、整合方式與供應商介面責任",
+    "確認玩家帳戶層（年齡、KYC、投入限額）之法定要求"
+  ],
+  "lastUpdated": "2026-07-29",
+  "notes": [
+    "丹麥的模組化認證計畫使成本可預估，這在魚機領域少見。SCP.01／SCP.06／SCP.07 三個模組直接決定數學工作的可行性與後續調整成本。",
+    "SCP.06 change management 對魚機的意義比對老虎機更重：魚種賠率倍數與生命值的調整是數學變更，不是內容更新。把調參視為營運日常會直接違反變更管理義務。",
+    "本檔案的分佈值得注意：認證流程為 HIGH，遊戲數學要求為 UNVERIFIED。丹麥的風險集中在認證工程與持續義務，不在法律地位不明。"
+  ]
+}

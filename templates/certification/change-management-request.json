@@ -1,0 +1,270 @@
+{
+  "templateType": "fish-game-expert/change-management-request-v1",
+  "description": "變更請求範本，依 steering/change-management-recert.md 建立。認證綁定的是特定建置雜湊加特定配置雜湊，不是「這款遊戲」；任何偏離該組合的產物在監管意義上都是未認證產品。每一件第 2 類以上的變更都應產生一份本文件。待填欄位為 null 或空字串。",
+  "requestId": null,
+  "requester": {
+    "name": null,
+    "role": null,
+    "team": null,
+    "email": null
+  },
+  "requestDate": null,
+  "targetDeploymentDate": null,
+  "changeDescription": {
+    "summary": "",
+    "detailedDescription": "",
+    "motivation": "",
+    "linkedIssueOrIncidentId": null,
+    "componentsTouched": [],
+    "isBugFixAffectingRtp": null,
+    "notes": "⚠️ 若本變更是修正一個「本身就在影響 RTP」的缺陷，它同時揭露了已認證版本自上線起即與其認證文件不符。此類變更不可先修再查：正確順序是先依 steering/incident-malfunction-handling.md 保全證據、量測實際偏差與影響期間，再同時提交揭露與變更請求。只提修復不提揭露等於隱匿，且重播逐位元比對會讓結果序列的改變在實驗室端可見。"
+  },
+  "tierClassification": {
+    "tier": null,
+    "allowedValues": [
+      {
+        "tier": 0,
+        "definition": "純資產替換：美術、音效、動畫，不觸及任何數值或時序",
+        "internalVerification": "資產完整性檢查 + 回歸重播",
+        "resubmission": "通常不需要，但需記錄",
+        "notification": "依市場，多為不需要"
+      },
+      {
+        "tier": 1,
+        "definition": "UI 佈局、文案、語系、規則說明頁",
+        "internalVerification": "UI 回歸 + 規則揭露正確性審查",
+        "resubmission": "通常不需要；若修改的是規則揭露文字則需審查",
+        "notification": "記錄"
+      },
+      {
+        "tier": 2,
+        "definition": "非數學程式修正：崩潰修復、記憶體洩漏、渲染效能，不觸及判定與時序",
+        "internalVerification": "完整回歸 + 重播比對（結果序列須逐位元相同）",
+        "resubmission": "部分市場要求提交差異說明",
+        "notification": "建議通報"
+      },
+      {
+        "tier": 3,
+        "definition": "影響數學或判定：賠率、生命值、生成權重、砲倍、傷害歸屬、武器效果、獎池、射速、魚離場條件",
+        "internalVerification": "完整重新驗證 + 新 PAR sheet",
+        "resubmission": "必須重新送測",
+        "notification": "必須通報"
+      },
+      {
+        "tier": 4,
+        "definition": "架構或 RNG 變更：RNG 來源與熵源、判定架構、伺服器權威模型、獎池控制器、伺服器框架或部署拓撲",
+        "internalVerification": "完整重新驗證 + RNG 重新提交",
+        "resubmission": "必須重新送測（範圍最大）",
+        "notification": "必須通報"
+      }
+    ],
+    "classificationRationale": "",
+    "classifiedBy": null,
+    "classificationDate": null,
+    "escalatedWhenInDoubt": null,
+    "timingConsidered": {
+      "touchesResolutionTiming": null,
+      "serverTickRateChanged": null,
+      "collisionShapeOrRadiusChanged": null,
+      "pathInterpolationChanged": null,
+      "fireRequestQueueingChanged": null,
+      "lagCompensationCapChanged": null,
+      "notes": "⚠️ 時序即數學。渲染優化、物件池調整、tick 頻率變更看起來是第 2 類，但只要改變判定時序就是第 3 類，因為它改變命中機率。調整回溯（lag compensation）上限最容易被當成純網路調參，實際上它改變高延遲座位的期望值，屬座位間公平性。"
+    },
+    "notes": "分類由影響面決定，不由程式碼行數決定。沒有「小修補」這個分類。分類存疑時往上歸類——低估一次的代價（認證撤銷）遠高於多送一次的成本。此五級框架是本 Power 建議的內部工作分類，不是任何監管機關的官方分類；各市場的正式分類與通報門檻標記 UNVERIFIED。"
+  },
+  "affectedHashes": {
+    "buildHashBefore": null,
+    "buildHashAfter": null,
+    "configHashBefore": null,
+    "configHashAfter": null,
+    "rngModuleHashBefore": null,
+    "rngModuleHashAfter": null,
+    "hashAlgorithm": null,
+    "startupHashValidationUpdated": null,
+    "notes": "配置雜湊不符時系統必須拒絕啟動，而非記錄後繼續。降級運行的每一秒都在產生需要事後補償的交易。"
+  },
+  "affectedMarkets": [
+    {
+      "marketCode": null,
+      "certificationRef": null,
+      "currentParSheetVersion": null,
+      "resubmissionRequired": null,
+      "notificationRequired": null,
+      "notificationDeadline": null,
+      "administrativeWindow": null,
+      "confidence": "UNVERIFIED",
+      "notes": ""
+    }
+  ],
+  "changePropagationScope": {
+    "changeLocation": null,
+    "propagationRule": [
+      {
+        "location": "判定引擎、傷害歸屬、RNG",
+        "scope": "全部市場"
+      },
+      {
+        "location": "單一市場的魚種賠率配置",
+        "scope": "僅該市場"
+      },
+      {
+        "location": "共用魚種／武器定義庫中的某一項",
+        "scope": "所有引用該項目的市場"
+      }
+    ],
+    "marketsRequiringRevalidation": [],
+    "sharedSpeciesLibraryCouplingChecked": null,
+    "notes": "共用的魚種定義庫看起來是資產管理，實際上是跨市場的數學耦合點，實務上最容易漏。一個判定層的第 3 類變更會擴散到所有市場，意即 N 個市場各自重新驗證與重新送測，這是多市場產品的真實成本，必須在變更決策時估算。"
+  },
+  "replayComparisonEvidence": {
+    "purpose": "第 2 類與第 3 類的界線判準：以同一組 spawn seed 與同一份事件流重播修改前後的建置，逐發子彈的判定結果與逐條魚的結局必須完全相同。任何一發不同，該變更就不是第 2 類。",
+    "replayPerformed": null,
+    "spawnSeedsUsed": [],
+    "eventStreamRef": null,
+    "bulletsReplayed": null,
+    "fishOutcomesReplayed": null,
+    "bitExactMatch": null,
+    "firstDivergence": {
+      "bulletId": null,
+      "serverTick": null,
+      "fieldDiverged": null,
+      "beforeValue": null,
+      "afterValue": null,
+      "explanation": ""
+    },
+    "divergenceCount": null,
+    "artefactRef": null,
+    "verifiedBy": null,
+    "verificationDate": null,
+    "notes": "重播不只是爭議處理工具，它是變更分類的量測儀器。bitExactMatch 為 false 時，本變更至少為第 3 類，classificationRationale 必須據此更新。⚠️ 不要把影響 RTP 的修復偽裝成第 2 類「效能修正」。"
+  },
+  "mathVerification": {
+    "newParSheetProduced": null,
+    "newParSheetVersion": null,
+    "previousParSheetArchivedNotEdited": null,
+    "theoreticalRtpBefore": null,
+    "theoreticalRtpAfter": null,
+    "simulatedRtpAfter": null,
+    "perTierRtpParityRevalidated": null,
+    "strategyRangeRecomputed": null,
+    "lossItemsRecomputed": null,
+    "multiplayerScenariosRerun": null,
+    "sampleSizeDerivationRef": null,
+    "notes": "第 3 類以上的變更一律產生新 PAR sheet，舊版不可就地編輯，必須版本化保存。新增砲倍檔位必須重新證明各砲倍 RTP 一致性——新檔位常在邊界的捨入處破壞一致性。加入或移除跨桌獎池是新的數學配置而不是一個開關，基礎遊戲 RTP 必須相應調整並重新驗證。"
+  },
+  "playerRuleDisclosureImpact": {
+    "playerFacingRulesChanged": null,
+    "affectedRuleSections": [],
+    "translationsUpdated": null,
+    "reviewedForAccuracy": null,
+    "notes": "修改傷害歸屬或最後一擊規則、斷線傷害處理規則、模型 B 捨入規則時，必須同步更新玩家規則揭露。錯譯的規則等同未揭露。"
+  },
+  "resubmissionAndNotification": {
+    "resubmissionRequiredAnyMarket": null,
+    "labsToNotify": [],
+    "regulatorsToNotify": [],
+    "submissionPackagesAffected": [],
+    "rngResubmissionRequired": null,
+    "notificationEvidenceRefs": [],
+    "confidence": "UNVERIFIED",
+    "notes": "通報門檻與時限逐市場而定，須依 steering/jurisdiction-matrix.md 的查證 SOP 取得。營運商的牌照條件與實驗室認證報告條件通常直接寫明通報義務，是最快的來源。B2B 供應商通常不直接持有通報義務，但有及時告知營運商的合約義務，延遲告知會直接造成營運商違反其時限。"
+  },
+  "taiwanReclassification": {
+    "applicable": null,
+    "domesticSalesBuildAffected": null,
+    "exportOnlyBuildAffected": null,
+    "hardwareStructureAlsoChanged": null,
+    "newInspectionApplicationFiled": null,
+    "newClassificationApplicationFiled": null,
+    "applicationDate": null,
+    "expectedDecisionDate": null,
+    "commodityInspectionRequired": null,
+    "otaCapabilityPresentOnDomesticUnits": null,
+    "otaRiskMitigation": "",
+    "notes": "⚠️ 依電子遊戲場業管理條例 §7 第 2 項，機具結構或軟體經修改者視為新型機種，應即依規定申請檢驗及評鑑分類。台灣沒有「小修補」概念——§7 的文義不區分修改的性質，因此本 Power 的第 0 至第 4 類分級在台灣內銷機台上全部落入同一個結論：重新申請。§7 第 1 項另禁止陳列、使用未經評鑑分類公告之機台或擅自修改已評鑑分類之機台，違反者依 §23 第 3 項處 NT$10 萬–50 萬罰鍰。§6 第 4 項規定中央主管機關應自收受評鑑申請書之日起 30 日內完成評鑑分類之決定並公告，因此任何變更在台灣至少意味著一個月的行政等待，若機具結構同時變動則另有商品檢驗法程序。工程後果：OTA 更新機制在內銷機台上是高風險設計，內銷版與出口版應是不同的建置分支（§6 第 1 項但書的專供出口豁免只適用出口版），內容更新不能以手遊的雙週節奏規劃。法源：https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0080024"
+  },
+  "testEvidence": {
+    "regressionSuitePassed": null,
+    "regressionSuiteRef": null,
+    "replayBasedRegressionCasesAdded": [],
+    "startupHashValidationTested": null,
+    "runtimeInvariantsTested": null,
+    "behaviouralIndependenceTestsRerun": {
+      "longTermDriftTest": null,
+      "injectedBiasTest": null,
+      "stateIsolationTest": null,
+      "required": null,
+      "notes": "第 3 類以上、且觸及捕獲判定或傷害分佈的變更，應重跑 steering/payout-control-integrity.md 第 3.3 節的三項行為測試並保留輸出。"
+    },
+    "artefactRefs": []
+  },
+  "approval": {
+    "technicalApprover": {
+      "name": null,
+      "role": null,
+      "date": null,
+      "decision": null
+    },
+    "complianceApprover": {
+      "name": null,
+      "role": null,
+      "date": null,
+      "decision": null
+    },
+    "deploymentAuthoriser": {
+      "name": null,
+      "role": null,
+      "date": null,
+      "authorisationScope": "",
+      "notes": "部署授權者與技術核准者應為不同人。變更管理本身是一個可被獨立審查的控制項（丹麥 Spillemyndigheden 認證方案將其列為獨立模組 SCP.06），審查者不只看改了什麼，也看有沒有一套能防止未經授權變更上線的流程。"
+    },
+    "emergencyPathUsed": null,
+    "emergencyPathJustification": "",
+    "hotfixEligibility": {
+      "eligible": null,
+      "basis": "",
+      "notes": "可熱修的範圍限於：重播逐位元比對通過的崩潰修復、記憶體或連線洩漏、不含規則揭露內容的 UI 顯示錯誤、不觸及判定的資安漏洞修補。⚠️ 任何觸及判定、時序、數學或 RNG 的修復不可熱修；「先上線再補送測」等於上線未認證建置。緊急情況的正確動作是把遊戲下線，不是上線一個未認證的建置。"
+    }
+  },
+  "rollbackPlan": {
+    "rollbackPossible": null,
+    "rollbackTargetBuildHash": null,
+    "rollbackTargetConfigHash": null,
+    "rollbackTriggerConditions": [],
+    "rollbackProcedure": "",
+    "rollbackAuthoriser": null,
+    "estimatedRollbackTimeMinutes": null,
+    "dataMigrationReversible": null,
+    "inFlightTableHandling": {
+      "gracefulTableDrainProcedure": "",
+      "completedCapturesSettled": null,
+      "incompleteCaptureSunkCostRefunded": null,
+      "inProgressBossStageHandling": "",
+      "playerFacingReasonDisplayed": null,
+      "notes": "魚機的停機與回滾比老虎機複雜：停機瞬間桌上可能有 8 個座位、多條受傷的魚、進行中的 BOSS 關卡。回滾程序必須涵蓋多人同桌的未完成狀態處理，並記錄停機決定與授權者，見 steering/multiplayer-fairness.md 第 6 節。"
+    },
+    "rollbackTested": null,
+    "rollbackTestArtefactRef": null,
+    "postRollbackVerification": "",
+    "notes": "回滾到舊建置同樣是一次部署，必須驗證回滾後的建置與配置組合仍是已認證組合。若回滾目標的認證已失效（例如標準改版），則回滾不是可用選項，必須在此明示。"
+  },
+  "postDeploymentVerification": {
+    "hashVerifiedInProduction": null,
+    "rtpMonitoringWindowHours": null,
+    "perTierRtpMonitoringEnabled": null,
+    "perSeatRtpMonitoringEnabled": null,
+    "escapeRateMonitoringEnabled": null,
+    "replaySamplingVerificationEnabled": null,
+    "verifiedBy": null,
+    "verificationDate": null,
+    "notes": "定期隨機抽樣重播並比對實際結算結果，是唯一能主動發現靜默偏差的機制，也是送測時最有力的自我驗證材料。"
+  },
+  "traceability": {
+    "transactionToBuildLookupVerified": null,
+    "linkedIncidentReportId": null,
+    "linkedRiskRegisterEntries": [],
+    "linkedParSheetVersions": [],
+    "notes": "從任一筆玩家交易必須能反查當時運行的建置雜湊、配置雜湊、生效的 PAR sheet 版本與認證報告編號。做不到這件事，事故發生時就無法界定影響範圍。"
+  }
+}
